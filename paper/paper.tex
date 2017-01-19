@@ -1,0 +1,67 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+
+\usepackage{usenix}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.8]{beramono} % For a pretty monospaced font.
+\usepackage[pdftex]{graphicx}
+\usepackage{booktabs} % For pretty tables.
+\usepackage{multirow} % Also for pretty tables.
+\usepackage{mathptmx} % Use times in math font.
+\usepackage{hyperref} % For clickable links.
+\usepackage{balance} % Balance columns on last page.
+\usepackage{xcolor} % For colourful links.
+\usepackage{xspace} % For reasonable spacing in custom commands.
+\usepackage[backend=biber,backref=true]{biblatex}
+\bibliography{references}
+\renewcommand*{\bibfont}{\small}
+
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{lightgray}{rgb}{0.93,0.93,0.93}
+
+\hypersetup{
+	pdftitle={},
+	pdfauthor={},
+	pdfkeywords={},
+	colorlinks=true,
+	urlcolor=darkblue,
+	linkcolor=darkblue,
+	citecolor=darkblue
+}
+
+\newcommand{\xxx}[1]{\textcolor{red}{#1}}
+\newcommand{\fixme}[1]{\textcolor{red}{{\bf FIXME:} #1}\xspace}
+\newcommand{\ie}{{\it i.e.}\xspace}
+\newcommand{\eg}{{\it e.g.}\xspace}
+\newcommand{\ea}{{\it et al.}\xspace}
+\newcommand{\etc}{{\it etc.}\xspace}
+\newcommand{\first}{(\emph{i})\xspace}
+\newcommand{\second}{(\emph{ii})\xspace}
+\newcommand{\third}{(\emph{iii})\xspace}
+\newcommand{\fourth}{(\emph{iv})\xspace}
+\newcommand{\fifth}{(\emph{v})\xspace}
+
+\begin{document}
+
+\title{\Large \bf Title}
+
+\author{}
+
+\maketitle
+
+% Use the following at camera-ready time to suppress page numbers.
+% Comment it out when you first submit the paper for review.
+\thispagestyle{empty}
+
+\input{abstract}
+
+\input{introduction}
+
+\input{related}
+
+\input{conclusion}
+
+\input{acknowledgements}
+
+\printbibliography
+
+\end{document}
