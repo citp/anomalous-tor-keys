@@ -1,0 +1,52 @@
+\section{Background}
+We now provide brief background on both the RSA cryptosystem and how the Tor
+network employs RSA.
+
+\subsection{The RSA cryptosystem}
+The RSA public key cryptosystems is comprised of two keys: a public encryption
+key and a privately held decryption key. The encryption key---or RSA public
+key---is comprised of a pair of positive integers, an exponent $e$ and a modulus
+$N$. The modulus $N$ is the product of two large, random prime numbers $p$ and
+$q$. The corresponding decryption key---or RSA private key---is comprised of the
+positive integer pair $d$ and $N$ where $d = e^{-1}$ mod $(p - 1)(q - 1)$.  The
+decryption exponent $d$ is efficient to compute if the factorization of $N$ is
+known.
+
+The security of RSA rests upon the difficulty of factorizing $N$ into its prime
+factors $p$ and $q$.  While factoring $N$ is impractical given sufficiently
+large prime factors, the greatest common divisor (GCD) of \emph{two moduli} can
+be computed in mere microseconds.  Consider two distinct RSA moduli $N_1 = pq_1$
+and $N_2 = pq_2$ that share the prime factor $p$.  An attacker could quickly and
+easily compute the GCD of $N_1$ and $N_2$ in order to obtain $p$, then divide
+the moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private
+key of both key pairs.  Therefore, it is crucial that both $p$ and $q$ are
+determined using a strong random number generator.
+
+\subsection{The Tor network}
+As of January 2017, the Tor network consists of almost 7,000
+relays~\cite{tormetrics}.  Each of these relays maintains RSA, Curve25519, and
+Ed25519 key pairs~\cite[\S~1.1]{torspec}.  We are only interested in the
+following three RSA key pairs that relays have.  All three key pairs use
+1024-bit keys.
+
+\begin{description}
+    \item[Identity key]  Relays have a long-term identity key that they only use
+        to sign documents and certificates.  Relays are frequently referred to
+        by their fingerprint, which is a hash over their identity key.  The
+        compromise of an identity would allow an attacker to entirely
+        impersonate a relay, \eg, by publishing spoofed descriptors.
+    \item[Onion key]  Relays use medium-term onion keys to decrypt cells when
+        circuits are created.  The RSA-based onion key is only used in the Tor
+        Authentication Protocol that is now superseded by the ntor handshake.  A
+        compromised onion key allows the attacker to read the content of cells
+        until the key pair rotates.
+    \item[Connection key] The short-term connection keys protect the connection
+        between relays using TLS.  Connection keys are rotated at least once a
+        day.  The TLS connection provides defense in depth.  If compromised, an
+        attacker is able to read the cells that are exchanged between Tor
+        relays.
+\end{description}
+
+In our work, we only consider the three 1024-bit RSA key pairs that each relay
+has.  The Tor Project is archiving these key pairs since more than ten years,
+allowing us to draw on a rich data set~\cite{collector}.
