@@ -1,0 +1,21 @@
+# todos
+
+- [ ] Try to compute some of the private keys (Yorgos)
+- [ ] Look at consensus files to see exactly how long relays were available (Lali)
+- [x] Run experiment using all publicly available RSA keys (129 million) (Lali to investigate email 2016 Nadia)
+- [x] Add bridging relay server descriptors (Philipp)
+- [ ] Create a distribution of nickname lengths (Claudia)
+- [ ] Look at Trawling code and see what happened work with Trawling (Yorgos)
+- [ ] Work with Luxembourg team on why they were generating keys with shared prime factors.  (Claudia)
+- [ ] Write paper (ALL/Yorgos: Implications to Tor)
+- [x] Re-run experiment (Philipp) (Josh did this for us)
+- [x] Tar ball for code to make it easy to share with outside developers (add code to github)  (Claudia)
+- [ ] 2,217 of these 2,236 (ALL)
+- [ ] 10 of these 2,236 (ALL)
+- [ ] 7 of these 2,236 (ALL)
+- [ ] 2 of these 2,236 (ALL)
+- [ ] Ethical considerations: Trawling experiment  (Lali, Philipp)
+- [ ] Get info about dataset. Table of break down of the 3.7 keys, onion vs. signing, archived vs. recent, how many relays they were all together. Count relays by different fingerprints/identity keys. Count relays by distinct IP addresses. One machine can rotate signing keys.  (Claudia)
+- [ ] For weak keys get info of how many different IP addresses and fingerprints (Claudia)
+- [ ] Mention in paper that graphs on log-log scale (Claudia)
+- [ ] Analysis of keys with repeated moduli 
