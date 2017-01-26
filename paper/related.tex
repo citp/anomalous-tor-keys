@@ -1,2 +1,31 @@
 \section{Related work}
-Heninger \ea~\cite{Heninger2012a}.
+In 2012, Lenstra \ea~\cite{Lenstra2012a} and Heninger \ea~\cite{Heninger2012a}
+independently analyzed a large set of RSA public keys and discovered that many
+keys shared prime factors, allowing an attacker to efficiently compute the
+corresponding private keys.  The researchers showed that the root cause was weak
+randomness at the time of key generation.  Many Internet-connected devices lack
+entropy sources, resulting in predictable keys.
+
+One year later, Bernstein \ea~\cite{Bernstein2013a} showed similar flaws in
+Taiwan's national ``Citizen Digital Certificate'' database.  Among more than two
+million 1024-bit RSA keys, the authors discovered 184 vulnerable keys, 103 of
+which shared prime factors.  The authors could break the remaining 81 keys by
+applying a Coppersmith-type partial-key-recovery attack.
+
+Valenta \ea~\cite{Valenta2016a} optimized popular implementations for integer
+factorization, allowing them to factor 512-bit RSA public keys on Amazon EC2
+under four hours for only \$75.  The authors then moved on to survey the RSA key
+sizes that are used in popular protocols such as HTTPS, DNSSEC, and SSH,
+discovering numerous 512-bit keys of only 512 bits.
+
+Most recently, in 2016, Hastings \ea~\cite{Hastings2016a} revisited the problem
+of weak keys and investigated how many such keys remain on the Internet four
+years after the initial studies.  The authors found that many vendors and device
+owners never patched vulnerable devices.  To make matters worse, the number of
+vulnerable devices has \emph{increased} since 2012.
+
+In this work, we apply Lenstra \ea's and Heninger \ea's work to archived RSA
+keys of Tor relays.  Drawing on a dataset that comprises almost four million
+keys, we used Heninger and Halderman's \texttt{fastgcd} tool~\cite{fastgcd} to
+search for shared prime factors, and manually inspected the vulnerable keys that
+our work exposed.
