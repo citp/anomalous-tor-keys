@@ -1,0 +1,150 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Set these variables appropriately
+%%%
+\newcommand{\AUTHORS}{Claudia V. Roberts}
+\newcommand{\TITLE}{Detection of Weak Tor and Onion Keys in Tor Relay Servers}
+\newcommand{\KEYWORDS}{Tor, RSA}
+\newcommand{\CONFERENCE}{}
+\newcommand{\PAGENUMBERS}{yes}       % "yes" or "no"
+\newcommand{\TOAPPEAR}{no}
+%%%
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Setup the document/page
+\documentclass[pdftex,twoside,twocolumn,11pt,letterpaper]{article}
+\usepackage{ifthen}
+
+\ifthenelse{\equal{\PAGENUMBERS}{yes}}{%
+\usepackage[nohead,
+            left=1in,right=1in,top=1in,
+            footskip=0.5in,bottom=0.75in     % Room for page numbers
+            ]{geometry}
+}{%
+\usepackage[noheadfoot,columnsep=0.2in,
+            margin=1in,centering,truedimen]{geometry}
+}
+
+\usepackage{fancyhdr}
+\usepackage[numbers,sort]{natbib}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{mathptmx}   % Times + Times-like math symbols
+\usepackage{courier}
+\usepackage[scaled=0.92]{helvet}
+
+\usepackage{color}
+\usepackage[pdftex]{graphicx}
+\ifthenelse{\isundefined{\wantBW}}{%
+  \usepackage[colorlinks]{hyperref}%        % for online version
+}{%
+  \usepackage[pdfborder={0 0 0}]{hyperref}% % for paper (B&W) version
+}
+\newcommand{\URL}[1]{\url{#1}}
+
+%%%%% Setup for PDF
+\hypersetup{%
+pdfauthor = {\AUTHORS},
+pdftitle = {\TITLE},
+pdfsubject = {\CONFERENCE},
+pdfkeywords = {\KEYWORDS},
+bookmarksopen = {true}
+}
+
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\Paragraph}[1]{\vspace{-2ex}\paragraph{#1.}}
+\setlength{\topmargin}{-.15in}
+
+\ifthenelse{\equal{\PAGENUMBERS}{yes}}{%
+  \pagestyle{plain}
+}{%
+  \pagestyle{empty}
+}
+
+\makeatletter\long\def\@makecaption#1#2{
+   \vskip 10pt
+   \setbox\@tempboxa\hbox{\textsf{#1: #2}}
+   \ifdim \wd\@tempboxa >\hsize % IF longer than one line:
+       \textsf{#1: #2}\par      % THEN set as ordinary paragraph.
+     \else                      % ELSE  center.
+       \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+   \fi}
+\makeatother
+
+\clubpenalty=10000  % Don't allow orphans
+\widowpenalty=10000 % Don't allow widows
+
+\title{\textbf{\TITLE}}
+\author{\AUTHORS}
+\date{}
+
+% Compact itemize and enumerate.  Note that they use the same counters and
+% symbols as the usual itemize and enumerate environments.
+\def\compactify{\itemsep=0pt \topsep=0pt \partopsep=0pt \parsep=0pt}
+\let\latexusecounter=\usecounter
+\newenvironment{CompactItemize}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{itemize}}
+  {\end{itemize}\let\usecounter=\latexusecounter}
+\newenvironment{CompactEnumerate}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{enumerate}}
+  {\end{enumerate}\let\usecounter=\latexusecounter}
+
+\newcommand{\comment}[1]{\textcolor{red}{#1}}
+\newcommand{\ignore}[1]{}
+
+\newcommand{\xc}[1]{\mbox{\textit{#1}}}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\somespace}{\hspace{0.1cm}}
+
+\def\discretionaryslash{\discretionary{/}{}{/}}
+\def\discretionarydot{\discretionary{.}{}{.}}
+\def\discretionarycolon{\discretionary{:}{}{:}}
+{\catcode`\/\active
+\catcode`\.\active
+\catcode`\:\active
+\gdef\URLprepare{\catcode`\/\active\let/\discretionaryslash
+                 \catcode`\.\active\let.\discretionarydot
+                 \catcode`\:\active\let:\discretionarycolon
+        \def~{\char`\~}}}%
+\def\URL{\bgroup\URLprepare\realURL}%
+\def\realURL#1{\tt #1\egroup}%
+
+\newcommand{\eg}{{\em e.g.}, }
+\newcommand{\ie}{{\em i.e.}, }
+\newcommand{\etal}{{\em et al.\ }}
+
+\def\check{\stackrel{{\scriptscriptstyle ?}}{=}}
+
+\begin{document}
+\maketitle
+
+\input{abstract}   
+\input{intro}
+\input{background}
+\input{methodology}
+\input{eval}
+\input{future}
+\input{conclusion}
+\section*{Acknowledgments}
+A big thank you to my advisers Philipp Winter, Laura M. Roberts, and Yorgos Kadianakis.
+
+%% Bibliography
+%\vspace{-1ex}
+%\linespread{1.0}
+%\setlength{\bibsep}{1pt}
+%\footnotesize
+\small
+\bibliography{local}
+\bibliographystyle{abbrvnat}
+
+\end{document}
+
