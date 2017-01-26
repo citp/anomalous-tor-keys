@@ -9,9 +9,7 @@ GNUPLOT:= gnuplot
 SOURCES=$(NAME)-cos518.tex \
 	abstract.tex \
 	intro.tex \
-	design.tex \
 	eval.tex \
-	related.tex \
 	conclusion.tex \
 	local.bib
 
