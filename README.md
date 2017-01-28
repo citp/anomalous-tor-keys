@@ -18,4 +18,6 @@
 - [ ] Get info about dataset. Table of break down of the 3.7 keys, onion vs. signing, archived vs. recent, how many relays they were all together. Count relays by different fingerprints/identity keys. Count relays by distinct IP addresses. One machine can rotate signing keys.  (Claudia)
 - [ ] For weak keys get info of how many different IP addresses and fingerprints (Claudia)
 - [ ] Mention in paper that graphs on log-log scale (Claudia)
-- [ ] Analysis of keys with repeated moduli 
+- [ ] Analysis of the 10 keys with repeated moduli (Yorgos, Philipp)
+- [ ] Implications of keys with repeated moduli (Laura)
+- [ ] Check if all moduli are 1024 length (Phillip)
