@@ -3,3 +3,89 @@
 \subsection{Shared prime factors}
 
 \subsection{Shared moduli}
+In addition to shared prime factors, we discovered relays that shared a
+\emph{modulus}, meaning that they were able to calculate each other's private
+key.  Table~\ref{tab:moduli} illustrates these ten relays, clustered into four
+groups that each share a modulus.  The table further shows the relays'
+abbreviated, four-byte fingerprint, IP addresses, and RSA exponents.  Note that
+the Tor client hard-codes the RSA exponent to 65,537~\cite[\S~0.3]{torspec}, so
+any other value indicates non-standard key generation.  All IP addresses were
+hosted by OVH, a popular French hosting provider, and some of the IP addresses
+hosted two relays, as our color coding indicates.  Finally, each group shared
+a four or five-digit prefix in their fingerprints.  We believe that a single
+attacker controlled all these relays, with the intention to manipulate the
+distributed hash table that powers onion services~\cite{Biryukov2013a}; the
+shared fingerprint prefix is an indication.  We suspect that the attackers
+iterated over exponents to come up with the shared prefix.  The Tor Project
+informed us that it discovered and blocked these relays in August
+2014~\cite{tor-priv1}, when they first came online.
+
+\begin{table}[t]
+	\centering
+	\begin{tabular}{l l r}
+	\toprule
+	Short fingerprint & IP address & Exponent \\
+	\midrule
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 838A}296A} & 188.165.164.163 &
+	1,854,629 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 838A}305F} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight3}{\strut 188.165.26.13}} &
+	718,645 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 838A}71E2} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight2}{\strut 178.32.143.175}} &
+	220,955 \\
+
+	\midrule
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 2249E}B42} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight3}{\strut 188.165.26.13}} &
+	4,510,659 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 2249E}C78} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight2}{\strut 178.32.143.175}} &
+	1,074,365 \\
+
+	\midrule
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut E1EF}A388} & 188.165.3.63 &
+	18,177 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut E1EF}8985} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight4}{\strut 188.165.138.181}} &
+	546,019 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut E1EF}9EB8} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight5}{\strut 5.39.122.66}} &
+	73,389 \\
+
+	\midrule
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 410B}A17E} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight4}{\strut 188.165.138.181}} &
+	1,979,465 \\
+
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut 410B}B962} &
+	{\setlength{\fboxsep}{0pt}\colorbox{highlight5}{\strut 5.39.122.66}} &
+	341,785 \\
+
+	\bottomrule
+	\end{tabular}
+
+	\caption{Four groups of relays that have a shared modulus.  All relays
+	further share a fingerprint prefix in groups of two or three, presumably to
+	manipulate Tor's distributed hash table.}
+	\label{tab:moduli}
+\end{table}
