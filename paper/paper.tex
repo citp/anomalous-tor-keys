@@ -45,6 +45,9 @@
 \newcommand{\third}{(\emph{iii})\xspace}
 \newcommand{\fourth}{(\emph{iv})\xspace}
 \newcommand{\fifth}{(\emph{v})\xspace}
+\newcommand{\hlfpr}[2]{%
+	\texttt{\setlength{\fboxsep}{0pt}%
+	\colorbox{highlight1}{\strut #1}#2}}
 
 \begin{document}
 
@@ -76,5 +79,7 @@
 
 \balance
 \printbibliography
+
+\input{appendix}
 
 \end{document}

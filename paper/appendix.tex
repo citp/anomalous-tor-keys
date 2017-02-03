@@ -1,0 +1,247 @@
+\appendix
+
+\section{Relays with unusual RSA exponents}
+\label{sec:full-unusual-exponents}
+Section~\ref{sec:unusual-exponents} discussed 122 relays whose public RSA
+exponent differed from Tor's hard-coded 65,537.  Table~\ref{tab:group1}
+to~\ref{tab:group5} together list these 122 relays.  In particular, we show the
+relays' truncated four-byte fingerprint, their nickname, their IP address, and
+their public RSA exponent.  Many of the 122 relays exhibit partial fingerprint
+collisions (highlighted in gray), presumably to obtain a specific position in
+the onion service hash ring.
+
+\begin{table}
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Fingerprint & Nickname & IP address & Exponent \\
+	\midrule
+	\hlfpr{0759DB6F}{} & schedule   & 150.95.142.186  & 229,995,765 \\
+	\hlfpr{0759DB6F}{} & dengue     & 133.130.122.105 & 954,990,355 \\
+	\hlfpr{0759DB6F}{} & Almond     & 150.95.143.40   & 626,061,519 \\
+	\midrule
+	\hlfpr{09A54DB}{0} & epitome    & 45.76.128.202   & 1,678,745,769 \\
+	\hlfpr{09A54DB}{3} & euler      & 163.44.153.177  & 1,108,857,575 \\
+	\hlfpr{09A54DB}{3} & niche      & 163.44.113.116  & 1,745,865,531 \\
+	\midrule
+	\hlfpr{264EA12}{8} & guanguan   & 163.44.167.158  & 220,632,011 \\
+	\hlfpr{264EA12}{B} & shift      & 45.32.105.219   & 132,219,129 \\
+	\hlfpr{264EA12}{B} & youknow    & 45.76.113.171   & 1,798,607,207 \\
+	\midrule
+	\hlfpr{26597E6}{1} & cocoa      & 104.238.191.196 & 1,379,799,401 \\
+	\hlfpr{26597E6}{2} & victuals   & 45.63.31.68     & 32,576,079 \\
+	\hlfpr{26597E6}{2} & gauge      & 128.199.217.46  & 131,552,757 \\
+	\midrule
+	\hlfpr{2D148D3}{D} & bury       & 150.95.143.40   & 266,644,331 \\
+	\hlfpr{2D148D3}{E} & zebra      & 150.95.142.186  & 241,957,811 \\
+	\midrule
+	\hlfpr{2E25D84}{4} & direct     & 45.76.113.171   & 17,621,801 \\
+	\hlfpr{2E25D84}{5} & myapple    & 45.32.105.219   & 1,044,674,813 \\
+	\hlfpr{2E25D84}{6} & comeback   & 104.238.165.134 & 689,575,361 \\
+	\hlfpr{2E25D84}{6} & restart    & 107.191.47.191  & 7,561,442,929 \\
+	\hlfpr{2E25D84}{7} & bluesky    & 163.44.167.158  & 1,394,906,153 \\
+	\midrule
+	\hlfpr{32E71B90}{} & zebra      & 150.95.142.186  & 2,843,570,039 \\
+	\midrule
+	\hlfpr{3968276F}{} & pizza      & 104.238.165.134 & 2,684,303,857 \\
+	\midrule
+	\hlfpr{5404DC16}{} & schedule   & 150.95.142.186  & 2,703,265,981 \\
+	\midrule
+	\hlfpr{59E415D}{4} & police     & 159.203.254.220 & 1,931,398,351 \\
+	\hlfpr{59E415D}{4} & ethyl      & 178.62.245.218  & 256,546,481 \\
+	\hlfpr{59E415D}{7} & porsche    & 162.243.164.151 & 473,803,601 \\
+	\midrule
+	\hlfpr{6761D2B}{C} & salou      & 128.199.59.20   & 112,319,419 \\
+	\hlfpr{6761D2B}{C} & caker      & 95.85.24.170    & 1,865,406,823 \\
+	\hlfpr{6761D2B}{E} & chauvinism & 138.197.200.144 & 900,199,685 \\
+	\midrule
+	\hlfpr{71363B8}{1} & dessert    & 133.130.122.105 & 68,863,333 \\
+	\hlfpr{71363B8}{3} & bury       & 150.95.143.40   & 285,526,435 \\
+	\midrule
+	\hlfpr{7CDB224}{E} & coupon     & 138.68.154.127  & 47,223,567 \\
+	\hlfpr{7CDB224}{F} & capris     & 45.63.31.68     & 263,219,313 \\
+	\midrule
+	\hlfpr{}{905CC77C} & sour       & 45.63.20.92     & 2,746,565,943 \\
+	\midrule
+	\hlfpr{A0E83AA}{0} & bowl       & 163.44.113.116  & 253,332,051 \\
+	\hlfpr{A0E83AA}{1} & truth      & 163.44.153.177  & 2,109,850,307 \\
+	\hlfpr{A0E83AA}{2} & develop    & 45.76.128.202   & 672,985,205 \\
+	\midrule
+	\hlfpr{}{D271E035} & victuals   & 45.63.31.68     & 2,724,738,511 \\
+	\midrule
+	\hlfpr{DE2702F4}{} & pizza      & 104.238.165.134 & 184,370,845 \\
+	\hlfpr{DE2702F4}{} & sour       & 45.63.20.92     & 488,020,267 \\
+	\hlfpr{DE2702F4}{} & genre      & 107.191.47.191  & 1,933,228,135 \\
+	\midrule
+	\hlfpr{EBF154D}{8} & quinoa     & 45.63.20.92     & 12,242,179,243 \\
+	\hlfpr{EBF154D}{9} & quote      & 107.191.47.191  & 310,366,091 \\
+	\hlfpr{EBF154D}{A} & monk       & 104.238.165.134 & 588,652,521 \\
+	\midrule
+	\hlfpr{F5079E2}{D} & Almond     & 150.95.143.40   & 226,820,943 \\
+	\hlfpr{F5079E2}{D} & schedule   & 150.95.142.186  & 1,561,992,849 \\
+	\hlfpr{F5079E2}{E} & dengue     & 133.130.122.105 & 713,479,109 \\
+	\bottomrule
+	\end{tabular}}
+
+	\caption{A seemingly-related cluster of 46 relays that went online in
+	November 2016.}
+	\label{tab:group1}
+\end{table}
+
+\begin{table}
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Fingerprint & Nickname & IP address & Exponent \\
+	\midrule
+	\hlfpr{}{2DFDC2BA} & America0823    & 98.158.107.61  & 773,161,427 \\
+	\midrule
+	\hlfpr{325CAC0}{A} & America0816    & 98.158.107.61  & 320,165,239 \\
+	\hlfpr{325CAC0}{A} & Britain0816    & 176.56.180.162 & 739,276,705 \\
+	\hlfpr{325CAC0}{B} & NSingapore0816 & 98.158.108.55  & 1,178,204,265 \\
+	\midrule
+	\hlfpr{37D5E568}{} & America02      & 172.82.166.25  & 17,733,657,127 \\
+	\hlfpr{37D5E568}{} & America03      & 172.82.166.23  & 4,794,439,555 \\
+	\hlfpr{37D5E568}{} & HongKong02     & 103.37.1.128   & 1,781,593,029 \\
+	\midrule
+	\hlfpr{816FEE1}{4} & NSingapore0823 & 98.158.108.55  & 994,060,627 \\
+	\hlfpr{816FEE1}{5} & America0823    & 98.158.107.61  & 686,629,695 \\
+	\hlfpr{816FEE1}{6} & Britain0823    & 176.56.180.162 & 254,007,767 \\
+	\midrule
+	\hlfpr{}{90645A9B} & Britain0816    & 176.56.180.162 & 2,236,171,913 \\
+	\midrule
+	\hlfpr{A5C59B3}{D} & NSingapore0817 & 98.158.108.55  & 558,846,429 \\
+	\hlfpr{A5C59B3}{F} & America0817    & 98.158.107.61  & 1,792,382,161 \\
+	\hlfpr{A5C59B3}{F} & Britain0817    & 176.56.180.162 & 342,841,829 \\
+	\midrule
+	\hlfpr{BC79109C}{} & HongKong02     & 103.37.1.128   & 711,846,827 \\
+	\hlfpr{BC79109C}{} & HongKong01     & 103.37.1.129   & 5,113,334,139 \\
+	\midrule
+	\hlfpr{E5E7783}{0} & Hongkong0817   & 98.158.109.184 & 1,323,419,807 \\
+	\hlfpr{E5E7783}{1} & Singapore0817  & 98.158.108.58  & 1,897,601,619 \\
+	\hlfpr{E5E7783}{2} & NewYork0817    & 98.158.100.102 & 577,107,197 \\
+	\midrule
+	\hlfpr{F6961286}{} & Hongkong0823   & 98.158.109.184 & 7,219,330,549 \\
+	\hlfpr{F6961286}{} & NewYork0823    & 98.158.100.102 & 9,757,773,095 \\
+	\hlfpr{F6961286}{} & Singapore0823  & 98.158.108.58  & 25,384,989,341 \\
+	\hlfpr{F6961286}{} & Singapore0829  & 98.158.108.58  & 35,994,097,691 \\
+	\midrule
+	\hlfpr{FA0BDA0E}{} & HongKong03     & 103.37.1.38    & 817,251,045 \\
+	\hlfpr{FA0BDA0E}{} & HongKong01     & 103.37.1.129   & 1,961,759,239 \\
+	\hlfpr{FA0BDA0E}{} & America01      & 104.247.221.69 & 15,741,212,315 \\
+	\midrule
+	\hlfpr{FA25674}{0} & Singapore0816  & 98.158.108.58  & 264,349,871 \\
+	\hlfpr{FA25674}{1} & Hongkong0816   & 98.158.109.184 & 751,944,245 \\
+	\hlfpr{FA25674}{3} & NewYork0816    & 98.158.100.102 & 623,959,941 \\
+	\bottomrule
+	\end{tabular}}
+
+	\caption{A seemingly-related cluster of 29 relays that went online in
+	between August and October 2015.}
+	\label{tab:group2}
+\end{table}
+
+\begin{table}
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Nickname & Nickname & IP address & Exponent \\
+	\midrule
+	\hlfpr{2249E}{809} & Unnamed & 188.165.164.163 & 4,611,991 \\
+	\hlfpr{2249E}{B42} & Unnamed & 188.165.26.13   & 4,510,659 \\
+	\hlfpr{2249E}{C78} & Unnamed & 178.32.143.175  & 1,074,365 \\
+	\midrule
+	\hlfpr{410B}{A17E} & Unnamed & 188.165.138.181 & 1,979,465 \\
+	\hlfpr{410B}{B962} & Unnamed & 5.39.122.66     & 341,785 \\
+	\hlfpr{410B}{CDC1} & Unnamed & 188.165.3.63    & 667,165 \\
+	\midrule
+	\hlfpr{838A}{296A} & Unnamed & 188.165.164.163 & 1,854,629 \\
+	\hlfpr{838A}{305F} & Unnamed & 188.165.26.13   & 718,645 \\
+	\hlfpr{838A}{71E2} & Unnamed & 178.32.143.175  & 220,955 \\
+	\midrule
+	\hlfpr{E1EF}{8985} & Unnamed & 188.165.138.181 & 546,019 \\
+	\hlfpr{E1EF}{9EB8} & Unnamed & 5.39.122.66     & 73,389 \\
+	\hlfpr{E1EF}{A388} & Unnamed & 188.165.3.63    & 18,177 \\
+	\bottomrule
+	\end{tabular}}
+
+	\caption{A seemingly-related cluster of twelve relays that went online in
+	August 2014.}
+	\label{tab:group3}
+\end{table}
+
+\begin{table}
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Fingerprint & Nickname & IP address & Exponent \\
+	\midrule
+	\texttt{0E483850}  & totalimpact     & 176.31.119.209 & 31,329,919 \\
+	\texttt{1272B9A3}  & totalimpact     & 176.31.119.209 & 61,205,961 \\
+	\texttt{1AC4DA51}  & totalimpact     & 176.31.119.209 & 66,377,251 \\
+	\texttt{38FCC604}  & totalimpact     & 176.31.119.209 & 18,143,565 \\
+	\texttt{51FC178D}  & totalimpact     & 176.31.119.209 & 20,752,399 \\
+	\texttt{52820131}  & totalimpact     & 94.23.163.185  & 11,999,175 \\
+	\texttt{59529817}  & totalimpact     & 94.23.163.185  & 34,481,629 \\
+	\texttt{6B6B1DBC}  & Unnamed         & 176.31.119.209 & 14,876,273 \\
+	\texttt{712CA45A}  & totalimpact     & 94.23.163.185  & 31,093,293 \\
+	\texttt{8E1600DD}  & curiousDHTRelay & 178.238.140.54 & 13,103,911 \\
+	\texttt{B81B43C0}  & totalimpact     & 176.31.119.209 & 61,669,007 \\
+	\texttt{BC89A92F}  & totalimpact     & 176.31.119.209 & 2,069,559 \\
+	\texttt{BCB33286}  & totalimpact     & 176.31.119.209 & 22,077,013 \\
+	\midrule
+	\hlfpr{BE6FFB}{A5} & nobbey         & 128.199.34.37  & 35,843,231 \\
+	\hlfpr{BE6FFB}{DA} & nobbey         & 128.199.34.37  & 39,143,575 \\
+	\midrule
+	\texttt{DE15299D}  & totalimpact     & 94.23.163.185  & 41,454,569 \\
+	\midrule
+	\hlfpr{E038C}{ACD} & Unnamed        & 176.31.119.209 & 8,141,357 \\
+	\hlfpr{E038C}{BE7} & Unnamed        & 176.31.119.209 & 19,231,119 \\
+	\midrule
+	\texttt{E9F25C48}  & totalimpact     & 176.31.119.209 & 36,446,771 \\
+	\texttt{F52D83EF}  & totalimpact     & 94.23.163.185  & 49,938,863 \\
+	\texttt{FF0BF54F}  & totalimpact     & 176.31.119.209 & 45,295,357 \\
+	\bottomrule
+	\end{tabular}}
+
+	\caption{A cluster of 21 relays that a Tor developer used to run
+	experiments.}
+	\label{tab:group4}
+\end{table}
+
+\begin{table}
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Nickname & Nickname & IP address & Exponent \\
+	\midrule
+	\texttt{13225B74}  & venlafaxin       & 217.20.118.12   & 35 \\
+	\midrule
+	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 1,497,483 \\
+	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 418,223 \\
+	\midrule
+	\texttt{63A8D7D5}  & cheezeblaster    & 68.4.225.95     & 106,533 \\
+	\texttt{8808B01B}  & sginne           & 80.223.97.109   & 860,345,903 \\
+	\texttt{A574E18E}  & zeratulemperator & 178.32.58.139   & 345,084,801 \\
+	\texttt{D4073DE6}  & caker000         & 208.92.93.82    & 47,124,401 \\
+	\texttt{FC360E29}  & DaeshTorBlock    & 201.175.4.83    & 176,127 \\
+	\texttt{36043967}  & CAundisclosedio  & 159.203.25.149  & 15,514,301 \\
+	\midrule
+	\hlfpr{8FF3ED2}{E} & conoha1          & 133.130.126.71  & 1,173,127,861 \\
+	\hlfpr{8FF3ED2}{F} & conoha2          & 133.130.125.198 & 724,859,007 \\
+	\midrule
+	\texttt{CF45F18F}  & USundisclosedio  & 173.236.251.43  & 11,753,943 \\
+	\texttt{C722E7E9}  & Tokyo01          & 133.130.126.71  & 2,022,320,527 \\
+	\texttt{2D04AF7C}  & shallot          & 45.32.185.135   & 1,341,827 \\
+	\bottomrule
+	\end{tabular}}
+	\caption{Fourteen relays that do not seem to have been part of a cluster.
+	The relay groups ``snooker,'' and ``conoha1'' and ``conoha2'' do seem
+	related, though.}
+	\label{tab:group5}
+\end{table}

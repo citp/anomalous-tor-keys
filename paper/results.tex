@@ -1,17 +1,25 @@
 \section{Results}
 
+\subsection{Unusual exponents}
+\label{sec:unusual-exponents}
+Among all our 3.7 million keys, 122 have a public exponent other than 65,537,
+which is hard-coded in the Tor source code.  Two exponents---35 and 18,177---are
+smaller than 65,537, and all others are larger, with the largest exponent being
+35,994,097,691.  Ten of these relays have a shared modulus, which we discuss in
+Section~\ref{sec:shared-moduli}.  In Appendix~\ref{sec:full-unusual-exponents},
+we show all relays with unusual exponents in detail.
+
+
 \subsection{Shared prime factors}
 
 \subsection{Shared moduli}
+\label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that shared a
-\emph{modulus}, giving them the ability to calculate each other's private 
-keys.
-%meaning that they were able to calculate each other's private
-%key.  
-Table~\ref{tab:moduli} illustrates these ten relays, clustered into four
-groups that each share a modulus.  The table further shows the relays'
-truncated, four-byte fingerprint, IP addresses, and RSA exponents.  Note that
-the Tor client hard-codes the RSA exponent to 65,537~\cite[\S~0.3]{torspec}, a
+\emph{modulus}, giving them the ability to calculate each other's private keys.
+Table~\ref{tab:moduli} illustrates these ten relays, clustered into four groups
+that each share a modulus.  The table further shows the relays' truncated,
+four-byte fingerprint, IP addresses, and RSA exponents.  Note that the Tor
+client hard-codes the RSA exponent to 65,537~\cite[\S~0.3]{torspec}, a
 recommended value that is resistant to attacks against low public
 exponents~\cite[\S~4]{Boneh1999a}.  Any other value indicates non-standard key
 generation.  All IP addresses were hosted by OVH, a popular French hosting
