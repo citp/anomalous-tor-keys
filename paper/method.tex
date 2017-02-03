@@ -10,11 +10,11 @@ this data set (Section~\ref{sec:vulnerable-keys}).
 The Tor Project archives data about Tor relays on its CollecTor
 platform~\cite{collector}, allowing researchers to learn what relays were online
 at any point in the past.  Drawing on this data source, we compiled a set of RSA
-keys by downloading all server descriptors from December 2012 to December 2016,
+keys by downloading all server descriptors from December \textcolor{red}{2012} to December 2016,
 and extracting the identity and onion keys using the Stem Python
 library~\cite{stem}.  Table~\ref{tab:dataset} provides an overview of the
 resulting data set---approximately 200 GB of unzipped data.  Our 3.7 million
-public keys span eleven years, and were created on one million IP addresses.
+public keys span 11 years and were created on one million IP addresses.
 Our dataset, basically a subset of the data archived on CollecTor plus
 easy-to-analyze key information, is publicly available.
 
