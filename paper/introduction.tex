@@ -1,9 +1,26 @@
 \section{Introduction}
+Tor is an anonymity network.  It utilizes various cryptosystems, 
+one of which is the RSA cryptosystem.  Previous research has 
+shown that weak RSA public keys exist in the wild, which puts users at 
+risk for decryption attacks.  
 
-Come up with consistent way to refer to key pairs vs public part
+Tor relays operators are expected to generate RSA keys properly . . ., but 
+we found that there were thousands of keys that didn't conform to the Tor 
+Specification and that were weak.
 
 We find RSA public keys that share prime factors.
 
-We find RSA public keys that share the same modulus.
+We find RSA public keys that share the same modulus.  (Had others explored this?)
 
-We find RSA public keys that have non-standard exponents.
+We find RSA public keys that have non-standard exponents.  (Had others explored this?)
+
+Did we find repeated RSA public keys?
+
+Our contributions include:
+\begin{itemize}
+  \item We find weak keys in Tor (previously unexplored)
+  \item We manually investigate the source of the weak keys 
+    through contacting researchers
+  \item We call attention to how researchers' experiments can put Tor users
+    information at risk
+\end{itemize}
