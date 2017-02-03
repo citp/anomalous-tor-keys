@@ -4,23 +4,25 @@ one of which is the RSA cryptosystem.  Previous research has
 shown that weak RSA public keys exist in the wild, which puts users at 
 risk for decryption attacks.  
 
-Tor relays operators are expected to generate RSA keys properly . . ., but 
-we found that there were thousands of keys that didn't conform to the Tor 
-Specification and that were weak.
+In a perfect world, Tor relay operators should run the Tor software and have it 
+generate RSA keys properly. However, we found that there were thousands of keys 
+that either did not conform to the Tor Specification or were weak.  That is, we 
+found RSA public keys that share prime factors, we found RSA public keys that 
+share the same modulus, and we found RSA public keys that have unusual exponents.
 
-We find RSA public keys that share prime factors.
+Say something about the fastgcd, 81M moduli process here?
 
-We find RSA public keys that share the same modulus.  (Had others explored this?)
-
-We find RSA public keys that have non-standard exponents.  (Had others explored this?)
-
-Did we find repeated RSA public keys?
+Digging deeper, we discovered that many of the relays with weak keys had been owned 
+by Tor researchers who were conducting experiments on . . . There are other 
+relays, though, 
 
 Our contributions include:
 \begin{itemize}
-  \item We find weak keys in Tor (previously unexplored)
-  \item We manually investigate the source of the weak keys 
-    through contacting researchers
+  \item We find weak keys in Tor (including keys with shared moduli 
+    and unusual exponents, which was previously unexplored--is that true?
+    Did we find repeated keys?)
+  \item We investigate the source(?) of the weak keys through manual inspection and by 
+    contacting the relays' owners
   \item We call attention to how researchers' experiments can put Tor users
     information at risk
 \end{itemize}
