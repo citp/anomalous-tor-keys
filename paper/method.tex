@@ -47,3 +47,11 @@ PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
 into fastgcd's expected format, which is hex-encoded moduli.  Running fastgcd
 over our data set took less than 20 minutes on a machine with an eight-core 2.8
 GHz Intel Xeon E5 2680 v2 processor, and 256 GB of RAM.
+
+fastgcd benefits from having a pool of moduli that's as large as possible because 
+``. . . with a larger collection of inputs the algorithm has a larger 
+factor base to use on each key''~\cite{Heninger2012a}.  
+To that end, we reached out to Nadia Heninger's group at University of Pennsylvania, 
+and they graciously re-ran our experiment on a set of 129 million 
+moduli. The number of Tor weak keys did not go up, but 
+this experiment gave us more confidence that we had not missed any weak keys.
