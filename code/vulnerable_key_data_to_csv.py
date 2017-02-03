@@ -1,7 +1,7 @@
 import pickle
 from datetime import datetime
 
-csv_header = "VulnerableKey_b64,VulernableKey_Hex,KeyType,Nickname,Fingerprint,DatePub,ip4Address,Port,TorVersion,OS,Contact,AvgBandwith,Extra"
+csv_header = "VulnerableKey_b64,Modulus_Hex,KeyType,Nickname,Fingerprint,DatePub,ip4Address,Port,TorVersion,OS,Contact,AvgBandwith,Extra,Exponent"
 
 rsa_key_data = pickle.load(open( "All_TOR_RSA_Key_Data.pck", "rb"))
 all_hex_to_b64  = pickle.load(open( "All-Hex-To-RSA.pck", "rb"))
@@ -13,6 +13,7 @@ with open('vulnerable_moduli', 'r') as a, open('all_vulnerable_key_data.csv', 'w
         rsa_key_list = all_hex_to_b64[hex.replace('\n', '')]
         key_dict = rsa_key_list[0]
         b64key = key_dict["rsa_pub_key"].replace('\n', '')
+        exp = str(key_dict["exponent"])
         key_data = rsa_key_data[b64key.replace('\n', '')]
         if "key_type" in key_data:
             key_type = key_data["key_type"]
@@ -57,12 +58,12 @@ with open('vulnerable_moduli', 'r') as a, open('all_vulnerable_key_data.csv', 'w
             extra = key_data["extra"]
         else:
             extra = ""
-        csv_line = b64key+','+hex.replace('\n', '')+','+key_type+','+nickname+','+fingerprint+','+date+','+ip4+','+port+','+tor_ver+','+os+','+contact+','+bandwidth+','+extra + '\n'
+        csv_line = b64key+','+hex.replace('\n', '')+','+key_type+','+nickname+','+fingerprint+','+date+','+ip4+','+port+','+tor_ver+','+os+','+contact+','+bandwidth+','+extra+','+exp + '\n'
         v.write(csv_line)
 
 # Get keys that have repeated moduli
 with open('all_repeated_moduli_data.csv', 'w') as h:
-    h.write(csv_header + ",Exponent" +'\n')
+    h.write(csv_header +'\n')
     for hex in all_hex_to_b64:
         rsa_key_list = all_hex_to_b64[hex.replace('\n', '')]
         if len(rsa_key_list) > 1:
