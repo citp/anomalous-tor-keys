@@ -44,6 +44,8 @@ public keys, and then computes the pair-wise greatest common divisor of these
 public keys.  Fastgcd's C implementation is based on a quasilinear-time
 algorithm for factoring a set of integers into their co-primes.  We used the
 PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
-into fastgcd's expected format, which is hex-encoded keys.  Running fastgcd over
+into fastgcd's expected format, which is hex-encoded keys.  \textcolor{red}{Running 
+fastgcd over
 our data set took less than 48 hours on a machine with an eight-core 2.8 GHz
-Intel Xeon E5 2680 v2 processor, and 256 GB of RAM.
+Intel Xeon E5 2680 v2 processor, and 256 GB of RAM. I thought it took 20 minutes . . .}
+
