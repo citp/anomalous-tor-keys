@@ -39,12 +39,12 @@ easy-to-analyze key information, is publicly available.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set of
-public keys, and then computes the pair-wise greatest common divisor of these
-public keys.  Fastgcd's C implementation is based on a quasilinear-time
+and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set of moduli from 
+public keys and then computes the pair-wise greatest common divisor of these
+moduli.  Fastgcd's C implementation is based on a quasilinear-time
 algorithm for factoring a set of integers into their co-primes.  We used the
 PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
-into fastgcd's expected format, which is hex-encoded keys.  \textcolor{red}{Running 
+into fastgcd's expected format, which is hex-encoded moduli.  \textcolor{red}{Running 
 fastgcd over
 our data set took less than 48 hours on a machine with an eight-core 2.8 GHz
 Intel Xeon E5 2680 v2 processor, and 256 GB of RAM. I thought it took 20 minutes . . .}
