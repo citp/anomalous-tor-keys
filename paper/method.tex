@@ -10,7 +10,7 @@ this data set (Section~\ref{sec:vulnerable-keys}).
 The Tor Project archives data about Tor relays on its CollecTor
 platform~\cite{collector}, allowing researchers to learn what relays were online
 at any point in the past.  Drawing on this data source, we compiled a set of RSA
-keys by downloading all server descriptors from December \textcolor{red}{2012} to December 2016,
+keys by downloading all server descriptors from December 2005 to December 2016,
 and extracting the identity and onion keys using the Stem Python
 library~\cite{stem}.  Table~\ref{tab:dataset} provides an overview of the
 resulting data set---approximately 200 GB of unzipped data.  Our 3.7 million
@@ -39,13 +39,11 @@ easy-to-analyze key information, is publicly available.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set of moduli from 
-public keys and then computes the pair-wise greatest common divisor of these
-moduli.  Fastgcd's C implementation is based on a quasilinear-time
+and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set of
+moduli from public keys and then computes the pair-wise greatest common divisor
+of these moduli.  Fastgcd's C implementation is based on a quasilinear-time
 algorithm for factoring a set of integers into their co-primes.  We used the
 PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
-into fastgcd's expected format, which is hex-encoded moduli.  \textcolor{red}{Running 
-fastgcd over
-our data set took less than 48 hours on a machine with an eight-core 2.8 GHz
-Intel Xeon E5 2680 v2 processor, and 256 GB of RAM. I thought it took 20 minutes . . .}
-
+into fastgcd's expected format, which is hex-encoded moduli.  Running fastgcd
+over our data set took less than 20 minutes on a machine with an eight-core 2.8
+GHz Intel Xeon E5 2680 v2 processor, and 256 GB of RAM.
