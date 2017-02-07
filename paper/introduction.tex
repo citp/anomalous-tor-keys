@@ -1,5 +1,6 @@
 \section{Introduction}
-Tor is an anonymity network.  
+Tor is an anonymity network.  Its goal is to allow people to browse 
+the web anonymously.
 
 In order to achieve its goals, Tor utilizes various cryptosystems, 
 one of which is the RSA cryptosystem.  Previous research has 
@@ -12,11 +13,11 @@ that either did not conform to the Tor Specification or were weak.  More
 specifically, we found RSA public keys that share prime factors, 
 that share the same modulus, and that have unusual exponents.
 
-After discovering that there were indeed weak RSA public keys in Tor, we wanted 
+After finding that there were indeed weak RSA public keys in Tor, we wanted 
 to know whose relays were weak, when they were weak, and how many people might 
 have used those weak relays.
 
-Digging deeper, we discovered that many of the relays with weak keys had been owned 
+As we dug deeper, we discovered that many of the relays with weak keys had been owned 
 by Tor researchers who were conducting experiments on . . . There are other 
 relays, though, that we have no clue about.
 
@@ -31,6 +32,8 @@ We make the following contributions:
     some of the relays.
   \item We call attention to how researchers' experiments can put Tor users'
     information at risk
+  \item We make recommendations to Tor developers and relay operators on how they can 
+    improve their key hygiene.
 \end{itemize}
 
 The rest of this paper details our project.  
