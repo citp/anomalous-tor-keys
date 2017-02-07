@@ -12,11 +12,13 @@ that either did not conform to the Tor Specification or were weak.  More
 specifically, we found RSA public keys that share prime factors, 
 that share the same modulus, and that have unusual exponents.
 
-Say something about the fastgcd, 129M moduli process here?
+After discovering that there were indeed weak RSA public keys in Tor, we wanted 
+to know whose relays were weak, when they were weak, and how many people might 
+have used those weak relays.
 
 Digging deeper, we discovered that many of the relays with weak keys had been owned 
 by Tor researchers who were conducting experiments on . . . There are other 
-relays, though, 
+relays, though, that we have no clue about.
 
 We make the following contributions:
 \begin{itemize}
@@ -27,6 +29,12 @@ We make the following contributions:
     contacting the relays' owners
   \item We demonstrate that we were indeed able to calculate the private keys of 
     some of the relays.
-  \item We call attention to how researchers' experiments can put Tor users
+  \item We call attention to how researchers' experiments can put Tor users'
     information at risk
 \end{itemize}
+
+The rest of this paper details our project.  
+In Section 2 we provide background information.  In Section 3 we discuss 
+related work.  In Section 4 we describe our methods.  In Section 5 we 
+present our results.  In Section 6 we discuss our results.  And in Section 7 
+we conclude.
