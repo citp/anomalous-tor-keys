@@ -101,3 +101,17 @@ in August 2014~\cite{tor-priv1} when they first came online.
 	manipulate Tor's distributed hash table.}
 	\label{tab:moduli}
 \end{table}
+
+\subsection{Identifying the victims}
+We have now presented several relay groups that positioned themselves in Tor's
+hash ring to control an onion service.  But what onion services were targeted?
+
+\begin{equation}
+\begin{split}
+\textit{secret-id-part} = \textit{SHA-1}(& \textit{time-period} \mid \\
+                                         & \textit{descriptor-cookie} \mid \\
+                                         & \textit{replica}) \\
+\textit{descriptor-id} =  \textit{SHA-1}(& \textit{permanent-id} \mid \\
+                                         & \textit{secret-id-part})
+\end{split}
+\end{equation}
