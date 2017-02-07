@@ -1,14 +1,16 @@
 \section{Introduction}
-Tor is an anonymity network.  It utilizes various cryptosystems, 
+Tor is an anonymity network.  
+
+In order to achieve its goals, Tor utilizes various cryptosystems, 
 one of which is the RSA cryptosystem.  Previous research has 
 shown that weak RSA public keys exist in the wild, which puts users at 
 risk for decryption attacks.  
 
 In a perfect world, Tor relay operators should run the Tor software and have it 
 generate RSA keys properly. However, we found that there were thousands of keys 
-that either did not conform to the Tor Specification or were weak.  That is, we 
-found RSA public keys that share prime factors, we found RSA public keys that 
-share the same modulus, and we found RSA public keys that have unusual exponents.
+that either did not conform to the Tor Specification or were weak.  More 
+specifically, we found RSA public keys that share prime factors, 
+that share the same modulus, and that have unusual exponents.
 
 Say something about the fastgcd, 129M moduli process here?
 
@@ -16,13 +18,15 @@ Digging deeper, we discovered that many of the relays with weak keys had been ow
 by Tor researchers who were conducting experiments on . . . There are other 
 relays, though, 
 
-Our contributions include:
+We make the following contributions:
 \begin{itemize}
   \item We find weak keys in Tor (including keys with shared moduli 
     and unusual exponents, which was previously unexplored--is that true?
     Did we find repeated keys?)
   \item We investigate the source(?) of the weak keys through manual inspection and by 
     contacting the relays' owners
+  \item We demonstrate that we were indeed able to calculate the private keys of 
+    some of the relays.
   \item We call attention to how researchers' experiments can put Tor users
     information at risk
 \end{itemize}
