@@ -30,9 +30,9 @@ import (
 
 const (
 	SimThreshold = 5     // Just a hunch, for now.
-	MinTime      = 14879 // Also just a hunch, for now.
-	MaxTime      = 17206 // Feb 7, 2017.
 	SecsPerDay   = 86400 // Not a hunch.
+	Start        = 0
+	End          = 1
 )
 
 // Replicas represents the two numerals that are used to replicate descriptors
@@ -92,15 +92,13 @@ func similarity(descriptorId, HSDirId string) int {
 // findNastyHSDir attempts to find HSDirs that could have attacked the given
 // descriptor ID.  We do that by checking if the fingerprint prefix exceeds or
 // is equal to our threshold.
-func findNastyHSDir(descriptorId, onionService string, timePeriod [4]uint8) {
+func findNastyHSDir(HSDirId, descriptorId, onionService string, timePeriod [4]uint8) {
 
 	// Check if descriptor ID is similar to any of our malicious HSDirs.
-	for _, HSDirId := range UnusualExponents {
-		if similarity(HSDirId, descriptorId) >= SimThreshold {
-			fmt.Printf("%s,%s,%s,%s\n", HSDirId, descriptorId,
-				strings.ToLower(onionService), getTime(timePeriod))
-			AttackedHSes[onionService] = struct{}{}
-		}
+	if similarity(HSDirId, descriptorId) >= SimThreshold {
+		fmt.Printf("%s,%s,%s,%s\n", HSDirId, descriptorId,
+			strings.ToLower(onionService), getTime(timePeriod))
+		AttackedHSes[onionService] = struct{}{}
 	}
 }
 
@@ -130,23 +128,25 @@ func main() {
 			continue
 		}
 
-		// Iterate over reasonable time-period values.  We should narrow this
-		// down to the time HSDirs were actually online.
-		for i := MinTime; i < MaxTime; i++ {
+		for HSDirId, timePeriods := range UnusualExponents {
 
-			timePeriod[2] = uint8(i >> 8)
-			timePeriod[3] = uint8(i % 256)
+			// Iterate over time-period values when HSDir was online.
+			for i := timePeriods[Start]; i <= timePeriods[End]; i++ {
 
-			for _, replica := range Replicas {
+				timePeriod[2] = uint8(i >> 8)
+				timePeriod[3] = uint8(i % 256)
 
-				// secret-id-part = H(time-period | descriptor-cookie | replica)
-				// Descriptor cookies are not used in practice, so we only hash
-				// time-period and replica.
-				secretIdPart := sha1.Sum(append(timePeriod[:], replica))
-				descriptorIdRaw := sha1.Sum(append(permanentId, secretIdPart[:]...))
-				descriptorId = hex.EncodeToString(descriptorIdRaw[:])
+				for _, replica := range Replicas {
 
-				findNastyHSDir(descriptorId, onionService, timePeriod)
+					// secret-id-part = H(time-period | descriptor-cookie | replica)
+					// Descriptor cookies are not used in practice, so we only hash
+					// time-period and replica.
+					secretIdPart := sha1.Sum(append(timePeriod[:], replica))
+					descriptorIdRaw := sha1.Sum(append(permanentId, secretIdPart[:]...))
+					descriptorId = hex.EncodeToString(descriptorIdRaw[:])
+
+					findNastyHSDir(HSDirId, descriptorId, onionService, timePeriod)
+				}
 			}
 		}
 	}
