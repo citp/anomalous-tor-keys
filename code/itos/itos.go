@@ -70,12 +70,12 @@ func min(len1, len2 int) int {
 // similarity quantifies the distance between a given descriptor ID and HSDir
 // ID.  The intuition is that the higher the similarity, the more likely that
 // the given HSDir was targeting the descriptor.
-func similarity(descriptorId, HSDirId string) int {
+func similarity(HSDirId, descriptorId string) int {
 
 	descriptorId = strings.ToLower(descriptorId)
 	HSDirId = strings.ToLower(HSDirId)
 
-	// If HSDir is smaller, there's no way it's the attacker.
+	// If HSDir < descriptorId, there's no way it's the attacker.
 	if strings.Compare(HSDirId, descriptorId) == -1 {
 		return 0
 	}
