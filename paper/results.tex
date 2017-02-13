@@ -1,16 +1,6 @@
 \section{Results}
 \label{sec:results}
 
-\subsection{Unusual exponents}
-\label{sec:unusual-exponents}
-Among all our 3.7 million keys, 122 have a public exponent other than 65,537,
-which is hard-coded in the Tor source code.  Two exponents---35 and 18,177---are
-smaller than 65,537, and all others are larger, with the largest exponent being
-35,994,097,691.  Ten of these relays have a shared modulus, which we discuss in
-Section~\ref{sec:shared-moduli}.  In Appendix~\ref{sec:full-unusual-exponents},
-we show all relays with unusual exponents in detail.
-
-
 \subsection{Shared prime factors}
 
 \subsection{Shared moduli}
@@ -103,9 +93,33 @@ in August 2014~\cite{tor-priv1} when they first came online.
 	\label{tab:moduli}
 \end{table}
 
-\subsection{Identifying the victims}
-We have now presented several relay groups that positioned themselves in Tor's
-hash ring to control an onion service.  But what onion services were targeted?
+\subsection{Unusual exponents}
+\label{sec:unusual-exponents}
+The Tor source code hard-codes the public RSA exponent to 65,537, which is best
+practice~\cite[\S~4]{Boneh1999a}.  Being interested in non-standard key
+generation, we checked if our data set featured relays with a different
+exponent.  Non-standard exponents suggest that a relay was after a specific
+fingerprint, to position itself in Tor's hash ring.\footnote{A different
+approach to detecting relays that position themselves in the hash ring is to
+determine how often they change their fingerprint.~\cite[\S~4.3.3]{Winter2016a}}
+To obtain a fingerprint with a given prefix, one can either iterate over the
+primes constituting $N$, or over the exponent.  The latter is significantly more
+efficient because it is costly to verify if a large number is prime.  Leveraging
+this method, the tool Scallion~\cite{scallion} generates vanity onion service
+domains by iterating over the service's public exponent.
+
+Among all our 3.7 million keys, 122 possessed an exponent other than
+65,537.\footnote{We list all relays in detail in
+Appendix~\ref{sec:full-unusual-exponents}.} A single relay had both a
+non-standard identity and onion key while all remaining relays only had
+non-standard identity keys.  Ten of these relays further have a shared modulus,
+which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that these relays
+positioned themselves in the hash ring to attack an onion service, we were
+interested in learning what onion services they targeted.  It is possible to
+identify the victims by compiling a comprehensive list of onion services, and
+determining each service's position in the hash ring at the time the malicious
+HSDirs were online.  An onion service's position in the hash ring is governed by
+the following equations.
 
 \begin{equation}
 \begin{split}
@@ -116,3 +130,66 @@ hash ring to control an onion service.  But what onion services were targeted?
                                          & \textit{secret-id-part})
 \end{split}
 \end{equation}
+
+\textit{Secret-id-part} is comprised of three variables.  \textit{Time-period}
+represents the number of days since the Unix epoch; \textit{descriptor-cookie}
+is typically unused and hence empty; and \textit{replica} is set to both the
+values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  Finally,
+the concatenation of both \textit{permanent-id} (the onion service's hashed
+public key) and \textit{secret-id-part} is hashed, resulting in
+\textit{descriptor-id}, which determines the position in the hash ring.  The
+three hidden service directories (for both replicas) whose fingerprint is the
+closest to the descriptor in positive direction are the onion service's HSDirs.
+This set of six HSDirs changes each day when \textit{time-period} increments.
+
+Knowing the algorithm that determines a service's position in the hash ring, we
+then obtained a list of onion services by augmenting the list of the Ahmia
+search engine~\cite{ahmia} with services that we discovered via Google searches
+and by contacting researchers who have done similar work.  We ended up with a
+list of 17,294 onion services, that were online at some point in time.  Next, we
+developed a tool that takes as input our list of onion services and the
+malicious HSDirs we discovered.\footnote{The tool is available online at
+\url{https://github.com/citp/weak-tor-keys/tree/master/code/itos}.}  The tool
+then determines all descriptors these onion services ever generated, and checks
+if any HSDir would have been close in the hash ring to either of these
+descriptors. It is difficult to identify all targeted onion services with
+certainty.  First, our list of onion services does not reveal when a service was
+online.  Second, a HSDir could be responsible for an onion service simply by
+chance, instead of on purpose, resulting in a false positive.  Third, our list
+of onion services is not exhaustive, so we are bound to miss potential victims.
+
+Our tool identified the following three onion services for which we have strong
+evidence that they were targeted.
+
+\begin{description}
+	\item[\texttt{22u75kqyl666joi2.onion}] The service appears to be offline
+		today, so we were unable to see for ourselves what it hosted.  According
+		to cached index pages we found online, the onion service hosted a
+		technology-focused forum in Chinese.  A subset of relays from
+		Table~\ref{tab:group2} targeted the onion service on both August 14 and
+		15, 2015 by providing nine out of the total of twelve responsible
+		HSDirs.
+
+	\item[\texttt{n3q7l52nfpm77vnf.onion}] As of February 2017, the service is
+		still online, hosting the ``Marxists Internet Archive,'' an online
+		archive of literature.  Figure~\ref{fig:archive} shows a screenshot of
+		the service's index page.  A subset of relays from
+		Table~\ref{tab:group1} targeted the onion service from November 27 to
+		December 4, 2016.  The malicious HSDirs acted inconsistently,
+		occasionally targeting only one replica.
+
+	\item[\texttt{silkroadvb5piz3r.onion}] The onion service used to host the
+		Silk Road marketplace, whose predominant use was a market for narcotics.
+		The service was targeted by a subset of relays from
+		Table~\ref{tab:group4}, from May 21 to June 3, 2013.  The HSDirs were
+		part of a measurement experiment that resulted in a blog
+		post~\cite{OCearbhaill2013a}.
+\end{description}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{figures/marxists-internet-archive.jpg}
+	\caption{A screenshot of the index page of the onion service
+		\texttt{n3q7l52nfpm77vnf.onion}, taken on February 13, 2017.}
+	\label{fig:archive}
+\end{figure}
