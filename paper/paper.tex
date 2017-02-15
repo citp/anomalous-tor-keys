@@ -1,26 +1,21 @@
-\documentclass[letterpaper,twocolumn,10pt]{article}
+\documentclass[USenglish,oneside,twocolumn]{article}
 
-\usepackage{usenix}
-\usepackage[T1]{fontenc}
+\usepackage[big]{dgruyter_NEW}
 \usepackage[scaled=0.8]{beramono} % For a pretty monospaced font.
-\usepackage[pdftex]{graphicx}
 \usepackage{booktabs} % For pretty tables.
 \usepackage{multirow} % Also for pretty tables.
-\usepackage{mathptmx} % Use times in math font.
 \usepackage{hyperref} % For clickable links.
 \usepackage{balance} % Balance columns on last page.
 \usepackage{xcolor} % For colourful links.
 \usepackage{xspace} % For reasonable spacing in custom commands.
 \usepackage{amsmath}
-\usepackage[backend=biber,backref=true,maxbibnames=10]{biblatex}
-\bibliography{references}
-\renewcommand*{\bibfont}{\small}
+\urlstyle{tt}
 
-\definecolor{highlight1}{HTML}{DDDDDD}
-\definecolor{highlight2}{HTML}{BCFFE6}
-\definecolor{highlight3}{HTML}{DEC2FF}
-\definecolor{highlight4}{HTML}{FFFABC}
-\definecolor{highlight5}{HTML}{FFD1BC}
+\definecolor{highlight1}{rgb}{0.863,0.863,0.863}
+\definecolor{highlight2}{rgb}{0.734,1.000,0.898}
+\definecolor{highlight3}{rgb}{0.867,0.758,1.000}
+\definecolor{highlight4}{rgb}{1.000,0.977,0.734}
+\definecolor{highlight5}{rgb}{1.000,0.816,0.734}
 
 \definecolor{darkblue}{rgb}{0,0,0.5}
 \definecolor{lightgray}{rgb}{0.93,0.93,0.93}
@@ -37,10 +32,10 @@
 
 \newcommand{\xxx}[1]{\textcolor{red}{#1}}
 \newcommand{\fixme}[1]{\textcolor{red}{{\bf FIXME:} #1}\xspace}
-\newcommand{\ie}{{\it i.e.}\xspace}
-\newcommand{\eg}{{\it e.g.}\xspace}
-\newcommand{\ea}{{\it et al.}\xspace}
-\newcommand{\etc}{{\it etc.}\xspace}
+\newcommand{\ie}{{i.e.}\xspace}
+\newcommand{\eg}{{e.g.}\xspace}
+\newcommand{\ea}{{et al.}\xspace}
+\newcommand{\etc}{{etc.}\xspace}
 \newcommand{\first}{(\emph{i})\xspace}
 \newcommand{\second}{(\emph{ii})\xspace}
 \newcommand{\third}{(\emph{iii})\xspace}
@@ -50,19 +45,31 @@
 	\texttt{\setlength{\fboxsep}{0pt}%
 	\colorbox{highlight1}{\strut #1}#2}}
 
+\cclogo{\includegraphics{figures/by-nc-nd.pdf}}
+
 \begin{document}
 
-\title{\Large \bf Major Key Alert! Weak Keys in Tor Relays}
+\author*[1]{Anonymous}
 
-\author{}
-
-\maketitle
-
-% Use the following at camera-ready time to suppress page numbers.
-% Comment it out when you first submit the paper for review.
-\thispagestyle{empty}
+\title{\huge Major Key Alert! Weak keys in Tor relays}
+\runningtitle{Weak keys in Tor relays}
 
 \input{abstract}
+
+\keywords{Tor, RSA, onion service, cryptography, factorization}
+
+\journalname{Proceedings on Privacy Enhancing Technologies}
+\DOI{Editor to enter DOI}
+\startpage{1}
+\received{..}
+\revised{..}
+\accepted{..}
+
+\journalyear{..}
+\journalvolume{..}
+\journalissue{..}
+
+\maketitle
 
 \input{introduction}
 
@@ -80,8 +87,8 @@
 
 \input{acknowledgements}
 
-\balance
-\printbibliography
+\bibliographystyle{abbrv}
+\bibliography{references}
 
 \input{appendix}
 
