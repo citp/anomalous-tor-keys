@@ -1,9 +1,21 @@
 \section{Discussion}
 \label{sec:discussion}
+Recall that the Tor reference implementation hard-codes its public RSA exponent
+to 65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
+exponents by having the directory authorities reject relays whose descriptors
+have an RSA exponent other than 65,537, thus slowing down the search for
+fingerprint prefixes.  Adversaries would then have to iterate over the primes
+$p$ or $q$ instead of the exponent, making the search more expensive.  Given
+that we discovered only 122 unusual exponents in over ten years, we believe that
+rejecting non-standard exponents is a viable defense in depth.
 
-\begin{itemize}
-	\item Tor could block relays with non-standard exponents, to make it much
-		more expensive to create vanity keys.
-	\item Future work can also look at public keys of onion services.  These
-		aren't archived, though.
-\end{itemize}
+Future work should shed light on the public keys of onion services.  Onion
+services have an incentive to modify their fingerprints to make them both
+recognizable and easier to remember.  Facebook, for example, was lucky enough to
+obtain the easy-to-remember name \url{facebookcorewwwi.onion}~\cite{facebook}.
+The tool Scallion assists onion service operators in creating such vanity
+domains~\cite{scallion}.  It remains an open question whether vanity domains
+benefit usability, harm security, or a combination
+thereof~\cite{vanity-domains}.  Unlike the public keys of relays, onion service
+keys are not archived, so a study would have to begin with actively fetching
+onion service keys.
