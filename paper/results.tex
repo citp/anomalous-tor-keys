@@ -136,7 +136,7 @@ generation, we checked if our data set featured relays with a different
 exponent.  Non-standard exponents suggest that a relay was after a specific
 fingerprint, to position itself in Tor's hash ring.\footnote{A different
 approach to detecting relays that position themselves in the hash ring is to
-determine how often they change their fingerprint.~\cite[\S~4.3.3]{Winter2016a}}
+determine how often they change their fingerprints.~\cite[\S~4.3.3]{Winter2016a}}
 To obtain a fingerprint with a given prefix, one can either iterate over the
 primes constituting $N$, or over the exponent.  The latter is significantly more
 efficient because it is costly to verify if a large number is prime.  Leveraging
