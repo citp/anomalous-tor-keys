@@ -1,9 +1,9 @@
 \section{Method}
 \label{sec:method}
 In this section, we discuss how we drew on a publicly-available data set
-(Section~\ref{sec:data-collection}) and used Heninger and Halderman's
-fastgcd~\cite{fastgcd} tool to analyze the public keys that we extracted from
-this data set (Section~\ref{sec:vulnerable-keys}).
+(Section~\ref{sec:data-collection}) and used Heninger and Halderman's 
+\texttt{fastgcd}~\cite{fastgcd} tool to analyze the public keys that 
+we extracted from this data set (Section~\ref{sec:vulnerable-keys}).
 
 \subsection{Data collection}
 \label{sec:data-collection}
@@ -38,16 +38,17 @@ easy-to-analyze key information, is publicly available.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set of
+and Halderman's tool \texttt{fastgcd}~\cite{fastgcd}, which takes as input a set of
 moduli from public keys and then computes the pair-wise greatest common divisor
-of these moduli.  Fastgcd's C implementation is based on a quasilinear-time
+of these moduli.  \texttt{fastgcd}'s C implementation is based on a quasilinear-time
 algorithm for factoring a set of integers into their co-primes.  We used the
 PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
-into fastgcd's expected format, which is hex-encoded moduli.  Running fastgcd
-over our data set took less than 20 minutes on a machine with an eight-core 2.8
-GHz Intel Xeon E5 2680 v2 processor, and 256 GB of RAM.
+into \texttt{fastgcd}'s expected format, which is hex-encoded moduli.  Running 
+\texttt{fastgcd} over our data set took less than 20 minutes on 
+a machine with an eight-core 2.8 GHz Intel Xeon E5 2680 v2 processor, 
+and 256 GB of RAM.
 
-fastgcd benefits from having a pool of moduli that's as large as possible because 
+\texttt{fastgcd} benefits from having a pool of moduli that's as large as possible because 
 ``. . . with a larger collection of inputs the algorithm has a larger 
 factor base to use on each key''~\cite{Heninger2012a}.  
 To that end, we reached out to Nadia Heninger's group at University of Pennsylvania, 
