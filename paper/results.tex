@@ -132,30 +132,32 @@ in August 2014~\cite{tor-priv1} when they first came online.
 \label{sec:unusual-exponents}
 The Tor source code hard-codes the public RSA exponent to 65,537, which is best
 practice~\cite[\S~4]{Boneh1999a}.  Being interested in non-standard key
-generation, we checked if our data set featured relays with a different
-exponent.  Non-standard exponents suggest that a relay was after a specific
-fingerprint, to position itself in Tor's hash ring.\footnote{A different
+generation, we checked if our data set featured relays with different
+exponents.  Non-standard exponents suggest that a relay was after a specific
+fingerprint in order to position itself in Tor's hash ring.\footnote{A different
 approach to detecting relays that position themselves in the hash ring is to
 determine how often they change their fingerprints.~\cite[\S~4.3.3]{Winter2016a}}
-To obtain a fingerprint with a given prefix, one can either iterate over the
-primes constituting $N$, or over the exponent.  The latter is significantly more
+To obtain a fingerprint with a given prefix, one can either \textcolor{red}{iterate over the
+primes constituting $N$ or over the exponent---wording alert: I'm confused about what this means}.  
+The latter is significantly more
 efficient because it is costly to verify if a large number is prime.  Leveraging
 this method, the tool Scallion~\cite{scallion} generates vanity onion service
 domains by iterating over the service's public exponent.
 
-Among all our 3.7 million keys, 122 possessed an exponent other than
+Among all of our 3.7 million keys, 122 possessed an exponent other than
 65,537.\footnote{We list all relays in detail in
-Appendix~\ref{sec:full-unusual-exponents}.} A single relay had both a
-non-standard identity and onion key while all remaining relays only had
-non-standard identity keys.  Ten of these relays further have a shared modulus,
+Appendix~\ref{sec:full-unusual-exponents}.} One relay had both 
+non-standard identity and onion keys while all remaining relays only had
+non-standard identity keys.  Ten of these relays further had a shared modulus,
 which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that these relays
 positioned themselves in the hash ring to attack an onion service, we were
 interested in learning what onion services they targeted.  It is possible to
-identify the victims by compiling a comprehensive list of onion services, and
+identify the victims by compiling a comprehensive list of onion services and
 determining each service's position in the hash ring at the time the malicious
-HSDirs were online.  An onion service's position in the hash ring is governed by
-the following equations.
+HSDirs were online.  
 
+An onion service's position in the hash ring is governed by
+the following equations.
 \begin{equation}
 \begin{split}
 \textit{secret-id-part} = \textit{SHA-1}(& \textit{time-period} \mid \\
@@ -165,16 +167,15 @@ the following equations.
                                          & \textit{secret-id-part})
 \end{split}
 \end{equation}
-
-\textit{Secret-id-part} is comprised of three variables.  \textit{Time-period}
+\textit{secret-id-part} is comprised of three variables:  \textit{Time-period}
 represents the number of days since the Unix epoch; \textit{descriptor-cookie}
 is typically unused and hence empty; and \textit{replica} is set to both the
-values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  Finally,
-the concatenation of both \textit{permanent-id} (the onion service's hashed
+values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  
+The concatenation of both \textit{permanent-id} (the onion service's hashed
 public key) and \textit{secret-id-part} is hashed, resulting in
 \textit{descriptor-id}, which determines the position in the hash ring.  The
 three hidden service directories (for both replicas) whose fingerprint is the
-closest to the descriptor in positive direction are the onion service's HSDirs.
+closest to the descriptor in the positive direction are the onion service's HSDirs.
 This set of six HSDirs changes each day when \textit{time-period} increments.
 
 Knowing the algorithm that determines a service's position in the hash ring, we
