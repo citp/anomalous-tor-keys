@@ -45,8 +45,8 @@ algorithm for factoring a set of integers into their co-primes.  We used the
 PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded, PEM-encoded keys
 into \texttt{fastgcd}'s expected format, which is hex-encoded moduli.  Running 
 \texttt{fastgcd} over our data set took less than 20 minutes on 
-a machine with an eight-core 2.8 GHz Intel Xeon E5 2680 v2 processor, 
-and 256 GB of RAM.
+a machine with ``dual, eight-core 2.8GHz Intel Xeon E5 2680 v2 processors with 
+256 GB of RAM''~\cite{supercompy}.
 
 \texttt{fastgcd} benefits from having a pool of moduli that's as large as possible because 
 ``. . . with a larger collection of inputs the algorithm has a larger 
