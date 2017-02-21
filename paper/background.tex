@@ -38,9 +38,9 @@ of these key pairs use 1024-bit keys:
         impersonate a relay, \eg, by publishing spoofed descriptors.
     \item[Onion key]  Relays use medium-term onion keys to decrypt cells when
         circuits are created.  The onion key is only used in the Tor
-        Authentication Protocol that is now superseded by the ntor handshake.  A
-        compromised onion key allows the attacker to read the content of cells
-        until the key pair rotates.
+        Authentication Protocol that is now superseded by the \texttt{ntor} 
+        handshake.  A compromised onion key allows the attacker to read 
+        the content of cells until the key pair rotates.
     \item[Connection key] The short-term connection keys protect the connection
         between relays using TLS.  Connection keys are rotated at least once a
         day.  The TLS connection provides defense in depth.  If compromised, an
