@@ -7,13 +7,14 @@ in Section~\ref{sec:unusual-exponents}.
 
 \subsection{Shared prime factors}
 \label{sec:shared-primes}
-Among all 588,945 identity keys, fastgcd found that 3,577 (0.61\%) moduli share
-prime factors.  We believe that 3,575 of these keys were all controlled by a
-single research group.  Upon contacting the authors of the Security \& Privacy
-2013 paper ``Trawling for Tor hidden services''~\cite{Biryukov2013a}, we
-received confirmation that these relays indeed were run by the research group.
-Because of the following shared properties, it was easy to determine that all
-relays were operated by the same group.
+Among all 588,945 identity keys, \texttt{fastgcd} found that 3,577 (0.61\%) 
+moduli share prime factors.  We believed that 3,575 of these keys 
+were all controlled by a single research group.  
+Upon contacting the authors of the Security \& Privacy
+2013 paper entitled ``Trawling for Tor hidden services''~\cite{Biryukov2013a}, 
+we received confirmation that these relays indeed were run by a research group.
+Because of the following shared properties, it was \textcolor{red}{easy} to determine that all
+relays were operated by the same group:
 
 \begin{enumerate}
 	\item All relays were online either in between November 11, 2012 and
@@ -24,9 +25,9 @@ relays were operated by the same group.
 		we observed ports $\{7003, 7007, \dots, 7043, 7047\}$ and $\{8003, 8007,
 		\dots, 8043, 8047\}$.
 
-	\item Except two physical machines that were located in Russia and
+	\item Except for two physical machines that were located in Russia and
 		Luxembourg, all machines were hosted in Amazon's EC2 address space.  All
-		machines except the one located in Luxembourg used Tor in version
+		machines except the one located in Luxembourg used Tor version
 		0.2.2.37.
 
 	\item All physical machines had multiple fingerprints.  The same relays were
@@ -40,6 +41,8 @@ origins we could not determine.
 \label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that shared a
 \emph{modulus}, giving them the ability to calculate each other's private keys.
+FURTHER EXPLANATION GOES HERE
+
 Table~\ref{tab:moduli} illustrates these ten relays, clustered into four groups
 that each share a modulus.  The table further shows the relays' truncated,
 four-byte fingerprint, IP addresses, and RSA exponents.  Note that the Tor
