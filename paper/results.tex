@@ -154,7 +154,7 @@ positioned themselves in the hash ring to attack an onion service, we were
 interested in learning what onion services they targeted.  It is possible to
 identify the victims by compiling a comprehensive list of onion services and
 determining each service's position in the hash ring at the time the malicious
-HSDirs were online.  
+ \textcolor{red}{HSDirs [use of acronym before definition/explanation of HSDirs??]} were online.  
 
 An onion service's position in the hash ring is governed by
 the following equations.
@@ -174,28 +174,31 @@ values 0 and 1, resulting in two hashes for \textit{secret-id-part}.
 The concatenation of both \textit{permanent-id} (the onion service's hashed
 public key) and \textit{secret-id-part} is hashed, resulting in
 \textit{descriptor-id}, which determines the position in the hash ring.  The
-three hidden service directories (for both replicas) whose fingerprint is the
+three onion service directories (for both replicas) whose fingerprint is the
 closest to the descriptor in the positive direction are the onion service's HSDirs.
 This set of six HSDirs changes each day when \textit{time-period} increments.
 
-Knowing the algorithm that determines a service's position in the hash ring, we
-then obtained a list of onion services by augmenting the list of the Ahmia
+\textcolor{red}{Confusing: \st{Knowing} the algorithm that determines a service's position in the hash ring,
+---is this first clause necessary? 
+we then obtained a list of onion services by augmenting the list of the Ahmia
 search engine~\cite{ahmia} with services that we discovered via Google searches
-and by contacting researchers who have done similar work.  We ended up with a
+and by contacting researchers who have done similar work.}  We ended up with a
 list of 17,294 onion services, that were online at some point in time.  Next, we
 developed a tool that takes as input our list of onion services and the
 malicious HSDirs we discovered.\footnote{The tool is available online at
 \url{https://github.com/citp/weak-tor-keys/tree/master/code/itos}.}  The tool
-then determines all descriptors these onion services ever generated, and checks
+then determines all descriptors these onion services ever generated and checks
 if any HSDir would have been close in the hash ring to either of these
-descriptors. It is difficult to identify all targeted onion services with
+descriptors. 
+
+It is difficult to identify all targeted onion services with
 certainty.  First, our list of onion services does not reveal when a service was
-online.  Second, a HSDir could be responsible for an onion service simply by
+online.  Second, an HSDir could be responsible for an onion service simply by
 chance, instead of on purpose, resulting in a false positive.  Third, our list
 of onion services is not exhaustive, so we are bound to miss potential victims.
 
 Our tool identified the following three onion services for which we have strong
-evidence that they were targeted.
+evidence that they were purposely targeted:
 
 \begin{description}
 	\item[\texttt{22u75kqyl666joi2.onion}] The service appears to be offline
