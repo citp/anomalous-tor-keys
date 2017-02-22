@@ -41,7 +41,10 @@ origins we could not determine.
 \label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that shared a
 \emph{modulus}, giving them the ability to calculate each other's private keys.
-FURTHER EXPLANATION GOES HERE
+This is because we know from ``Fact 1'' in~\cite[\S~1.1]{Boneh1999a} that two parties 
+that share a modulus $N$ can learn the prime factors $p$ and $q$ that produced their $N$, 
+and with $p$, $q$, and each other's $e$'s in hand, they can calculate each other's
+$d$'s.
 
 Table~\ref{tab:moduli} illustrates these ten relays, clustered into four groups
 that each share a modulus.  The table further shows the relays' truncated,
@@ -178,7 +181,7 @@ three onion service directories (for both replicas) whose fingerprint is the
 closest to the descriptor in the positive direction are the onion service's HSDirs.
 This set of six HSDirs changes each day when \textit{time-period} increments.
 
-\textcolor{red}{Confusing: \st{Knowing} the algorithm that determines a service's position in the hash ring,
+\textcolor{red}{Confusing: Knowing the algorithm that determines a service's position in the hash ring,
 ---is this first clause necessary? 
 we then obtained a list of onion services by augmenting the list of the Ahmia
 search engine~\cite{ahmia} with services that we discovered via Google searches
