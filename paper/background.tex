@@ -10,8 +10,8 @@ key,'' is comprised of a pair of positive integers: an exponent $e$ and a modulu
 $N$. The modulus $N$ is the product of two large, random prime numbers $p$ and
 $q$. The corresponding decryption key, or ``RSA private key,'' is comprised of the
 positive integer pair $d$ and $N$ where $d = e^{-1}$ mod $(p - 1)(q - 1)$.  The
-decryption exponent $d$ is efficient to compute if the factorization of $N$ is
-known.
+decryption exponent $d$ is efficient to compute if \textcolor{red}{$e$} and the factorization of $N$ 
+are known.
 
 The security of RSA rests upon the difficulty of factorizing $N$ into its prime
 factors $p$ and $q$.  While factoring $N$ is impractical given sufficiently
