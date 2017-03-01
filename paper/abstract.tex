@@ -1,5 +1,20 @@
 \begin{abstract}
-{In a survey of 3,763,821 Tor relay RSA public keys, we found that 0.X\% 
-of all long-term identity keys had moduli with shared prime factors and 
-that X long-term identity keys had repeated moduli.}
+{
+In its more than ten years of existence, the Tor network has seen hundreds of
+thousands of relays come and go.  Each relay maintains several RSA keys,
+amounting to millions of keys, all archived by The Tor Project.
+%
+In this paper, we analyze 3.7 million RSA public keys of Tor relays.  We \first
+check if any relays share prime factors or moduli, \second identify relays that
+use non-standard exponents, and \third characterize malicious relays that we
+discovered in the first two steps.
+%
+Our experiments revealed that ten relays shared moduli, and 3,577 relays---most
+part of a research project---shared prime factors, allowing adversaries to
+reconstruct private keys.  We further discovered 122 relays that used
+non-standard RSA exponents, presumably in an attempt to attack onion services.
+By simulating how onion services are positioned in Tor's distributed hash table,
+we could identify three onion services that were likely targeted by these
+malicious relays.
+}
 \end{abstract}
