@@ -19,11 +19,15 @@
 package main
 
 import (
+	"bufio"
 	"crypto/sha1"
 	"encoding/base32"
 	"encoding/hex"
+	"flag"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -102,7 +106,72 @@ func findNastyHSDir(HSDirId, descriptorId, onionService string, timePeriod [4]ui
 	}
 }
 
+// parseHSDirs parses the given CSV file and returns a map that maps relay
+// fingerprints to an array that contains the time stamps indicating when the
+// relay was first and last online, respectively.
+func parseHSDirs(file string) map[string][2]int {
+
+	HSDirs := make(map[string][2]int)
+
+	fd, err := os.Open(file)
+	if err != nil {
+		log.Fatalf("Couldn't open HSDirs file because: %s\n", err)
+	}
+	defer fd.Close()
+
+	scanner := bufio.NewScanner(fd)
+	for scanner.Scan() {
+		line := scanner.Text()
+		words := strings.Split(line, ",")
+		n1, n2 := strToInt(words[1]), strToInt(words[2])
+		if n1 > n2 {
+			log.Fatalf("Relay %s: %d cannot be larger than %d.\n", words[0], n1, n2)
+		}
+		HSDirs[words[0]] = [2]int{n1, n2}
+	}
+
+	return HSDirs
+}
+
+// parseHSs parses the given file and returns a slice of onion services.
+func parseHSs(file string) []string {
+
+	var HSs []string
+
+	fd, err := os.Open(file)
+	if err != nil {
+		log.Fatalf("Couldn't open HSs file because: %s\n", err)
+	}
+	defer fd.Close()
+
+	scanner := bufio.NewScanner(fd)
+	for scanner.Scan() {
+		line := scanner.Text()
+		HSs = append(HSs, line)
+	}
+
+	return HSs
+}
+
+// strToInt converts the given string to an integer.
+func strToInt(num string) int {
+
+	i, err := strconv.Atoi(num)
+	if err != nil {
+		log.Fatalf("Couldn't convert string to integer because: %s\n", err)
+	}
+
+	return i
+}
+
 func main() {
+
+	HSDirsFile := flag.String("hsdirs", "", "File containing malicious hidden service directories.")
+	HSsFile := flag.String("hss", "", "File containing hidden services.")
+	flag.Parse()
+
+	HSDirs := parseHSDirs(*HSDirsFile)
+	HSs := parseHSs(*HSsFile)
 
 	var descriptorId string
 	var timePeriod [4]uint8
@@ -113,9 +182,9 @@ func main() {
 	// CSV header.
 	fmt.Println("hsdir,desc,onionservice,time")
 
-	allServices := len(OnionServices)
+	allServices := len(HSs)
 	// Iterate over all onion services we have.  Any of them could be a victim.
-	for i, onionService := range OnionServices {
+	for i, onionService := range HSs {
 
 		if (i+1)%100 == 0 {
 			log.Printf("Processing %d/%d onion services.\n", i+1, allServices)
@@ -128,7 +197,7 @@ func main() {
 			continue
 		}
 
-		for HSDirId, timePeriods := range UnusualExponents {
+		for HSDirId, timePeriods := range HSDirs {
 
 			// Iterate over time-period values when HSDir was online.
 			for i := timePeriods[Start]; i <= timePeriods[End]; i++ {
@@ -152,5 +221,5 @@ func main() {
 	}
 
 	log.Printf("%d out of %d HSes might have been attacked.\n",
-		len(AttackedHSes), len(OnionServices))
+		len(AttackedHSes), len(HSs))
 }
