@@ -1,4 +1,4 @@
-\documentclass{sig-alternate-10pt}
+\documentclass{sig-alternate}
 
 \usepackage[T1]{fontenc}
 \usepackage[scaled=0.8]{beramono} % For a pretty monospaced font.
@@ -49,21 +49,38 @@
 	\texttt{\setlength{\fboxsep}{0pt}%
 	\colorbox{highlight1}{\strut #1}#2}}
 
-\title{Major Key Alert! Weak Keys in Tor Relays}
+\makeatletter
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
 
 \begin{document}
 
-\numberofauthors{1}
+\title{Major Key Alert! Weak Keys in Tor Relays}
+
+\numberofauthors{4}
 
 \author{
-	\alignauthor Anonymous
+\alignauthor George Kadianakis\raisebox{7pt}{$\ast$} \\
+	\affaddr{The Tor Project}
+\alignauthor Claudia V. Roberts\raisebox{7pt}{$\ast$} \\
+	\affaddr{Princeton University}
+\alignauthor Laura M. Roberts\raisebox{7pt}{$\ast$} \\
+	\affaddr{Princeton University}
+\and
+\alignauthor Philipp Winter\raisebox{7pt}{$\ast$} \\
+	\affaddr{Princeton University}
 }
+
+\date{\today}
 
 \maketitle
 
 \input{abstract}
 
-% \keywords{Tor, RSA, onion service, cryptography, factorization}
+\blfootnote{$^*$All four authors contributed substantially, and share first
+authorship.  The names are ordered alphabetically.}
+
+\keywords{Tor, RSA, onion service, cryptography, factorization}
 
 \input{introduction}
 
