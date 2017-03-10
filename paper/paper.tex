@@ -1,6 +1,6 @@
-\documentclass[USenglish,oneside,twocolumn]{article}
+\documentclass{sig-alternate-10pt}
 
-\usepackage[big]{dgruyter_NEW}
+\usepackage[T1]{fontenc}
 \usepackage[scaled=0.8]{beramono} % For a pretty monospaced font.
 \usepackage{booktabs} % For pretty tables.
 \usepackage{multirow} % Also for pretty tables.
@@ -8,8 +8,12 @@
 \usepackage{balance} % Balance columns on last page.
 \usepackage{xcolor} % For colourful links.
 \usepackage{xspace} % For reasonable spacing in custom commands.
+\usepackage[backend=biber]{biblatex}
 \usepackage{amsmath}
 \urlstyle{tt}
+
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\footnotesize}
 
 \definecolor{highlight1}{rgb}{0.863,0.863,0.863}
 \definecolor{highlight2}{rgb}{0.734,1.000,0.898}
@@ -45,31 +49,21 @@
 	\texttt{\setlength{\fboxsep}{0pt}%
 	\colorbox{highlight1}{\strut #1}#2}}
 
-\cclogo{\includegraphics{figures/by-nc-nd.pdf}}
+\title{Major Key Alert! Weak Keys in Tor Relays}
 
 \begin{document}
 
-\author*[1]{Anonymous}
+\numberofauthors{1}
 
-\title{\huge Major Key Alert! Weak Keys in Tor Relays}
-\runningtitle{Weak keys in Tor relays}
+\author{
+	\alignauthor Anonymous
+}
+
+\maketitle
 
 \input{abstract}
 
-\keywords{Tor, RSA, onion service, cryptography, factorization}
-
-\journalname{Proceedings on Privacy Enhancing Technologies}
-\DOI{Editor to enter DOI}
-\startpage{1}
-\received{..}
-\revised{..}
-\accepted{..}
-
-\journalyear{..}
-\journalvolume{..}
-\journalissue{..}
-
-\maketitle
+% \keywords{Tor, RSA, onion service, cryptography, factorization}
 
 \input{introduction}
 
@@ -87,8 +81,7 @@
 
 \input{acknowledgements}
 
-\bibliographystyle{abbrv}
-\bibliography{references}
+\printbibliography
 
 \input{appendix}
 
