@@ -23,6 +23,12 @@ the moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private
 key of both key pairs.  Therefore, it is crucial that both $p$ and $q$ are
 determined using a strong random number generator.
 
+Even though the naive GCD algorithm is very efficient, our dataset consists of
+more than 3.7 million keys and naively computing the GCD of every pair would
+take more than 3 years of computation (assuming 15 $\mu$ s per pair). Instead,
+we use the fast pairwise GCD algorithm by Bernstein~\cite{Bernstein04} which
+can perform the computation at hand in just a few minutes.
+
 \subsection{The Tor network}
 As of January 2017, the Tor network consists of almost 7,000
 relays~\cite{tormetrics}.  Each of these relays maintains RSA, Curve25519, and
