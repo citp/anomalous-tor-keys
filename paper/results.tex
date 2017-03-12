@@ -10,9 +10,12 @@ in Section~\ref{sec:unusual-exponents}.
 Among all 588,945 identity keys, \texttt{fastgcd} found that 3,577 (0.61\%) 
 moduli share prime factors.  We believed that 3,575 of these keys 
 were all controlled by a single research group.  
+
 Upon contacting the authors of the Security \& Privacy
 2013 paper entitled ``Trawling for Tor hidden services''~\cite{Biryukov2013a}, 
-we received confirmation that these relays indeed were run by a research group.
+we received confirmation that these relays indeed were run by a research group
+and the weak keys were caused by a shortcoming of their key generation utility.
+
 Because of the following shared properties, we are confident that all relays
 were operated by the same group:
 
@@ -35,7 +38,20 @@ were operated by the same group:
 \end{enumerate}
 
 The remaining two keys belonged to a relay named ``DesasterBlaster,'' whose
-origins we could not determine.
+origins we could not determine. Its router descriptor indicates that the relay
+has been hosted on a MIPS machine which might hint to a small embedded device
+with a weak random number generator:
+
+\begin{verbatim}
+router DesasterBlaster 62.226.55.122 9001 0 0
+platform Tor 0.2.2.13-alpha on Linux mips
+\end{verbatim}
+
+To further investigate, we checked whether
+``DesasterBlaster`` shares prime factors with any other relays, but it seems
+like the relay has rotated multiple identity keys and it only shares prime
+factors between its own keys.
+
 
 \subsection{Shared moduli}
 \label{sec:shared-moduli}
