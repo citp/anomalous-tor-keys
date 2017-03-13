@@ -12,7 +12,7 @@
 - [x] 2,217 of these 2,236 (ALL)
 - [x] 10 of these 2,236 (ALL)
 - [x] 7 of these 2,236 (ALL)
-- [ ] 2 of these 2,236. DesasterBlaster analysis still needs to be added to the paper (ALL)
+- [x] 2 of these 2,236. DesasterBlaster analysis still needs to be added to the paper (ALL)
 - [ ] Ethical considerations: Trawling experiment  (Lali, Philipp)
 - [x] Get info about dataset. Table of break down of the 3.7 keys, onion vs. signing, archived vs. recent, how many relays they were all together. Count relays by different fingerprints/identity keys. Count relays by distinct IP addresses. One machine can rotate signing keys.  (Claudia)
 - [x] For weak keys get info of how many different IP addresses and fingerprints (Claudia)
