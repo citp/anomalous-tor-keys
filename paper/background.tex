@@ -23,36 +23,50 @@ the moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private
 key of both key pairs.  Therefore, it is crucial that both $p$ and $q$ are
 determined using a strong random number generator.
 
+Even though the naive GCD algorithm is very efficient, our dataset consists of
+more than 3.7 million keys and naively computing the GCD of every pair would
+take more than 3 years of computation (assuming 15 $\mu$s per pair). Instead,
+we use the fast pairwise GCD algorithm by Bernstein~\cite{Bernstein04} which
+can perform the computation at hand in just a few minutes.
+
 \subsection{The Tor network}
-As of January 2017, the Tor network consists of almost 7,000
-relays~\cite{tormetrics}.  Each of these relays maintains RSA, Curve25519, and
-Ed25519 key pairs~\cite[\S~1.1]{torspec}.  We are only interested in the
-RSA key pairs, whereof relays have the following three:
+The Tor network is among the most popular tools for digital privacy and
+anonymity. As of January 2017, the Tor network consists of almost 7,000
+volunteer-run relays~\cite{tormetrics}.
+
+Each of these relays maintains RSA, Curve25519, and Ed25519 key
+pairs~\cite[\S~1.1]{torspec} to authenticate and protect client traffic. In this
+work, we will test the strength of these RSA keys.  We leave the analysis of the
+other key types for future work.  Each Tor relay has the following three RSA
+1024-bit keys:
 
 \begin{description}
-    \item[Identity key]  Relays have a long-term identity key that they use only 
-        to sign documents and certificates.  Relays are frequently referred to
-        by their fingerprints, which are hashes over their identity keys.  The
-        compromise of an identity key would allow an attacker to entirely
-        impersonate a relay, \eg, by publishing spoofed descriptors.
+    \item[Identity key] Relays have a long-term identity key that they use only
+      to sign documents and certificates.  Relays are frequently referred to by
+      their fingerprints, which are hashes over their identity keys.  The
+      compromise of an identity key would allow an attacker to entirely
+      impersonate a relay by publishing spoofed descriptors signed by the
+      forged identity key.
+
     \item[Onion key]  Relays use medium-term onion keys to decrypt cells when
         circuits are created.  The onion key is only used in the Tor
         Authentication Protocol that is now superseded by the \texttt{ntor} 
         handshake.  A compromised onion key allows the attacker to read 
         the content of cells until the key pair rotates.
+
     \item[Connection key] The short-term connection keys protect the connection
         between relays using TLS.  Connection keys are rotated at least once a
         day.  The TLS connection provides defense in depth.  If compromised, an
-        attacker is able to read the cells that are exchanged between Tor
+        attacker is able to see the enciphered cells that are exchanged between Tor
         relays.
 \end{description}
-All three of these key pairs use 1024-bit keys.
 
 In our work we consider the identity keys and onion keys that each relay 
 has because the Tor Project has been archiving the public part of the 
 identity and onion keys for more than 10 years, allowing us to draw on a 
 rich data set~\cite{collector}. The Tor project does not archive the 
-connection keys.
+connection keys since they have short-term use and are not found
+in the consensus or router descriptors.
 
 
 %In our work, we only consider the three 1024-bit RSA key pairs that each relay
