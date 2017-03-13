@@ -5,7 +5,7 @@ network employs RSA.
 
 \subsection{The RSA cryptosystem}
 The RSA public key cryptosystem is comprised of two keys: a public encryption
-key and a privately held decryption key. The encryption key, or ``RSA public
+key and a privately held decryption key \cite{rivest1978}. The encryption key, or ``RSA public
 key,'' is comprised of a pair of positive integers: an exponent $e$ and a modulus
 $N$. The modulus $N$ is the product of two large, random prime numbers $p$ and
 $q$. The corresponding decryption key, or ``RSA private key,'' is comprised of the
@@ -27,8 +27,7 @@ determined using a strong random number generator.
 As of January 2017, the Tor network consists of almost 7,000
 relays~\cite{tormetrics}.  Each of these relays maintains RSA, Curve25519, and
 Ed25519 key pairs~\cite[\S~1.1]{torspec}.  We are only interested in the
-RSA key pairs, whereof relays have the following three, and all three 
-of these key pairs use 1024-bit keys:
+RSA key pairs, whereof relays have the following three:
 
 \begin{description}
     \item[Identity key]  Relays have a long-term identity key that they use only 
@@ -47,6 +46,7 @@ of these key pairs use 1024-bit keys:
         attacker is able to read the cells that are exchanged between Tor
         relays.
 \end{description}
+All three of these key pairs use 1024-bit keys.
 
 In our work we consider the identity keys and onion keys that each relay 
 has because the Tor Project has been archiving the public part of the 
