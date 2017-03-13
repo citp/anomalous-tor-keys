@@ -1,6 +1,6 @@
 # todos
 
-- [ ] Try to compute some of the private keys (Yorgos)
+- [ ] Try to compute some of the private keys. Need to include how we did this in the paper along with the number of private keys we were able to compute. (Yorgos)
 - [ ] Look at consensus files to see exactly how long relays were available (Lali)
 - [x] Run experiment using all publicly available RSA keys (129 million) (Lali to investigate email 2016 Nadia)
 - [x] Add bridging relay server descriptors (Philipp)
@@ -21,3 +21,5 @@
 - [ ] Analysis of the 10 keys with repeated moduli (Yorgos, Philipp)
 - [ ] Implications of keys with repeated moduli (Laura)
 - [ ] Check if all moduli are 1024 length (Phillip)
+[ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
+
