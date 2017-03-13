@@ -16,7 +16,7 @@
 - [ ] Ethical considerations: Trawling experiment  (Lali, Philipp)
 - [x] Get info about dataset. Table of break down of the 3.7 keys, onion vs. signing, archived vs. recent, how many relays they were all together. Count relays by different fingerprints/identity keys. Count relays by distinct IP addresses. One machine can rotate signing keys.  (Claudia)
 - [x] For weak keys get info of how many different IP addresses and fingerprints (Claudia)
-- [ ] Analysis of the 10 keys with repeated moduli (Yorgos, Philipp)
+- [x] Analysis of the 10 keys with repeated moduli (Yorgos, Philipp)
 - [x] Implications of keys with repeated moduli (Laura)
 - [x] Check if all moduli are 1024 length (Phillip)
 - [ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
