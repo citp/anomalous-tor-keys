@@ -4,7 +4,7 @@
 - [x] Look at consensus files to see exactly how long relays were available. Mention this in the methods section of the paper. (Lali)
 - [x] Run experiment using all publicly available RSA keys (129 million) (Lali to investigate email 2016 Nadia)
 - [x] Add bridging relay server descriptors (Philipp)
-- [ ] Look at Trawling code and see what happened work with Trawling. We still need to include this analysis in the paper. (Yorgos)
+- [x] Look at Trawling code and see what happened work with Trawling. We still need to include this analysis in the paper. (Yorgos)
 - [x] Work with Luxembourg team on why they were generating keys with shared prime factors.  (Claudia)
 - [x] Write paper (ALL/Yorgos: Implications to Tor)
 - [x] Re-run experiment (Philipp) (Josh did this for us)
