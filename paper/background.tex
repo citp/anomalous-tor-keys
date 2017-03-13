@@ -68,7 +68,10 @@ rich data set~\cite{collector}. The Tor project does not archive the
 connection keys since they have short-term use and are not found
 in the consensus or router descriptors.
 
-
-%In our work, we only consider the three 1024-bit RSA key pairs that each relay
-%has.  The Tor Project is archiving these key pairs since more than ten years,
-%allowing us to draw on a rich data set~\cite{collector}.
+In addition to client anonymity, the Tor network allows operators to set up
+anonymous servers, typically called onion services.  A subset of all Tor relays,
+the so-called hidden service directories (HSDirs), together comprise a
+distributed hash table that stores the information that is necessary to connect
+to an onion service.  These HSDirs are a particularly attractive target for
+adversaries as they learn about new onion services they are set up in the Tor
+network.
