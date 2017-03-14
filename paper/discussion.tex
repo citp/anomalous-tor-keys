@@ -1,6 +1,8 @@
 \section{Discussion}
 \label{sec:discussion}
-Recall that the Tor reference implementation hard-codes its public RSA exponent
+\textbf{Implications of weak Tor keys} \textcolor{red}{We were able compute NUM private keys. Discuss how. Implications of factorable RSA signing keys in Tor relay servers are serious. Discuss in greater detail. We have developed pipeline that helps Tor developers detect weak Tor keys. Code is publically available. Put in link after cleaning up the code.}
+
+\textbf{Tor keys with non-standard exponents} Recall that the Tor reference implementation hard-codes its public RSA exponent
 to 65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
 exponents by having the directory authorities reject relays whose descriptors
 have an RSA exponent other than 65,537, thus slowing down the search for
