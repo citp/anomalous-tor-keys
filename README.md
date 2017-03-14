@@ -1,6 +1,6 @@
 # TODOS
 
-- [ ] Try to compute some of the private keys. Need to include how we did this in the paper along with the number of private keys we were able to compute. (Yorgos)
+- [x] Try to compute some of the private keys. Need to include how we did this in the paper along with the number of private keys we were able to compute. (Yorgos)
 - [x] Look at consensus files to see exactly how long relays were available. Mention this in the methods section of the paper. (Lali)
 - [x] Run experiment using all publicly available RSA keys (129 million) (Lali to investigate email 2016 Nadia)
 - [x] Add bridging relay server descriptors (Philipp)
