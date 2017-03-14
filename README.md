@@ -20,5 +20,5 @@
 - [x] Implications of keys with repeated moduli (Laura)
 - [x] Check if all moduli are 1024 length (Phillip)
 - [ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
-- [x] Acknowledge Trawling team: Ralf-Philipp Weinmann, Ivan Pustogarov, Alex Biryukov, Donncha O'Cearbhaill, and Professor Rexford...? 
+- [x] Acknowledge Trawling team: Ralf-Philipp Weinmann, Ivan Pustogarov, Alex Biryukov, Donncha O'Cearbhaill 
 
