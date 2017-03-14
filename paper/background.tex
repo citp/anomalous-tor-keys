@@ -5,13 +5,13 @@ network employs RSA.
 
 \subsection{The RSA cryptosystem}
 The RSA public key cryptosystem is comprised of two keys: a public encryption
-key and a privately held decryption key \cite{rivest1978}. The encryption key, or ``RSA public
-key,'' is comprised of a pair of positive integers: an exponent $e$ and a modulus
-$N$. The modulus $N$ is the product of two large, random prime numbers $p$ and
-$q$. The corresponding decryption key, or ``RSA private key,'' is comprised of the
-positive integer pair $d$ and $N$ where $d = e^{-1}$ mod $(p - 1)(q - 1)$.  The
-decryption exponent $d$ is efficient to compute if \textcolor{red}{$e$} and the factorization of $N$ 
-are known.
+key and a privately held decryption key \cite{rivest1978}. The encryption key,
+or ``RSA public key,'' is comprised of a pair of positive integers: an exponent
+$e$ and a modulus $N$. The modulus $N$ is the product of two large, random prime
+numbers $p$ and $q$. The corresponding decryption key, or ``RSA private key,''
+is comprised of the positive integer pair $d$ and $N$ where $d = e^{-1}$ mod $(p
+- 1)(q - 1)$.  The decryption exponent $d$ is efficient to compute if e and the
+factorization of $N$ are known.
 
 The security of RSA rests upon the difficulty of factorizing $N$ into its prime
 factors $p$ and $q$.  While factoring $N$ is impractical given sufficiently
@@ -68,7 +68,10 @@ rich data set~\cite{collector}. The Tor project does not archive the
 connection keys since they have short-term use and are not found
 in the consensus or router descriptors.
 
-
-%In our work, we only consider the three 1024-bit RSA key pairs that each relay
-%has.  The Tor Project is archiving these key pairs since more than ten years,
-%allowing us to draw on a rich data set~\cite{collector}.
+In addition to client anonymity, the Tor network allows operators to set up
+anonymous servers, typically called onion services.  A subset of all Tor relays,
+the so-called hidden service directories (HSDirs), together comprise a
+distributed hash table that stores the information that is necessary to connect
+to an onion service.  These HSDirs are a particularly attractive target for
+adversaries as they learn about new onion services they are set up in the Tor
+network.
