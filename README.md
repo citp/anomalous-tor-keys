@@ -21,4 +21,4 @@
 - [x] Check if all moduli are 1024 length (Phillip)
 - [ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
 - [x] Acknowledge Trawling team: Ralf-Philipp Weinmann, Ivan Pustogarov, Alex Biryukov, Donncha O'Cearbhaill 
-
+- [ ] Clean up pipeline code used to detect weak Tor keys, pass in arguments instead of hard coding files, add comments, add error handling on timeouts, etc. Add source code link to the paper (Claudia)
