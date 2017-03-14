@@ -93,17 +93,20 @@ func similarity(HSDirId, descriptorId string) int {
 	return length
 }
 
-// findNastyHSDir attempts to find HSDirs that could have attacked the given
+// isNastyHSDir attempts to find HSDirs that could have attacked the given
 // descriptor ID.  We do that by checking if the fingerprint prefix exceeds or
 // is equal to our threshold.
-func findNastyHSDir(HSDirId, descriptorId, onionService string, timePeriod [4]uint8) {
+func isNastyHSDir(HSDirId, descriptorId, onionService string, timePeriod [4]uint8) bool {
 
 	// Check if descriptor ID is similar to any of our malicious HSDirs.
 	if similarity(HSDirId, descriptorId) >= SimThreshold {
 		fmt.Printf("%s,%s,%s,%s\n", HSDirId, descriptorId,
 			strings.ToLower(onionService), getTime(timePeriod))
 		AttackedHSes[onionService] = struct{}{}
+		return true
 	}
+
+	return false
 }
 
 // parseHSDirs parses the given CSV file and returns a map that maps relay
@@ -164,15 +167,13 @@ func strToInt(num string) int {
 	return i
 }
 
-func main() {
+// iterateHSs iterates over the given onion services and checks if any of the
+// given HSDirs could have attacked an onion service.  The function returns a
+// list of HSDirs whose fingerprint is suspiciously close (the threshold is
+// determined by SimThreshold) to any onion service's descriptor ID.
+func iterateHSs(HSDirs map[string][2]int, HSs []string) []string {
 
-	HSDirsFile := flag.String("hsdirs", "", "File containing malicious hidden service directories.")
-	HSsFile := flag.String("hss", "", "File containing hidden services.")
-	flag.Parse()
-
-	HSDirs := parseHSDirs(*HSDirsFile)
-	HSs := parseHSs(*HSsFile)
-
+	var nastyHSDirs []string
 	var descriptorId string
 	var timePeriod [4]uint8
 	// The two most significant bytes (in network byte order) never change.
@@ -214,7 +215,9 @@ func main() {
 					descriptorIdRaw := sha1.Sum(append(permanentId, secretIdPart[:]...))
 					descriptorId = hex.EncodeToString(descriptorIdRaw[:])
 
-					findNastyHSDir(HSDirId, descriptorId, onionService, timePeriod)
+					if isNastyHSDir(HSDirId, descriptorId, onionService, timePeriod) {
+						nastyHSDirs = append(nastyHSDirs, HSDirId)
+					}
 				}
 			}
 		}
@@ -222,4 +225,15 @@ func main() {
 
 	log.Printf("%d out of %d HSes might have been attacked.\n",
 		len(AttackedHSes), len(HSs))
+
+	return nastyHSDirs
+}
+
+func main() {
+
+	HSDirsFile := flag.String("hsdirs", "", "File containing malicious hidden service directories.")
+	HSsFile := flag.String("hss", "", "File containing hidden services.")
+	flag.Parse()
+
+	iterateHSs(parseHSDirs(*HSDirsFile), parseHSs(*HSsFile))
 }
