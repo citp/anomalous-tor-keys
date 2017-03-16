@@ -187,7 +187,7 @@ func iterateHSs(HSDirs map[string][2]int, HSs []string) []string {
 	// Iterate over all onion services we have.  Any of them could be a victim.
 	for i, onionService := range HSs {
 
-		if (i+1)%100 == 0 {
+		if (i+1)%1000 == 0 {
 			log.Printf("Processing %d/%d onion services.\n", i+1, allServices)
 		}
 
