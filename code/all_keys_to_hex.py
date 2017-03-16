@@ -1,29 +1,34 @@
-from Crypto.PublicKey import RSA
+"""
+For each RSA public key, extract its hex modulo and exponent. Create
+a dictionary mapping each hex modulo to a list of dictionaries. Each
+sub-dictionary contains an RSA public key and its exponent. Pickle
+that map.
+"""
+from collections import defaultdict
 from base64 import b64decode
 import pickle
 
-hex_to_b64 = dict()
+from Crypto.PublicKey import RSA
 
-with open('all_hex_keys.txt', 'w') as g:
-    with open('all_public_keys.txt', 'r') as f:
-        for key64 in f:
-            keyDER = b64decode(key64.replace('\n', ''))
-            keyPub = RSA.importKey(keyDER)
-            hex = format(keyPub.n, 'x')
-            exp = keyPub.e
-            if hex in hex_to_b64:
-                rsa_key = dict()
-                rsa_key["rsa_pub_key"] = key64
-                rsa_key["exponent"] = exp
-                hex_to_b64[hex].append(rsa_key)
-            else:
-                list_rsa_keys = list()
-                rsa_key = dict()
-                rsa_key["rsa_pub_key"] = key64
-                rsa_key["exponent"] = exp
-                list_rsa_keys.append(rsa_key)
-                hex_to_b64[hex] = list_rsa_keys
-                g.write(hex + '\n')
 
-pickle.dump(hex_to_b64, open("All-Hex-To-RSA.pck", "wb" ))
+all_public_keys = open('all_public_keys.txt', 'r')
+all_hex_keys = open('all_hex_keys.txt', 'w')
+
+hex_to_b64 = defaultdict(list)
+for key64 in all_public_keys :
+    keyDER = b64decode(key64.replace('\n', ''))
+    keyPub = RSA.importKey(keyDER)
+    hex = hex(keyPub.n, 'x')
+    exp = keyPub.e
+
+    # Write each unique hex to all_hex_keys.txt
+    if hex not in hex_to_b64:
+        all_hex_keys.write(hex + '\n')
+
+    hex_to_b64[hex].append({
+        'rsa_pub_key': key64,
+        'exponent': exp
+    })
+
+pickle.dump(hex_to_b64, open('All-Hex-To-RSA.pck', 'wb'))
 
