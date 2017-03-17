@@ -33,10 +33,11 @@ import (
 )
 
 const (
-	SimThreshold = 5     // Just a hunch, for now.
-	SecsPerDay   = 86400 // Not a hunch.
-	Start        = 0
-	End          = 1
+	SimThreshold     = 5     // Just a hunch, for now.
+	SecsPerDay       = 86400 // Not a hunch.
+	Start            = 0
+	End              = 1
+	DefaultStartDate = "2005-01-01"
 )
 
 // Replicas represents the two numerals that are used to replicate descriptors
@@ -231,9 +232,50 @@ func iterateHSs(HSDirs map[string][2]int, HSs []string) []string {
 
 func main() {
 
-	HSDirsFile := flag.String("hsdirs", "", "File containing malicious hidden service directories.")
-	HSsFile := flag.String("hss", "", "File containing hidden services.")
+	var HSDirs map[string][2]int
+	var start time.Time
+	var end time.Time
+	var err error
+	var DefaultEndDate string = time.Now().Format("2006-01-02")
+
+	HSDirsFile := flag.String("hsdirs", "", "File containing malicious hidden service directories, one per line.")
+	HSDir := flag.String("hsdir", "", "The fingerprint of a single hidden service directory.")
+	HSsFile := flag.String("hss", "", "File containing hidden services, one per line.")
+	startDate := flag.String("start", DefaultStartDate, "The date the HSDir was first online in YYYY-MM-DD format.  The default is 2005-01-01.")
+	endDate := flag.String("end", DefaultEndDate, "The date the HSDir was last online in YYYY-MM-DD format.  The default is today.")
 	flag.Parse()
 
-	iterateHSs(parseHSDirs(*HSDirsFile), parseHSs(*HSsFile))
+	if (*startDate != DefaultStartDate || *endDate != DefaultEndDate) && *HSDir == "" {
+		log.Fatal("-start and -end only work in conjunction with -hsdir.")
+	}
+
+	if *HSDirsFile != "" {
+		HSDirs = parseHSDirs(*HSDirsFile)
+	}
+
+	if *HSDir != "" {
+		start, err = time.Parse("2006-01-02", *startDate)
+		if err != nil {
+			log.Fatalf("Failed to parse date when %s", err)
+		}
+		end, err = time.Parse("2006-01-02", *endDate)
+		if err != nil {
+			log.Fatalf("Failed to parse date when %s", err)
+		}
+		log.Printf("Using start date %s and end date %s.", start, end)
+
+		// The map might already be initialised if -hsdirs was given.
+		if HSDirs == nil {
+			HSDirs = make(map[string][2]int)
+		}
+		// <https://gitweb.torproject.org/torspec.git/tree/rend-spec.txt> says:
+		// time-period = (current-time + permanent-id-byte * 86400 / 256) / 86400
+		HSDirs[*HSDir] = [2]int{int(start.Unix() / (24 * 60 * 60)), int(end.Unix()/(24*60*60) + 1)}
+	}
+
+	if len(HSDirs) == 0 {
+		log.Fatal("No HSDirs given.  Use either -hsdirs or -hsdir.")
+	}
+
+	iterateHSs(HSDirs, parseHSs(*HSsFile))
 }
