@@ -4,13 +4,13 @@ the Tor network is one of the largest volunteer-run anonymity networks.  To
 implement onion routing, all these relays maintain several RSA key pairs---most
 importantly a medium-term key that rotates occasionally, and a long-term key
 that ideally never changes.  Most relays run The Tor Project's reference
-implementation on a standard Linux system, but some run third-party
+C implementation on a standard Linux system, but some run third-party
 implementations, or on constrained systems such as Raspberry Pis, raising the
 question if these machines managed to generate safe keys upon bootstrapping.
 Past work investigated this question for TLS and SSH
-servers~\cite{Heninger2012a}; national  databases~\cite{Bernstein2013a}; and
-POP3S, IMAPS, and SMTPS servers~\cite{Hastings2016a}.  In this work, we study
-the Tor network.
+servers~\cite{Heninger2012a}; nation-wide databases~\cite{Bernstein2013a}; as
+well as POP3S, IMAPS, and SMTPS servers~\cite{Hastings2016a}.  In this work, we
+study the Tor network.
 
 Relays with weak cryptographic keys can pose a significant threat to Tor users.
 The exact impact depends on the type of key that is vulnerable.  In the best

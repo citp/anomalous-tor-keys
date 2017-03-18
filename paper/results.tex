@@ -28,14 +28,13 @@ were operated by the same group:
 		November 16, 2012 or in between January 14, 2013 and February 6, 2013,
 		suggesting two separate experiments. We verified this by checking how long the relays stayed in the Tor consensus. The Tor consensus is updated hourly and documents which relays are available at a particular time. This data is archived by the Tor Project, and is made publically available on the CollectTor platform.
 
-	\item All relays had a predictable port assignment scheme.  In particular,
-		we observed ports \{7003, 7007, \dots, 7043, 7047\} and \{8003, 8007,
-		\dots, 8043, 8047\}.
+	\item All relays exhibited a predictable port assignment scheme.  In
+		particular, we observed ports \{7003, 7007, \dots, 7043, 7047\} and
+		\{8003, 8007, \dots, 8043, 8047\}.
 
-	\item Except for two physical machines that were located in Russia and
-		Luxembourg, all machines were hosted in Amazon's EC2 address space.  All
-		machines except the one located in Luxembourg used Tor version
-		0.2.2.37.
+	\item Except for two machines that were located in Russia and Luxembourg,
+		all machines were hosted in Amazon's EC2 address space.  All machines
+		except the one located in Luxembourg used Tor version 0.2.2.37.
 
 	\item All physical machines had multiple fingerprints.  1,321 of these 3,557 relays were previously characterized by Winter \ea~\cite[\S~5.1]{Winter2016a}.
 \end{enumerate}
@@ -50,9 +49,9 @@ router DesasterBlaster 62.226.55.122 9001 0 0
 platform Tor 0.2.2.13-alpha on Linux mips
 \end{verbatim}
 
-To further investigate, we checked whether ``DesasterBlaster'' shares prime factors with any other relays. It appears
-that the relay has rotated multiple identity keys, and it only shares prime
-factors with its own keys.
+To further investigate, we checked whether the relay ``DesasterBlaster'' shares
+prime factors with any other relays. It appears that the relay has rotated
+multiple identity keys, and it only shares prime factors with its own keys.
 
 
 \subsection{Shared moduli}
@@ -222,7 +221,7 @@ evidence that they were purposely targeted:
 \begin{description}
 	\item[\texttt{22u75kqyl666joi2.onion}] The service appears to be offline
 		today, so we were unable to see for ourselves what it hosted.  According
-		to cached index pages we found online, the onion service hosted a
+		to cached index pages we found online, the onion service used to host a
 		technology-focused forum in Chinese.  A subset of relays from
 		Table~\ref{tab:group2} targeted the onion service on both August 14 and
 		15, 2015 by providing nine out of the total of twelve responsible

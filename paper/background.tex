@@ -56,7 +56,7 @@ other key types for future work.  Each Tor relay has the following three RSA
         the content of cells until the key pair rotates.
 
     \item[Connection key] The short-term connection keys protect the connection
-        between relays using TLS.  Connection keys are rotated at least once a
+        between relays using TLS and are rotated at least once a
         day.  The TLS connection provides defense in depth.  If compromised, an
         attacker is able to see the enciphered cells that are exchanged between Tor
         relays.
