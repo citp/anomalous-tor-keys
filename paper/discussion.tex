@@ -1,9 +1,30 @@
 \section{Discussion}
 \label{sec:discussion}
 \textbf{Implications of weak Tor keys}
-The implications of factorable RSA indentity keys in Tor relay servers are serious. As discussed earlier, discovering that a relay's identity key is factorable means that an attacker can compromise the key pair by gaining access to the private key. To fully prove the brokenness of the vulnerable public keys we found, we calculated all 3,557 corresponding private keys. We then used these private keys to forge evil signatures, allowing us to impersonate the relays.
+The implications of factorable RSA indentity keys in Tor relay servers are
+serious. As discussed earlier, discovering that a relay's identity key is
+factorable means that an attacker can compromise the key pair by gaining access
+to the private key. To fully prove the brokenness of the vulnerable public keys
+we found, we calculated all 3,557 corresponding private keys. We then used these
+private keys to forge evil signatures, allowing us to impersonate the relays.
 
-As touched on earlier in Section~\ref{sec:tor-network}, the main use of the identity key in Tor is to sign the relay's ``descriptor.'' This document includes various information about the relay e.g. its IP address, contact information, etc. Since the identity key of every relay is included in the Tor consensus, all clients know the identity keys of all relays. The consensus acts as the public key infrastructure (PKI) of Tor. When a client fetches a Tor descriptor, it checks the consensus for the right identity key, and then verifies the descriptor signature. This ensures that the descriptor was created by an entity that knew the private identity key, and hence is not a fake descriptor created by a third party. If an attacker were to break the identity key of a relay (as we demonstrated), she could start signing descriptors in its name and publishing them. The adversary could publish whatever information she wanted in the descriptor e.g. her own IP address, keys, etc. Tor clients would be fooled into thinking it's the actual relay, but instead, would be connecting to the attacker. Thus, one can imagine an exploit that could hack most identify keys of Tor relays, allowing the attacker to redirect all clients to her own machines and monitor their traffic.
+As touched on earlier in Section~\ref{sec:tor-network}, the main use of the
+identity key in Tor is to sign the relay's ``descriptor.'' This document
+includes various information about the relay \eg its IP address, contact
+information, etc. Since the identity key of every relay is included in the Tor
+consensus, all clients know the identity keys of all relays. The consensus acts
+as the public key infrastructure (PKI) of Tor. When a client fetches a Tor
+descriptor, it checks the consensus for the right identity key, and then
+verifies the descriptor signature. This ensures that the descriptor was created
+by an entity that knew the private identity key, and hence is not a fake
+descriptor created by a third party. If an attacker were to break the identity
+key of a relay (as we demonstrated), she could start signing descriptors in its
+name and publishing them. The adversary could publish whatever information she
+wanted in the descriptor \eg her own IP address, keys, etc. Tor clients would be
+fooled into thinking it's the actual relay, but instead, would be connecting to
+the attacker. Thus, one can imagine an exploit that could hack most identify
+keys of Tor relays, allowing the attacker to redirect all clients to her own
+machines and monitor their traffic.
 
 Factoring the identity key is equivalent to controlling the compromised Tor
 relay. While it does not immediately allow an adversary to link a Tor user's IP
@@ -12,8 +33,9 @@ much closer to that goal. We have developed a set of tools that can help Tor
 developers detect such weak keys.\footnote{The tools are publically available at
 \url{https://github.com/citp/weak-tor-keys/tree/master/code}.}
 
-\textbf{Tor keys with non-standard exponents} Recall that the Tor reference implementation hard-codes its public RSA exponent
-to 65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
+\textbf{Tor keys with non-standard exponents} Recall that the Tor reference
+implementation hard-codes its public RSA exponent to
+65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
 exponents by having the directory authorities reject relays whose descriptors
 have an RSA exponent other than 65,537, thus slowing down the search for
 fingerprint prefixes.  Adversaries would then have to iterate over the primes
