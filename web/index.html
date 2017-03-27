@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Weak keys in Tor relays</title>
+  <link rel="stylesheet" type="text/css" href="../article.css"/>
+</head>
+
+<body>
+
+<div class="centered">
+<h1>Weak keys in Tor relays</h1>
+
+<a href="#overview">Overview</a>&nbsp;&nbsp;&bull;&nbsp;
+<a href="#writing">Writing</a>&nbsp;&nbsp;&bull;&nbsp;
+<a href="#code">Code</a>&nbsp;&nbsp;&bull;&nbsp;
+<a href="#data">Data</a>&nbsp;&nbsp;&bull;&nbsp;
+<a href="#contact">Contact</a>
+</div>
+
+<hr/>
+
+<h2><a name="overview">Overview</a></h2>
+<p>
+Counting
+<a href="https://metrics.torproject.org/networksize.html">almost 7,000 relays</a>,
+<a href="https://www.torproject.org">the Tor network</a>
+is one of the largest volunteer-run anonymity networks operating today.  Most of
+the volunteers who operate these relays choose to remain anonymous, and little
+is known about how they set up or operate their relays.  As a result, it is not
+clear if all relays correctly generated the cryptographic key material that is
+needed to participate in the Tor network.  Key generation issues can have
+devastating consequences, and led to severe vulnerabilities
+<a href="https://www.debian.org/security/2008/dsa-1571">in</a>
+<a href="https://factorable.net">the</a>
+<a href="https://smartfacts.cr.yp.to/smartfacts-20130916.pdf">past</a>,
+emphasizing the importance of knowing if the Tor network is affected by the same
+weaknesses.
+</p>
+
+<p>
+In this research project, we took a closer look at the cryptographic keys of Tor
+relays.  Drawing on a
+<a href="https://collector.torproject.org/archive/relay-descriptors/server-descriptors/">dataset
+containing more than ten years worth of archived Tor relay public keys</a>,
+(<i>i</i>) we checked if any relays share prime factors or moduli, (<i>ii</i>)
+we identified relays that used non-standard RSA exponents, and (<i>iii</i>) we
+characterized malicious relays that we discovered in the first two steps.  Our
+experiments revealed that ten relays shared moduli, and 3,577 relays&mdash;most
+part of a research project&mdash;shared prime factors, allowing adversaries to
+reconstruct private keys.  We further discovered 122 relays that used
+non-standard RSA exponents, presumably in an attempt to attack onion services.
+By simulating how onion services are positioned in Tor&rsquo;s distributed hash
+table, we could identify four onion services that were likely targeted by these
+malicious relays.
+</p>
+
+<p>
+What does our work mean for Tor users?  There is no need for concern.  While we
+discovered that some relays were vulnerable in the past, these relays are no
+longer online, and there is no reason to believe that the vulnerabilities were
+exploited.  In addition to demonstrating these issues, we suggest
+countermeasures that The Tor Project can adopt to find vulnerable relays early,
+and remove them from the network.  As a result, our work further strengthens the
+security of the Tor network.
+</p>
+
+<h2><a name="writing">Writing</a></h2>
+<p>
+The main outcome of this research project is a
+<a href="weak-tor-keys.pdf">technical report</a> that we published in April 2017.
+</p>
+
+<ul>
+	<li>
+	<a href="weak-tor-keys.pdf"><img alt="Paper thumbnail" style="float:right;border:1px solid black" src="img/paper-thumb.png"/></a>
+	<a href="weak-tor-keys.pdf">Weak keys in Tor relays</a><br/>
+	G. Kadianakis, C. V. Roberts, L. M. Roberts, and P. Winter<br/>
+	<i>Technical report</i>, April 2017<br/>
+	<a href="bibliography/index.html">Bibliography</a> &bull; <a href="https://github.com/citp/weak-tor-keys/tree/master/paper">LaTeX source</a> &bull; <a href="weak-tor-keys.bib">BibTeX</a>
+	</li>
+</ul>
+
+<h2><a name="code">Code</a></h2>
+<p>
+Our
+<a href="https://github.com/citp/weak-tor-keys">GitHub repository</a>
+contains the LaTeX code of our paper, and our Python and Go code snippets:
+</p>
+
+<div class="centered">
+<pre>
+git clone https://github.com/citp/weak-tor-keys.git
+</pre>
+</div>
+
+<h2><a name="data">Data</a></h2>
+<p>
+We publish the following datasets.  Each tarball contains a README.txt file that
+explains the respective dataset.
+</p>
+<ul>
+	<li>
+		<a href="data/targeted-onion-services.tar.xz">targeted-onion-services.tar.xz</a> (3.6 KiB)<br/>
+		SHA-256: <tt>9384f3de919dceb00c7f92d01182a5f37fdd4e26c47a5a93bd167cf02212f30c</tt>
+	</li>
+</ul>
+
+
+<h2><a name="contact">Contact</a></h2>
+<p>
+We are a team of four researchers from two institutions.  Please copy
+all of us if you have any questions or remarks.
+</p>
+<ul>
+	<li>George Kadianakis &mdash; <img alt="George" src="img/george.png"/></li>
+	<li>Claudia V. Roberts</a> &mdash; <img alt="Claudia" src="img/claudia.png"/></li>
+	<li>Laura M. Roberts &mdash; <img alt="Laura" src="img/laura.png"/></li>
+	<li><a href="https://www.cs.princeton.edu/~pwinter/">Philipp Winter</a> &mdash; <img alt="Philipp" src="img/philipp.png"/></li>
+</ul>
+
+<hr/>
+<p>
+<i>Last update: 2017-03-27</i>
+</p>
+</body>
+
+</html>
