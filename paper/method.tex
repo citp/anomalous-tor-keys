@@ -2,7 +2,7 @@
 \label{sec:method}
 In this section, we discuss how we drew on a publicly-available data set
 (Section~\ref{sec:data-collection}) and used Heninger and Halderman's 
-\texttt{fastgcd}~\cite{fastgcd} tool to analyze the public keys that 
+fastgcd~\cite{fastgcd} tool to analyze the public keys that 
 we extracted from this data set (Section~\ref{sec:vulnerable-keys}).
 
 \subsection{Data collection}
@@ -42,9 +42,9 @@ easy-to-analyze key information, is publicly available.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool \texttt{fastgcd}~\cite{fastgcd}, which takes as input a set
+and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set
 of moduli from public keys and then computes the pair-wise greatest common
-divisor of these moduli.  \texttt{fastgcd}'s C implementation is based on a
+divisor of these moduli.  Fastgcd's C implementation is based on a
 quasilinear-time algorithm for factoring a set of integers into their co-primes.
 We used the PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded,
 PEM-encoded keys into \texttt{fastgcd}'s expected format, which is hex-encoded
