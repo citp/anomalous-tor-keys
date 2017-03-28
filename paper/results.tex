@@ -26,7 +26,11 @@ were operated by the same group:
 \begin{enumerate}
 	\item All relays were online either in between November 11, 2012 and
 		November 16, 2012 or in between January 14, 2013 and February 6, 2013,
-		suggesting two separate experiments. We verified this by checking how long the relays stayed in the Tor consensus. The Tor consensus is updated hourly and documents which relays are available at a particular time. This data is archived by the Tor Project, and is made publically available on the CollectTor platform.
+		suggesting two separate experiments. We verified this by checking how
+		long the relays stayed in the Tor consensus. The Tor consensus is
+		updated hourly and documents which relays are available at a particular
+		time. This data is archived by the Tor Project, and is made publically
+		available on the CollectTor platform.
 
 	\item All relays exhibited a predictable port assignment scheme.  In
 		particular, we observed ports \{7003, 7007, \dots, 7043, 7047\} and
@@ -36,7 +40,9 @@ were operated by the same group:
 		all machines were hosted in Amazon's EC2 address space.  All machines
 		except the one located in Luxembourg used Tor version 0.2.2.37.
 
-	\item All physical machines had multiple fingerprints.  1,321 of these 3,557 relays were previously characterized by Winter \ea~\cite[\S~5.1]{Winter2016a}.
+	\item All physical machines had multiple fingerprints.  1,321 of these 3,557
+		relays were previously characterized by Winter
+		\ea~\cite[\S~5.1]{Winter2016a}.
 \end{enumerate}
 
 The remaining two keys belonged to a relay named ``DesasterBlaster,'' whose
@@ -58,23 +64,27 @@ multiple identity keys, and it only shares prime factors with its own keys.
 \label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that share a
 \emph{modulus}, giving them the ability to calculate each other's private keys.
-We know from ``Fact 1'' in~\cite[\S~1.1]{Boneh1999a} that two parties 
-that share a modulus $N$ can learn the prime factors $p$ and $q$ that produced their $N$. With $p$, $q$, and each other's $e$'s in hand, the two parties can then compute each other's decryption exponent $d$, at which point both parties now know the public encryption and private decryptions keys. 
+We know from ``Fact 1'' in~\cite[\S~1.1]{Boneh1999a} that two parties that share
+a modulus $N$ can learn the prime factors $p$ and $q$ that produced their $N$.
+With $p$, $q$, and each other's $e$'s in hand, the two parties can then compute
+each other's decryption exponent $d$, at which point both parties now know the
+public encryption and private decryptions keys. 
 
-Table~\ref{tab:moduli} shows these ten relays with shared moduli clustered into four groups. The table shows the relays' truncated,
-four-byte fingerprint, IP addresses, and RSA exponents.  Note that the Tor
-client hard-codes the RSA exponent to 65,537~\cite[\S~0.3]{torspec}, a
-recommended value that is resistant to attacks against low public
-exponents~\cite[\S~4]{Boneh1999a}.  Any other value indicates non-standard key
-generation.  All IP addresses were hosted by OVH, a popular French hosting
-provider, and some of the IP addresses hosted two relays, as our color coding
-indicates.  Finally, each group shared a four- or five-digit prefix in their
-fingerprints.  We believe that a single attacker controlled all these relays
-with the intention to manipulate the distributed hash table that powers onion
-services~\cite{Biryukov2013a}---the shared fingerprint prefix is an indication.
-We suspect that the attackers iterated over exponents to come up with the shared
-prefix.  The Tor Project informed us that it discovered and blocked these relays
-in August 2014~\cite{tor-priv1} when they first came online.
+Table~\ref{tab:moduli} shows these ten relays with shared moduli clustered into
+four groups. The table shows the relays' truncated, four-byte fingerprint, IP
+addresses, and RSA exponents.  Note that the Tor client hard-codes the RSA
+exponent to 65,537~\cite[\S~0.3]{torspec}, a recommended value that is resistant
+to attacks against low public exponents~\cite[\S~4]{Boneh1999a}.  Any other
+value indicates non-standard key generation.  All IP addresses were hosted by
+OVH, a popular French hosting provider, and some of the IP addresses hosted two
+relays, as our color coding indicates.  Finally, each group shared a four- or
+five-digit prefix in their fingerprints.  We believe that a single attacker
+controlled all these relays with the intention to manipulate the distributed
+hash table that powers onion services~\cite{Biryukov2013a}---the shared
+fingerprint prefix is an indication.  We suspect that the attackers iterated
+over exponents to come up with the shared prefix.  The Tor Project informed us
+that it discovered and blocked these relays in August 2014, when they first came
+online~\cite{tor-priv1}.
 
 \begin{table}[t]
 	\centering
@@ -153,8 +163,8 @@ The Tor source code hard-codes the public RSA exponent to 65,537, which is best
 practice~\cite[\S~4]{Boneh1999a}.  Interested in non-standard key
 generation, we checked if our data set featured relays with different
 exponents.  Non-standard exponents suggest that a relay was after a specific
-fingerprint in order to position itself in Tor's hash ring.\footnote{A different
-approach to detecting relays that position themselves in the hash ring is to
+fingerprint in order to position itself in Tor's DHT.\footnote{A different
+approach to detecting relays that position themselves in the DHT is to
 determine how often they change their
 fingerprints.~\cite[\S~4.3.3]{Winter2016a}} To obtain a fingerprint with a given
 prefix, an adversary has to modify the underlying key material $p$, $q$, and $e$
@@ -166,37 +176,18 @@ over the service's public exponent.
 
 Among all of our 3.7 million keys, 122 possessed an exponent other than
 65,537.\footnote{We list all relays in detail in
-Appendix~\ref{sec:full-unusual-exponents}.} One relay had both 
-non-standard identity and onion keys while all remaining relays only had
-non-standard identity keys.  Ten of these relays further had a shared modulus,
-which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that these relays
-positioned themselves in the hash ring to attack an onion service, we were
-interested in learning what onion services they targeted.  It is possible to
-identify the victims by compiling a comprehensive list of onion services and
-determining each service's position in the hash ring at the time the malicious
-HSDirs were online.
+Appendix~\ref{sec:full-unusual-exponents}.} One relay had both non-standard
+identity and onion key exponents while all remaining relays only had
+non-standard identity key exponents.  Ten of these relays further had a shared
+modulus, which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that
+these relays positioned themselves in the DHT to attack an onion service,
+we were interested in learning what onion services they targeted.  It is
+possible to identify the victims by compiling a comprehensive list of onion
+services and determining each service's position in the DHT at the time
+the malicious HSDirs were online.
 
-An onion service's position in the hash ring is governed by
-the following equations.
-\begin{equation}
-\begin{split}
-\textit{secret-id-part} = \textit{SHA-1}(& \textit{time-period} \mid \\
-                                         & \textit{descriptor-cookie} \mid \\
-                                         & \textit{replica}) \\
-\textit{descriptor-id} =  \textit{SHA-1}(& \textit{permanent-id} \mid \\
-                                         & \textit{secret-id-part})
-\end{split}
-\end{equation}
-\textit{secret-id-part} is comprised of three variables:  \textit{Time-period}
-represents the number of days since the Unix epoch; \textit{descriptor-cookie}
-is typically unused and hence empty; and \textit{replica} is set to both the
-values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  
-The concatenation of both \textit{permanent-id} (the onion service's hashed
-public key) and \textit{secret-id-part} is hashed, resulting in
-\textit{descriptor-id}, which determines the position in the hash ring.  The
-three onion service directories (for both replicas) whose fingerprint is the
-closest to the descriptor in the positive direction are the onion service's HSDirs.
-This set of six HSDirs changes each day when \textit{time-period} increments.
+\subsubsection{Identifying targeted onion services}
+\label{sec:targeted-onion-services}
 
 We then obtained a list of onion services by augmenting the list of the Ahmia
 search engine~\cite{ahmia} with services that we discovered via Google searches
@@ -206,14 +197,14 @@ time.  Next, we developed a tool that takes as input our list of onion services
 and the malicious HSDirs we discovered.\footnote{The tool is available online at
 \url{https://github.com/citp/weak-tor-keys/tree/master/code/itos}.}  The tool
 then determines all descriptors these onion services ever generated and checks
-if any HSDir would have been close in the hash ring to either of these
+if any HSDir would have been close in the DHT to either of these
 descriptors.
 
-It is difficult to identify all targeted onion services with
-certainty.  First, our list of onion services does not reveal when a service was
-online.  Second, an HSDir could be responsible for an onion service simply by
-chance, instead of on purpose, resulting in a false positive.  Third, our list
-of onion services is not exhaustive, so we are bound to miss potential victims.
+It is difficult to identify all targeted onion services with certainty.  First,
+our list of onion services does not reveal when a service was online.  Second,
+an HSDir could be responsible for an onion service simply by chance, instead of
+on purpose, resulting in a false positive.  Third, our list of onion services is
+not exhaustive, so we are bound to miss some potential victims.
 
 Our tool identified the following four onion services for which we have strong
 evidence that they were purposely targeted:

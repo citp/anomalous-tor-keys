@@ -47,14 +47,15 @@ of moduli from public keys and then computes the pair-wise greatest common
 divisor of these moduli.  Fastgcd's C implementation is based on a
 quasilinear-time algorithm for factoring a set of integers into their co-primes.
 We used the PyCrypto library~\cite{pycrypto} to turn Tor's PKCS\#1-padded,
-PEM-encoded keys into \texttt{fastgcd}'s expected format, which is hex-encoded
-moduli.  Running \texttt{fastgcd} over our data set took less than 20 minutes on
-a machine with ``dual, eight-core 2.8GHz Intel Xeon E5 2680 v2 processors with
-256 GB of RAM''~\cite{supercompy}.
+PEM-encoded keys into fastgcd's expected format, which is hex-encoded
+moduli.  Running fastgcd over our data set took less than 20 minutes on
+a machine with dual, eight-core 2.8 GHz Intel Xeon E5 2680 v2 processors with
+256 GB of RAM.
 
-\texttt{fastgcd} benefits from having a moduli pool as large as possible because
-it allows the algorithm to draw on a larger factor base to use on each
-key~\cite{Heninger2012a}.  To that end, we reached out to Nadia Heninger's
-group at University of Pennsylvania, and they graciously re-ran our experiment
-on a set of 129 million moduli. The number of Tor weak keys did not go up, but
-this experiment gave us more confidence that we had not missed weak keys.
+Fastgcd benefits from having a moduli pool as large as possible
+because it allows the algorithm to draw on a larger factor base to use on each
+key~\cite{Heninger2012a}.  To that end, we reached out to Heninger's group at
+the University of Pennsylvania, and they graciously augmented their 129 million
+key dataset with our 3.6 million keys, and searched for shared factors.  The
+number of Tor weak keys did not go up, but this experiment gave us more
+confidence that we had not missed weak keys.

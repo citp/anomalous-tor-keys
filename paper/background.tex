@@ -4,24 +4,24 @@ We now provide brief background on both the RSA cryptosystem and how the Tor
 network employs RSA.
 
 \subsection{The RSA cryptosystem}
-The RSA public key cryptosystem is comprised of two keys: a public encryption
+The RSA public key cryptosystem uses key pairs consisting of a public encryption
 key and a privately held decryption key \cite{rivest1978}. The encryption key,
 or ``RSA public key,'' is comprised of a pair of positive integers: an exponent
 $e$ and a modulus $N$. The modulus $N$ is the product of two large, random prime
 numbers $p$ and $q$. The corresponding decryption key, or ``RSA private key,''
-is comprised of the positive integer pair $d$ and $N$ where $d = e^{-1}$ mod $(p
-- 1)(q - 1)$.  The decryption exponent $d$ is efficient to compute if e and the
-factorization of $N$ are known.
+is comprised of the positive integer pair $d$ and $N$ where $N = pq$ and $d =
+e^{-1}$ mod $(p - 1)(q - 1)$.  The decryption exponent $d$ is efficient to
+compute if e and the factorization of $N$ are known.
 
 The security of RSA rests upon the difficulty of factorizing $N$ into its prime
 factors $p$ and $q$.  While factoring $N$ is impractical given sufficiently
 large prime factors, the greatest common divisor (GCD) of \emph{two moduli} can
 be computed in mere microseconds.  Consider two distinct RSA moduli $N_1 = pq_1$
 and $N_2 = pq_2$ that share the prime factor $p$.  An attacker could quickly and
-easily compute the GCD of $N_1$ and $N_2$ in order to obtain $p$, then divide
-the moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private
-key of both key pairs.  Therefore, it is crucial that both $p$ and $q$ are
-determined using a strong random number generator.
+easily compute the GCD of $N_1$ and $N_2$ which will be $p$, then divide the
+moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private key of
+both key pairs.  Therefore, it is crucial that both $p$ and $q$ are determined
+using a strong random number generator with a unique seed.
 
 Even though the naive GCD algorithm is very efficient, our dataset consists of
 more than 3.7 million keys and naively computing the GCD of every pair would
@@ -37,29 +37,28 @@ volunteer-run relays~\cite{tormetrics}.
 
 Each of these relays maintains RSA, Curve25519, and Ed25519 key
 pairs~\cite[\S~1.1]{torspec} to authenticate and protect client traffic. In this
-work, we will test the strength of these RSA keys.  We leave the analysis of the
+work, we will test the strength of the RSA keys.  We leave the analysis of the
 other key types for future work.  Each Tor relay has the following three RSA
 1024-bit keys:
 
 \begin{description}
-    \item[Identity key] Relays have a long-term identity key that they use only
-      to sign documents and certificates.  Relays are frequently referred to by
-      their fingerprints, which are hashes over their identity keys.  The
-      compromise of an identity key would allow an attacker to entirely
-      impersonate a relay by publishing spoofed descriptors signed by the
-      forged identity key.
+	\item[Identity key] Relays have a long-term identity key that they use only
+		to sign documents and certificates.  Relays are frequently referred to
+		by their fingerprints, which are hashes over their identity keys.  The
+		compromise of an identity key would allow an attacker to entirely
+		impersonate a relay by publishing spoofed descriptors signed by the
+		forged identity key.
 
-    \item[Onion key]  Relays use medium-term onion keys to decrypt cells when
-        circuits are created.  The onion key is only used in the Tor
-        Authentication Protocol that is now superseded by the \texttt{ntor} 
-        handshake.  A compromised onion key allows the attacker to read 
-        the content of cells until the key pair rotates.
+	\item[Onion key]  Relays use medium-term onion keys to decrypt cells when
+		circuits are created.  The onion key is only used in the Tor
+		Authentication Protocol that is now superseded by the \texttt{ntor}
+		handshake.  A compromised onion key allows the attacker to read the
+		content of cells until the key pair rotates.
 
-    \item[Connection key] The short-term connection keys protect the connection
-        between relays using TLS and are rotated at least once a
-        day.  The TLS connection provides defense in depth.  If compromised, an
-        attacker is able to see the enciphered cells that are exchanged between Tor
-        relays.
+	\item[Connection key] The short-term connection keys protect the connection
+		between relays using TLS and are rotated at least once a day.  The TLS
+		connection provides defense in depth.  If compromised, an attacker is
+		able to see the enciphered cells that are exchanged between Tor relays.
 \end{description}
 
 In our work we consider the identity keys and onion keys that each relay 
@@ -75,4 +74,26 @@ the so-called hidden service directories (HSDirs), together comprise a
 distributed hash table that stores the information that is necessary to connect
 to an onion service.  These HSDirs are a particularly attractive target for
 adversaries as they learn about new onion services they are set up in the Tor
-network.
+network.  An onion service's position in the DHT is governed by the following
+equations.
+
+\begin{equation}
+\begin{split}
+\textit{secret-id-part} = \textit{SHA-1}(& \textit{time-period} \mid \\
+                                         & \textit{descriptor-cookie} \mid \\
+                                         & \textit{replica}) \\
+\textit{descriptor-id} =  \textit{SHA-1}(& \textit{permanent-id} \mid \\
+                                         & \textit{secret-id-part})
+\end{split}
+\end{equation}
+
+\textit{secret-id-part} depends on three variables:  \textit{Time-period}
+represents the number of days since the Unix epoch; \textit{descriptor-cookie}
+is typically unused and hence empty; and \textit{replica} is set to both the
+values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  The
+concatenation of both \textit{permanent-id} (the onion service's hashed public
+key) and \textit{secret-id-part} is hashed, resulting in \textit{descriptor-id},
+which determines the position in the DHT.  The three onion service directories
+(for both replicas) whose fingerprints are the closest to the descriptor in the
+positive direction are the onion service's HSDirs.  This set of six HSDirs
+changes each day when \textit{time-period} increments.

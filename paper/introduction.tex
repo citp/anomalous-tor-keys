@@ -16,9 +16,10 @@ Relays with weak cryptographic keys can pose a significant threat to Tor users.
 The exact impact depends on the type of key that is vulnerable.  In the best
 case, an attacker only manages to compromise the TLS layer that protects Tor
 cells, which are also encrypted.  In the worst case, an attacker compromises a
-relay's long-term ``identity key,'' which equates to taking ownership of the relay.
-Therefore, we need methods to quickly find vulnerable relays and remove them
-from the network before adversaries can exploit them.
+relay's long-term \emph{identity key}, which equates to controlling the relay's
+network traffic.  Therefore, we need methods to quickly find relays with
+vulnerable keys and remove them from the network before adversaries can exploit
+them.
 
 Drawing on a publicly-archived dataset of 3.7 million RSA public
 keys~\cite{collector}, we set out to analyze these keys for weaknesses and
@@ -29,21 +30,22 @@ our dataset shared a modulus, suggesting manual interference with the key
 generation process.  Finally, we discovered 122 relays whose RSA exponent
 differed from Tor's hard-coded exponent.  We believe that most of these relays
 were meant to manipulate Tor's distributed hash table (DHT), presumably in an
-attempt to attack onion services.  To learn more, we implemented a tool that
-simulates how onion services are placed on the DHT, revealing four onion
-services that were likely targeted.  As diverse as the incidents we uncovered
-are the entities behind them; researchers, developers, and actual adversaries
-were all involved in key anomalies.
+attempt to attack onion services (see
+Section~\ref{sec:targeted-onion-services}).  To learn more, we implemented a
+tool that simulates how onion services are placed on the DHT, revealing four
+onion services that were likely targeted.  As diverse as the incidents we
+uncovered are the entities behind them; researchers, developers, and actual
+adversaries were all involved in key anomalies.  By looking for information that
+is shared across relays such as similar nicknames, IP address blocks, uptimes,
+and port numbers, we could group the relays we discovered into clusters that are
+likely operated by the same entities.
 
-By looking for information that is shared across relays such as similar
-nicknames, IP address blocks, uptimes, and port numbers, we could group the
-relays we discovered into clusters that are likely operated by the same
-entities.  We publish all our source code, allowing third parties such as The
-Tor Project to set up systems to continuously check the keys of new relays, and
-alert developers if any of these keys are vulnerable or non-standard.  Tor
-developers can then take early action and remove these relays from the network
-before adversaries get the chance to take advantage of them.  In summary, we
-make the following two key contributions.
+We publish all our source code, allowing third parties such as The Tor Project
+to set up systems to continuously check the keys of new relays, and alert
+developers if any of these keys are vulnerable or non-standard.  Tor developers
+can then take early action and remove these relays from the network before
+adversaries get the chance to take advantage of them.  In summary, we make the
+following two main contributions.
 \begin{itemize}
 	\item We analyze a dataset consisting of 3.7 million RSA public keys for
 		weak and non-standard keys, revealing thousands of affected keys.
