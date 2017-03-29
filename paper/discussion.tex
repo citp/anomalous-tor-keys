@@ -3,21 +3,15 @@
 \paragraph{Implications of weak Tor keys}
 As touched on earlier in Section~\ref{sec:tor-network}, the main use of the
 identity key in Tor is to sign the relay's descriptor, which includes various
-information about the relay, \eg, its IP address, contact information, etc.
-Since the identity key of every relay is included in their descriptors, all
-clients know the identity keys of all relays. The consensus acts as the public
-key infrastructure (PKI) of Tor. When a client fetches a Tor descriptor, it
-checks the consensus for the right identity key, and then verifies the
-descriptor signature. This ensures that the descriptor was created by an entity
-that knew the private identity key, and hence is not a fake descriptor created
-by a third party. If an attacker were to break the identity key of a relay (as
-we demonstrated), she could start signing descriptors in the relay's name and
-publishing them. The adversary could publish whatever information she wanted in
-the descriptor \eg her own IP address, keys, etc. Tor clients would be fooled
-into thinking it's the actual relay, but instead, would be connecting to the
-attacker. Thus, one can imagine an exploit that could hack most identify keys of
-Tor relays, allowing the attacker to redirect all clients to her own machines
-and monitor their traffic.
+information about the relay, \eg, its IP address, contact information, \etc
+Relays publish their public identity keys in their descriptor.  The network
+consensus acts as the public key infrastructure of Tor.  Signed by the directory
+authorities whose public keys are hard-coded in Tor's source code, the network
+consensus points to the descriptors of each Tor relay that is currently online.
+If an attacker were to break the identity key of a relay (as we demonstrated),
+she could start signing descriptors in the relay's name and publishing them. The
+adversary could publish whatever information she wanted in the descriptor \eg
+her own IP address, keys, \etc, to fool Tor clients.
 
 \paragraph{Preventing non-standard exponents}
 Recall that the Tor reference implementation hard-codes its public RSA exponent
