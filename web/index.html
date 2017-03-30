@@ -5,14 +5,14 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Weak keys in Tor relays</title>
+  <title>Anomalous keys in Tor relays</title>
   <link rel="stylesheet" type="text/css" href="../article.css"/>
 </head>
 
 <body>
 
 <div class="centered">
-<h1>Weak keys in Tor relays</h1>
+<h1>Anomalous keys in Tor relays</h1>
 
 <a href="#overview">Overview</a>&nbsp;&nbsp;&bull;&nbsp;
 <a href="#writing">Writing</a>&nbsp;&nbsp;&bull;&nbsp;
@@ -49,7 +49,7 @@ containing more than ten years worth of archived Tor relay public keys</a>,
 (<i>i</i>) we checked if any relays share prime factors or moduli, (<i>ii</i>)
 we identified relays that used non-standard RSA exponents, and (<i>iii</i>) we
 characterized malicious relays that we discovered in the first two steps.  Our
-experiments revealed that ten relays shared moduli, and 3,577 relays&mdash;most
+experiments revealed that ten relays shared moduli, and 3,557 relays&mdash;most
 part of a research project&mdash;shared prime factors, allowing adversaries to
 reconstruct private keys.  We further discovered 122 relays that used
 non-standard RSA exponents, presumably in an attempt to attack onion services.
@@ -70,32 +70,47 @@ security of the Tor network.
 
 <h2><a name="writing">Writing</a></h2>
 <p>
-The main outcome of this research project is a
-<a href="weak-tor-keys.pdf">technical report</a> that we published in April 2017.
+To date, the main outcome of this research project is a
+<a href="anomalous-tor-keys.pdf">technical report</a>
+that we published in April 2017.
 </p>
 
 <ul>
 	<li>
-	<a href="weak-tor-keys.pdf"><img alt="Paper thumbnail" style="float:right;border:1px solid black" src="img/paper-thumb.png"/></a>
-	<a href="weak-tor-keys.pdf">Weak keys in Tor relays</a><br/>
+	<a href="anomalous-tor-keys.pdf"><img alt="Paper thumbnail" style="float:right;border:1px solid black" src="img/paper-thumb.png"/></a>
+	<a href="anomalous-tor-keys.pdf">Anomalous keys in Tor relays</a><br/>
 	G. Kadianakis, C. V. Roberts, L. M. Roberts, and P. Winter<br/>
 	<i>Technical report</i>, April 2017<br/>
-	<a href="bibliography/index.html">Bibliography</a> &bull; <a href="https://github.com/citp/weak-tor-keys/tree/master/paper">LaTeX source</a> &bull; <a href="weak-tor-keys.bib">BibTeX</a>
+	<a href="bibliography/index.html">Bibliography</a> &bull; <a href="https://github.com/citp/anomalous-tor-keys/tree/master/paper">LaTeX source</a> &bull; <a href="anomalous-tor-keys.bib">BibTeX</a>
 	</li>
 </ul>
 
 <h2><a name="code">Code</a></h2>
 <p>
 Our
-<a href="https://github.com/citp/weak-tor-keys">GitHub repository</a>
+<a href="https://github.com/citp/anomalous-tor-keys">GitHub repository</a>
 contains the LaTeX code of our paper, and our Python and Go code snippets:
 </p>
 
 <div class="centered">
 <pre>
-git clone https://github.com/citp/weak-tor-keys.git
+git clone https://github.com/citp/anomalous-tor-keys.git
 </pre>
 </div>
+
+<p>
+The repository also contains our tool <tt>itos</tt> that we used to identify
+onion services that were likely targeted by malicious onion service directories.
+Run <tt>itos -h</tt> for a list of supported options.  You can run the tool as
+follows:
+</p>
+
+<pre>
+$ cd anomalous-tor-keys/code/itos/
+$ go build itos.go
+$ ./itos -hss onion-services.csv -hsdirs hsdirs.csv
+</pre>
+
 
 <h2><a name="data">Data</a></h2>
 <p>
@@ -103,6 +118,10 @@ We publish the following datasets.  Each tarball contains a README.txt file that
 explains the respective dataset.
 </p>
 <ul>
+	<li>
+		<a href="data/anomalous-keys.tar.xz">anomalous-keys.tar.xz</a> (1.3 MiB)<br/>
+		SHA-256: <tt>563fed39e393d9de803b6f7759c3a1a19f22a35781bd52ad6b583e1bac6eceaf</tt>
+	</li>
 	<li>
 		<a href="data/targeted-onion-services.tar.xz">targeted-onion-services.tar.xz</a> (3.6 KiB)<br/>
 		SHA-256: <tt>9384f3de919dceb00c7f92d01182a5f37fdd4e26c47a5a93bd167cf02212f30c</tt>
@@ -124,7 +143,7 @@ all of us if you have any questions or remarks.
 
 <hr/>
 <p>
-<i>Last update: 2017-03-27</i>
+<i>Last update: 2017-03-30</i>
 </p>
 </body>
 
