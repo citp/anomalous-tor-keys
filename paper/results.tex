@@ -191,10 +191,11 @@ and by contacting researchers who have done similar work~\cite{Matic2015a}.  We
 ended up with a list of 17,198 onion services that were online at some point in
 time.  Next, we developed a tool that takes as input our list of onion services
 and the malicious HSDirs we discovered.\footnote{Both the tool and our list of
-onion services are available online at \url{https://nymity.ch/weak-tor-keys/}.}
-The tool then determines all descriptors these onion services ever generated and
-checks if any HSDir shared five or more hex digits in its fingerprint prefix
-with the onion service's descriptor.
+onion services are available online at
+\url{https://nymity.ch/anomalous-tor-keys/}.} The tool then determines all
+descriptors these onion services ever generated and checks if any HSDir shared
+five or more hex digits in its fingerprint prefix with the onion service's
+descriptor.
 
 It is difficult to identify all targeted onion services with certainty.  First,
 our list of onion services does not tell us when a service was online.  Second,
