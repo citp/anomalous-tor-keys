@@ -1,15 +1,14 @@
 \appendix
 
-\section{Relays with unusual RSA exponents}
+\section{Relays with unusual exponents}
 \label{sec:full-unusual-exponents}
 Section~\ref{sec:unusual-exponents} discussed 122 relays whose public RSA
-exponent differed from Tor's hard-coded 65,537.  Table~\ref{tab:group1}
+exponents differed from Tor's hard-coded 65,537.  Table~\ref{tab:group1}
 to~\ref{tab:group5} together list these 122 relays.  In particular, we show the
 relays' truncated four-byte fingerprint, their nickname, their IP address, and
-their public RSA exponent.  Many of the 122 relays exhibit partial fingerprint
+their public RSA exponent.  Many of these 122 relays exhibit partial fingerprint
 collisions (highlighted in gray), presumably to obtain a specific position in
-the onion service DHT.  Tools such as Scallion~\cite{scallion} automate
-the task of a partial collision.
+Tor's hash ring.
 
 \begin{table}
 	\centering
@@ -210,7 +209,7 @@ the task of a partial collision.
 	\end{tabular}}
 
 	\caption{A cluster of 21 relays that a Tor developer used to run
-	experiments.}
+	experiments~\cite{OCearbhaill2013a}.}
 	\label{tab:group4}
 \end{table}
 
