@@ -136,9 +136,9 @@ equations.
 
 \end{tikzpicture}
 \caption{Each day, onion services are placed at a different position in Tor's
-``hash ring'' which is ordered by the fingerprint of HSDirs.  The three
+``hash ring'' which is a list of HSDirs, sorted by their fingerprint.  The three
 immediate HSDir neighbors in positive direction constitute the first replica
-while the second replica is at another, random position.}
+while the second replica is at another, pseudorandom position.}
 \label{fig:hash-ring}
 \end{figure}
 
