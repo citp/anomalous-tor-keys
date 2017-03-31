@@ -94,51 +94,88 @@ equations.
 \tikzset{>=latex}
 \begin{tikzpicture}
 
-\draw[,->] (0,0) node[anchor=north] {\texttt{0x00..00}} -- (6.8,0) node[anchor=north] {\texttt{0xff..ff}};
+% Day t+1
+\node at (0,0.4) {\textbf{Day \emph{t}+1:}};
+
+\draw[,->] (0,0) node[anchor=north] {{\footnotesize \texttt{0x00..00}}} --
+	(6.8,0) node[anchor=north] {{\footnotesize \texttt{0xff..ff}}};
 
 \draw[fill=white] (0.1,0) circle (1mm);
 \draw[fill=white] (0.6,0) circle (1mm);
-\draw[fill=white] (1,0) circle (1mm);
+\draw[fill=white] (1.0,0) circle (1mm);
 \draw[fill=white] (1.5,0) circle (1mm);
 \draw[fill=white] (1.7,0) circle (1mm);
 
-\draw[fill=red] (2,0) circle (1mm);
-
-\draw[,->] (2,0) -- (1.7,-0.5) node[anchor=north] {Onion service};
+\draw[line width=0.7mm, red] (2,-0.1) -- (2,0.1);
+\draw[,->] (2,0) -- (2,-0.5) node[anchor=north] {Descriptor ID};
 
 \draw[fill=cyan] (2.3,0) circle (1mm);
 \draw[fill=cyan] (2.7,0) circle (1mm);
-\draw[fill=cyan] (3,0) circle (1mm);
+\draw[fill=cyan] (3.0,0) circle (1mm);
 \draw[,->] (2.3,0) -- (2.6,0.5);
-\draw[,->] (2.7,0) -- (2.7,0.5) node[anchor=south] {HSDir replica \#1};
+\draw[,->] (2.7,0) -- (2.7,0.5) node[anchor=south] {Replica \#1};
 \draw[,->] (3.0,0) -- (2.8,0.5);
 
 \draw[fill=white] (3.3,0) circle (1mm);
 \draw[fill=white] (3.6,0) circle (1mm);
+\draw[fill=white] (4.0,0) circle (1mm);
 
-\draw[fill=orange] (4,0) circle (1mm);
 \draw[fill=orange] (4.2,0) circle (1mm);
 \draw[fill=orange] (4.6,0) circle (1mm);
-\draw[,->] (4.0,0) -- (4.4,-0.5);
-\draw[,->] (4.2,0) -- (4.5,-0.5) node[anchor=north] {HSDir replica \#2};
-\draw[,->] (4.6,0) -- (4.6,-0.5);
+\draw[fill=orange] (5.0,0) circle (1mm);
+\draw[,->] (4.2,0) -- (4.5,0.5);
+\draw[,->] (4.6,0) -- (4.6,0.5) node[anchor=south] {Replica \#2};
+\draw[,->] (5.0,0) -- (4.7,0.5);
 
-\draw[fill=white] (5,0) circle (1mm);
 \draw[fill=white] (5.3,0) circle (1mm);
 \draw[fill=white] (5.8,0) circle (1mm);
 \draw[fill=white] (6.2,0) circle (1mm);
 \draw[fill=white] (6.5,0) circle (1mm);
-\draw[,->] (5.0,0) -- (5.6,0.5);
-\draw[,->] (5.3,0) -- (5.7,0.5);
-\draw[,->] (5.8,0) -- (5.8,0.5) node[anchor=south] {HSDirs};
-\draw[,->] (6.2,0) -- (5.9,0.5);
-\draw[,->] (6.5,0) -- (6.0,0.5);
+
+\draw[dotted] (0,1.0) -- (6.8,1.0);
+
+% Day t
+\node at (0,2.4) {\textbf{Day \emph{t}:\phantom{+1}}};
+
+\draw[,->] (0,2) node[anchor=north] {{\footnotesize \texttt{0x00..00}}} --
+(6.8,2) node[anchor=north] {{\footnotesize \texttt{0xff..ff}}};
+
+\draw[fill=white] (0.1,2) circle (1mm);
+\draw[fill=white] (0.6,2) circle (1mm);
+
+\draw[fill=orange] (1.0,2) circle (1mm);
+\draw[fill=orange] (1.5,2) circle (1mm);
+\draw[fill=orange] (1.7,2) circle (1mm);
+\draw[,->] (1.0,2) -- (1.4,2.5);
+\draw[,->] (1.5,2) -- (1.5,2.5) node[anchor=south] {Replica \#2};
+\draw[,->] (1.7,2) -- (1.6,2.5);
+
+\draw[fill=white] (2.3,2) circle (1mm);
+\draw[fill=white] (2.7,2) circle (1mm);
+\draw[fill=white] (3.0,2) circle (1mm);
+\draw[fill=white] (3.3,2) circle (1mm);
+\draw[fill=white] (3.6,2) circle (1mm);
+\draw[fill=white] (4.0,2) circle (1mm);
+\draw[fill=white] (4.2,2) circle (1mm);
+\draw[fill=white] (4.6,2) circle (1mm);
+\draw[fill=white] (5.0,2) circle (1mm);
+
+\draw[line width=0.7mm, red] (5.15,1.9) -- (5.15,2.1);
+\draw[,->] (5.15,2) -- (5.15,1.5) node[anchor=north] {Descriptor ID};
+
+\draw[fill=cyan] (5.3,2) circle (1mm);
+\draw[fill=cyan] (5.8,2) circle (1mm);
+\draw[fill=cyan] (6.2,2) circle (1mm);
+\draw[,->] (5.3,2) -- (5.7,2.5);
+\draw[,->] (5.8,2) -- (5.8,2.5) node[anchor=south] {Replica \#1};
+\draw[,->] (6.2,2) -- (5.9,2.5);
+
+\draw[fill=white] (6.5,2) circle (1mm);
 
 \end{tikzpicture}
-\caption{Each day, onion services are placed at a different position in Tor's
-``hash ring'' which is a list of HSDirs, sorted by their fingerprint.  The three
-immediate HSDir neighbors in positive direction constitute the first replica
-while the second replica is at another, pseudorandom position.}
+\caption{Each day, an onion service places its descriptor ID at a pseudorandom
+	location in Tor's ``hash ring,'' which consists of all HSDir relays
+	(illustrated as circles).}
 \label{fig:hash-ring}
 \end{figure}
 
@@ -149,7 +186,8 @@ values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  The
 concatenation of both \textit{permanent-id} (the onion service's hashed public
 key) and \textit{secret-id-part} is hashed, resulting in \textit{descriptor-id},
 which determines the position in the DHT.  When arranging all HSDirs by their
-fingerprint in ascending order, the three HSDirs (for both replicas) whose
-fingerprints are the closest to the descriptor in the positive direction are the
-onion service's HSDirs, as shown in Figure~\ref{fig:hash-ring}.  This set of six
-HSDirs changes each day when \textit{time-period} increments.
+fingerprint in ascending order, the three immediate HSDir neighbors in positive
+direction constitute the first replica while the second replica is at another,
+pseudorandom location, as shown in Figure~\ref{fig:hash-ring}.  The onion
+service's descriptor ID, and hence its two replicas changes each day when
+\textit{time-period} increments.
