@@ -69,14 +69,17 @@ relay descriptors.
 
 \subsection{Onion services}
 In addition to client anonymity, the Tor network allows operators to set up
-anonymous servers, typically called onion services.\footnote{The term ``hidden
-services'' was used in the past but has been discontinued.} A subset of all Tor
-relays, the so-called hidden service directories (HSDirs), together comprise a
-distributed hash table that stores the information that is necessary to connect
-to an onion service.  These HSDirs are a particularly attractive target for
-adversaries as they learn about new onion services that are set up in the Tor
-network.  An onion service's position in the DHT is governed by the following
-equations.
+anonymous servers, typically called ``onion services.''\footnote{The term ``hidden
+services'' was used in the past but has been discontinued.} 
+The so-called ``hidden service directories,'' or ``HSDirs,'' are a subset of 
+all Tor relays and comprise a
+%A subset of all Tor
+%relays, the so-called hidden service directories (HSDirs), together comprise a
+distributed hash table (DHT) that stores the information necessary for a client 
+to connect to an onion service.  These HSDirs are a particularly attractive target 
+to adversaries because they get to learn about onion services that are set up 
+in the Tor network.  An onion service's position in the DHT is governed by 
+the following equations:
 
 \begin{equation}
 \begin{split}
@@ -179,15 +182,15 @@ equations.
 \label{fig:hash-ring}
 \end{figure}
 
-\textit{Secret-id-part} depends on three variables; \textit{time-period}
+\textit{Secret-id-part} depends on three variables: \textit{time-period}
 represents the number of days since the Unix epoch; \textit{descriptor-cookie}
 is typically unused and hence empty; and \textit{replica} is set to both the
 values 0 and 1, resulting in two hashes for \textit{secret-id-part}.  The
 concatenation of both \textit{permanent-id} (the onion service's hashed public
 key) and \textit{secret-id-part} is hashed, resulting in \textit{descriptor-id},
 which determines the position in the DHT.  When arranging all HSDirs by their
-fingerprint in ascending order, the three immediate HSDir neighbors in positive
+fingerprint in ascending order, the three immediate HSDir neighbors in the positive
 direction constitute the first replica while the second replica is at another,
 pseudorandom location, as shown in Figure~\ref{fig:hash-ring}.  The onion
-service's descriptor ID, and hence its two replicas changes each day when
+service's descriptor ID and hence its two replicas changes every day when
 \textit{time-period} increments.
