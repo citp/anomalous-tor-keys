@@ -9,7 +9,7 @@ key and a privately held decryption key \cite{rivest1978}. The encryption key,
 or ``RSA public key,'' is comprised of a pair of positive integers: an exponent
 $e$ and a modulus $N$. The modulus $N$ is the product of two large, random prime
 numbers $p$ and $q$. The corresponding decryption key, or ``RSA private key,''
-is comprised of the positive integer pair $d$ and $N$ where $N = pq$ and $d =
+is comprised of the positive integer pair $d$ and $N$, where $N = pq$ and $d =
 e^{-1}$ mod $(p - 1)(q - 1)$.  The decryption exponent $d$ is efficient to
 compute if $e$ and the factorization of $N$ are known.
 
@@ -18,7 +18,7 @@ factors $p$ and $q$.  While factorizing $N$ is impractical given sufficiently
 large prime factors, the greatest common divisor (GCD) of \emph{two moduli} can
 be computed in mere microseconds.  Consider two distinct RSA moduli $N_1 = pq_1$
 and $N_2 = pq_2$ that share the prime factor $p$.  An attacker could quickly and
-easily compute the GCD of $N_1$ and $N_2$ which will be $p$, then divide the
+easily compute the GCD of $N_1$ and $N_2$, which will be $p$, and then divide the
 moduli by $p$ to determine $q_1$ and $q_2$, thus compromising the private key of
 both key pairs.  Therefore, it is crucial that both $p$ and $q$ are determined
 using a strong random number generator with a unique seed.
