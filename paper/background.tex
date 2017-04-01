@@ -36,9 +36,9 @@ anonymity. As of March 2017, the Tor network consists of almost 7,000
 volunteer-run relays~\cite{tormetrics}.
 
 Each of these relays maintains RSA, Curve25519, and Ed25519 key pairs to
-authenticate and protect client traffic~\cite[\S~1.1]{torspec}. In this work, we
-will analyze the RSA keys.  We leave the analysis of the other key types for
-future work.  Each Tor relay has the following three RSA 1024-bit keys:
+authenticate and protect client traffic~\cite[\S~1.1]{torspec}. In this work, 
+we analyze the RSA keys.  We leave the analysis of the other key types for
+future work.  Each Tor relay has the following three 1024-bit RSA keys:
 
 \begin{description}
 	\item[Identity key] Relays have a long-term identity key that they use only
@@ -64,7 +64,7 @@ In our work we consider the identity keys and onion keys that each relay has
 because the Tor Project has been archiving the public part of the identity and
 onion keys for more than ten years, allowing us to draw on a rich
 dataset~\cite{collector}. The Tor Project does not archive the connection keys
-since they have short-term use and are not found in the network consensus or
+because they have short-term use and are not found in the network consensus or
 relay descriptors.
 
 \subsection{Onion services}
