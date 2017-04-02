@@ -63,7 +63,7 @@ multiple identity keys, and it only shares prime factors with its own keys.
 \label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that share a
 \emph{modulus}, giving them the ability to calculate each other's private keys.
-With $p$, $q$, and each other's $e$'s in hand, the two parties can then compute
+With $p$, $q$, and each other's $e$'s in hand, the two parties can compute
 each other's decryption exponent $d$, at which point both parties now know the
 private decryption keys.
 
@@ -78,10 +78,10 @@ relays, as our color coding indicates.  Finally, each group shared a four- or
 five-digit prefix in their fingerprints.  We believe that a single attacker
 controlled all these relays with the intention to manipulate the distributed
 hash table that powers onion services~\cite{Biryukov2013a}---the shared
-fingerprint prefix is an indication.  Since the modulus is identical, we suspect
+fingerprint prefix is an indication.  Because the modulus is identical, we suspect
 that the attackers iterated over the relays' RSA exponents to come up with the
 shared prefix.  The Tor Project informed us that it discovered and blocked these
-relays in August 2014, when they first came online.
+relays in August 2014 when they first came online.
 
 \begin{table}[t]
 	\centering
