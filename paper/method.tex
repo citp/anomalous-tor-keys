@@ -10,9 +10,9 @@ we extracted from this dataset (Section~\ref{sec:vulnerable-keys}).
 The Tor Project archives data about Tor relays on its CollecTor
 platform~\cite{collector}, allowing researchers to learn what relays were online
 at any point in the past.  Drawing on this data source, we compiled a set of RSA
-keys by downloading all server descriptors from December 2005 to December 2016,
-and extracting the identity and onion keys using the Python
-library Stem~\cite{stem}.  Table~\ref{tab:dataset} provides an overview of the
+keys by downloading all server descriptors from December 2005 to December 2016 
+and extracting the identity and onion keys with the Stem Python
+library~\cite{stem}.  Table~\ref{tab:dataset} provides an overview of the
 resulting dataset---approximately 200 GB of unzipped data.  Our 3.7 million
 public keys span eleven years and were created on one million IP addresses.
 
@@ -40,7 +40,7 @@ public keys span eleven years and were created on one million IP addresses.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool fastgcd~\cite{fastgcd}, which takes as input a set
+and Halderman's tool, fastgcd~\cite{fastgcd}, which takes as input a set
 of moduli from public keys and then computes the pair-wise greatest common
 divisor of these moduli.  Fastgcd's C implementation is based on a
 quasilinear-time algorithm for factoring a set of integers into their co-primes.
@@ -54,6 +54,6 @@ Fastgcd benefits from having a moduli pool as large as possible
 because it allows the algorithm to draw on a larger factor base to use on each
 key~\cite{Heninger2012a}.  To that end, we reached out to Heninger's group at
 the University of Pennsylvania, and they graciously augmented their 129 million
-key dataset with our 3.6 million keys, and subsequently searched for shared
+key dataset with our 3.6 million keys and subsequently searched for shared
 factors.  The number of Tor weak keys did not go up, but this experiment gave us
 more confidence that we had not missed weak keys.
