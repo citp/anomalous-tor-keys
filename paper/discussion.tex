@@ -10,8 +10,8 @@ authorities whose public keys are hard-coded in Tor's source code, the network
 consensus points to the descriptors of each Tor relay that is currently online.
 If an attacker were to break the identity key of a relay (as we demonstrated),
 she could start signing descriptors in the relay's name and publishing them. The
-adversary could publish whatever information she wanted in the descriptor \eg
-her own IP address, keys, \etc, to fool Tor clients.
+adversary could publish whatever information she wanted in the descriptor, \eg
+her own IP address, keys, \etc, in order to fool Tor clients.
 
 \paragraph{Preventing non-standard exponents}
 Recall that the Tor reference implementation hard-codes its public RSA exponent
@@ -43,4 +43,4 @@ to many vulnerable Tor relays.  To keep its users safe, The Tor Project has
 recently launched a research safety board whose aim is to assist researchers in
 safely conducting Tor measurement studies~\cite{safety-board}.  This may entail
 running experiments in private Tor networks that are controlled by the
-researchers, or using network simulators such as Shadow~\cite{stem}.
+researchers or using network simulators such as Shadow~\cite{stem}.
