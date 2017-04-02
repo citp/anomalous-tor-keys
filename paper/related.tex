@@ -4,7 +4,7 @@ In 2012, Lenstra \ea~\cite{Lenstra2012a} and Heninger \ea~\cite{Heninger2012a}
 independently analyzed a large set of RSA public keys used for TLS, SSH, and
 PGP.  Both groups discovered that many keys shared prime factors, allowing an
 attacker to efficiently compute the corresponding private keys.  The researchers
-showed that the root cause was weak randomness at the time of key generation.
+showed that the root cause was weak randomness at the time of key generation: 
 Many Internet-connected devices lack entropy sources, resulting in predictable
 keys.
 
@@ -22,7 +22,7 @@ sizes that are used in popular protocols such as HTTPS, DNSSEC, and SSH,
 discovering numerous keys of only 512 bits.
 
 Most recently, in 2016, Hastings \ea~\cite{Hastings2016a} revisited the problem
-of weak keys and investigated how many such keys remain on the Internet four
+of weak keys and investigated how many such keys were still on the Internet four 
 years after the initial studies.  The authors found that many vendors and device
-owners never patched vulnerable devices.  To make matters worse, the number of
-vulnerable devices has \emph{increased} since 2012.
+owners never patched their vulnerable devices.  To make matters worse, 
+the number of vulnerable devices has actually \emph{increased} since 2012.
