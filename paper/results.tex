@@ -10,26 +10,26 @@ We present our results in four parts, starting with shared prime factors
 \label{sec:shared-primes}
 Among all 588,945 identity keys, fastgcd found that 3,557 (0.6\%)
 moduli share prime factors.  We believe that 3,555 of these keys were all
-controlled by a single research group and upon contacting the authors of the
+controlled by a single research group, and upon contacting the authors of the
 Security \& Privacy 2013 paper entitled ``Trawling for Tor hidden
 services''~\cite{Biryukov2013a}, we received confirmation that these relays
 indeed were run by their research group.  The authors informed us that the weak
 keys were caused by a shortcoming of their key generation utility. The issue
 stemmed from the fact that their tool first generated thousands of prime numbers
 and then computed multiple moduli using combinations of those prime numbers in a
-greedy fashion, without ensuring that the same primes were not reused.
+greedy fashion without ensuring that the same primes were not reused.
 
 Because of the following shared properties, we are confident that all relays
 were operated by the same group:
 
 \begin{enumerate}
-	\item All relays were online either in between November 11, 2012 and
-		November 16, 2012 or in between January 14, 2013 and February 6, 2013,
+	\item All relays were online either between November 11, 2012 and
+		November 16, 2012 or between January 14, 2013 and February 6, 2013,
 		suggesting two separate experiments. We verified this by checking how
 		long the relays stayed in the Tor network consensus. The Tor consensus
 		is updated hourly and documents which relays are available at a
-		particular time. This data is archived by The Tor Project, and is made
-		publically available on the CollecTor platform~\cite{collector}.
+		particular time. This data is archived by The Tor Project and is made
+		publicly available on the CollecTor platform~\cite{collector}.
 
 	\item All relays exhibited a predictable port assignment scheme.  In
 		particular, we observed ports \{7003, 7007, \dots, 7043, 7047\} and
