@@ -71,15 +71,12 @@ relay descriptors.
 In addition to client anonymity, the Tor network allows operators to set up
 anonymous servers, typically called ``onion services.''\footnote{The term ``hidden
 services'' was used in the past but has been discontinued.} 
-The so-called ``hidden service directories,'' or ``HSDirs,'' are a subset of 
-all Tor relays and comprise a
-%A subset of all Tor
-%relays, the so-called hidden service directories (HSDirs), together comprise a
-distributed hash table (DHT) that stores the information necessary for a client 
-to connect to an onion service.  These HSDirs are a particularly attractive target 
-to adversaries because they get to learn about onion services that are set up 
-in the Tor network.  An onion service's position in the DHT is governed by 
-the following equations:
+The so-called ``hidden service directories,'' or ``HSDirs,'' are a subset of all
+Tor relays and comprise a distributed hash table (DHT) that stores the
+information necessary for a client to connect to an onion service.  These HSDirs
+are a particularly attractive target to adversaries because they get to learn
+about onion services that are set up in the Tor network.  An onion service's
+position in the DHT is governed by the following equations:
 
 \begin{equation}
 \begin{split}
