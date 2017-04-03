@@ -22,5 +22,5 @@
 - [ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
 - [x] Acknowledge Trawling team: Ralf-Philipp Weinmann, Ivan Pustogarov, Alex Biryukov, Donncha O'Cearbhaill 
 - [x] Clean up pipeline code used to detect weak Tor keys, pass in arguments instead of hard coding files, add comments, add error handling on timeouts, etc. Add source code link to the paper (Claudia)
-- [ ] Have a faculty member look over the paper. Decide whether to extend paper into a larger project or leave as is and submit to conference that accepts shorter papers. 
-- [ ] Write conclusion 
+- [x] Have a faculty member look over the paper. Decide whether to extend paper into a larger project or leave as is and submit to conference that accepts shorter papers. 
+- [x] Write conclusion 
