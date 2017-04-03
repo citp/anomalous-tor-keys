@@ -1,24 +1,20 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Previous research has studied the problem of weak RSA keys in different 
-systems, and we wondered if there might be weak keys in the Tor 
-network, too, that have the potential to compromise Tor users' safety.  
-Thus, the goal of our work was to look for weak and anomalous keys in Tor 
-and investigate their origins in order to address the problem.  We 
-achieved our goal by gathering all the archived RSA keys used in Tor since 
-2005 and examining them for common prime factors as previous work had done.  
-Additionally, we looked for keys that shared the same moduli and 
+Previous research has studied the problem of weak RSA keys in different
+systems, and we wondered if there might be weak keys in the Tor
+network, too, that have the potential to compromise Tor users' safety.
+Thus, the goal of our work was to look for weak and anomalous keys in Tor
+and investigate their origins in order to address the problem.  We
+achieved our goal by gathering all the archived RSA keys used in Tor since
+2005 and examining them for common prime factors as previous work had done.
+Additionally, we looked for keys that shared the same moduli and
 for keys that had non-standard public exponents.
 
-We found that Tor researchers inadvertently created weak keys while 
-conducting experiments on Tor.  We also found indications that other 
-entities had purposely created weak and anomalous keys in order to 
-attack Tor's onion services.  
-
-Our work demonstrates that the presence of weak and anomalous RSA keys in 
-Tor is definitely a sign of something questionable going on that should 
-be paid attention to.  Indeed our findings have already been used to 
-extend Tor safety scripts to look for non-standard RSA exponents, 
-which go against Tor's specification, and malicious relays have been busted.  
-It's yet another demonstration of ``trust, but verify'' at work.
+We found indications that entities had purposely created weak and anomalous keys
+in order to attack Tor's onion services.  We also found that researchers
+inadvertently created weak keys while conducting experiments on Tor.
+Our work demonstrates that the presence of weak and anomalous RSA keys in Tor is
+often a sign of malicious activity that should be paid attention to.
+Indeed our findings motivated The Tor Project to develop scripts to look for
+non-standard RSA exponents, which go against Tor's specification.
