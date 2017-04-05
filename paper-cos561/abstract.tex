@@ -1,9 +1,0 @@
-% -*-LaTeX-*-
-% $Id: abstract.tex 70 2007-01-30 21:59:16Z nicolosi $
-
-\begin{abstract}
-Tor is an anonymity network created in 2004 designed to protect the privacy of its users by allowing them to browse the web anonymously. It has grown to become the most popular and well-researched anonymity network consisting of over 2 million directly connecting users and over 7,000 volunteer-operated Tor relay severs. While many of the relays run on large PCs and VPS data centers, there is anecdotal evidence that some relays run on smaller devices such as Raspberry Pi products. This poses a potential risk to the anonymity of Tor since resource constrained machines are more susceptible to generating weak RSA public keys due to insufficient sources of entropy.
-
-In a survey of 3,763,821 Tor relay server RSA public keys, I found that 0.60\% of all long-term signing keys had moduli with shared prime factors and found 10 long-term signing keys with repeated moduli. In an analysis of these weak keys, I was able to connect the 10 keys with repeated moduli to a 2014 attack against one of Tor's distributed hash tables and connected more than a third of the factorable RSA keys to a Tor hidden services research project conducted in 2013. 
-\end{abstract}
-
