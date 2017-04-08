@@ -1,26 +1,9 @@
-# TODOS
+We have just published a (not yet peer-reviewed) technical report entitled "Anomalous keys in Tor relays." https://nymity.ch/anomalous-tor-keys/
 
-- [x] Try to compute some of the private keys. Need to include how we did this in the paper along with the number of private keys we were able to compute. (Yorgos)
-- [x] Look at consensus files to see exactly how long relays were available. Mention this in the methods section of the paper. (Lali)
-- [x] Run experiment using all publicly available RSA keys (129 million) (Lali to investigate email 2016 Nadia)
-- [x] Add bridging relay server descriptors (Philipp)
-- [x] Look at Trawling code and see what happened work with Trawling. We still need to include this analysis in the paper. (Yorgos)
-- [x] Work with Luxembourg team on why they were generating keys with shared prime factors.  (Claudia)
-- [x] Write paper (ALL/Yorgos: Implications to Tor)
-- [x] Re-run experiment (Philipp) (Josh did this for us)
-- [x] Tar ball for code to make it easy to share with outside developers (add code to github)  (Claudia)
-- [x] 2,217 of these 2,236 (ALL)
-- [x] 10 of these 2,236 (ALL)
-- [x] 7 of these 2,236 (ALL)
-- [x] 2 of these 2,236. DesasterBlaster analysis still needs to be added to the paper (ALL)
-- [x] Ethical considerations: Trawling experiment  (Lali, Philipp)
-- [x] Get info about dataset. Table of break down of the 3.7 keys, onion vs. signing, archived vs. recent, how many relays they were all together. Count relays by different fingerprints/identity keys. Count relays by distinct IP addresses. One machine can rotate signing keys.  (Claudia)
-- [x] For weak keys get info of how many different IP addresses and fingerprints (Claudia)
-- [x] Analysis of the 10 keys with repeated moduli (Yorgos, Philipp)
-- [x] Implications of keys with repeated moduli (Laura)
-- [x] Check if all moduli are 1024 length (Phillip)
-- [ ] Group weak keys into families. A family is a group of weak keys that share a common prime. Include analysis about weak key families in the paper.
-- [x] Acknowledge Trawling team: Ralf-Philipp Weinmann, Ivan Pustogarov, Alex Biryukov, Donncha O'Cearbhaill 
-- [x] Clean up pipeline code used to detect weak Tor keys, pass in arguments instead of hard coding files, add comments, add error handling on timeouts, etc. Add source code link to the paper (Claudia)
-- [x] Have a faculty member look over the paper. Decide whether to extend paper into a larger project or leave as is and submit to conference that accepts shorter papers. 
-- [x] Write conclusion 
+The project was inspired by the "Mining Your P's and Q's" paper from Heninger et. al., and in it, we take a closer look at the RSA keys used in Tor since 2005. We found that entities had purposely created anomalous keys in order to attack Tor's onion services and that researchers had inadvertently created weak keys while conducting experiments on Tor. (None of the weak keys we found are affecting the current Tor network.)
+
+We welcome your questions and feedback!
+
+
+Regards,
+George, Claudia, Laura, & Philipp
