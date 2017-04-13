@@ -44,14 +44,15 @@ weaknesses.
 <p>
 In this research project, we took a closer look at the cryptographic keys of Tor
 relays.  Drawing on a
-<a href="https://collector.torproject.org/archive/relay-descriptors/server-descriptors/">dataset
-containing more than ten years worth of archived Tor relay public keys</a>,
+<a href="https://collector.torproject.org/archive/relay-descriptors/server-descriptors/">dataset</a>
+containing more than 3.7 million Tor relay public keys over the past 10 years,
 (<i>i</i>) we checked if any relays share prime factors or moduli, (<i>ii</i>)
 we identified relays that used non-standard RSA exponents, and (<i>iii</i>) we
 characterized malicious relays that we discovered in the first two steps.  Our
 experiments revealed that ten relays shared moduli, and 3,557 relays&mdash;most
 part of a research project&mdash;shared prime factors, allowing adversaries to
-reconstruct private keys.  We further discovered 122 relays that used
+reconstruct their private keys. Fortunately, all the relays we found with weak keys
+have been absent from the Tor network for years. We further discovered 122 relays that used
 non-standard RSA exponents, presumably in an attempt to attack onion services.
 By simulating how onion services are positioned in Tor&rsquo;s distributed hash
 table, we could identify four onion services that were likely targeted by these
