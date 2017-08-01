@@ -1,19 +1,14 @@
-\documentclass{sig-alternate}
+\documentclass[sigconf]{acmart}
 
-\usepackage[T1]{fontenc}
-\usepackage[scaled=0.8]{beramono} % For a pretty monospaced font.
+\usepackage[utf8]{inputenc}
 \usepackage{booktabs} % For pretty tables.
 \usepackage{multirow} % Also for pretty tables.
 \usepackage{hyperref} % For clickable links.
 \usepackage{xcolor} % For colourful links.
 \usepackage{xspace} % For reasonable spacing in custom commands.
-\usepackage[sorting=none,backend=biber,backref=true,maxnames=99]{biblatex}
 \usepackage{amsmath}
 \usepackage{tikz}
 \urlstyle{tt}
-
-\addbibresource{references.bib}
-\renewcommand*{\bibfont}{\footnotesize}
 
 \definecolor{highlight1}{rgb}{0.863,0.863,0.863}
 \definecolor{highlight2}{rgb}{0.734,1.000,0.898}
@@ -21,7 +16,7 @@
 \definecolor{highlight4}{rgb}{1.000,0.977,0.734}
 \definecolor{highlight5}{rgb}{1.000,0.816,0.734}
 
-\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{darkblue}{rgb}{0,0,0.4}
 \definecolor{lightgray}{rgb}{0.93,0.93,0.93}
 
 \hypersetup{
@@ -50,38 +45,51 @@
 	\texttt{\setlength{\fboxsep}{0pt}%
 	\colorbox{highlight1}{\strut #1}#2}}
 
-\makeatletter
-\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
-\makeatother
+% ACM-specific information.
+\setcopyright{rightsretained}
+\acmDOI{10.475/123_4}
+\acmISBN{123-4567-24-567/08/06}
+\acmConference[WPES'17]{Workshop on Privacy in the Electronic Society}{October 2017}{Dallas, Texas USA} 
+\acmYear{1997}
+\copyrightyear{2017}
+\acmPrice{15.00}
 
 \begin{document}
 
-\title{``Major key alert!''\\Anomalous keys in Tor relays}
-
-\numberofauthors{4}
-
-\author{
-\alignauthor George Kadianakis\raisebox{7pt}{$\ast$} \\
-	\affaddr{The Tor Project}
-\alignauthor Claudia V. Roberts\raisebox{7pt}{$\ast$} \\
-	\affaddr{Princeton University}
-\alignauthor Laura M. Roberts\raisebox{7pt}{$\ast$} \\
-	\affaddr{Princeton University}
-\and
-\alignauthor Philipp Winter\raisebox{7pt}{$\ast$} \\
-	\affaddr{Princeton University}
+\author{George Kadianakis}
+\authornote{All four authors contributed substantially and share first
+authorship. The names are ordered alphabetically.}
+\affiliation{%
+	\institution{The Tor Project}
 }
+\email{asn@torproject.org}
 
-\date{\today}
+\author{Claudia V. Roberts}
+\affiliation{%
+	\institution{Princeton University}
+}
+\email{claudiar@princeton.edu}
 
-\maketitle
+\author{Laura M. Roberts}
+\affiliation{%
+	\institution{Princeton University}
+}
+\email{laurar@princeton.edu}
+
+\author{Philipp Winter}
+\affiliation{%
+	\institution{Princeton University}
+}
+\email{pwinter@princeton.edu}
+
+\title{``Major key alert!''\\Anomalous keys in Tor relays}
+% \titlenote{Produces the permission block, and copyright information}
 
 \input{abstract}
 
-\blfootnote{$^*$All four authors contributed substantially and share first
-authorship.  The names are ordered alphabetically.}
-
 \keywords{Tor, RSA, onion service, cryptography, factorization}
+
+\maketitle
 
 \input{introduction}
 
@@ -99,7 +107,8 @@ authorship.  The names are ordered alphabetically.}
 
 \input{acknowledgements}
 
-\printbibliography
+\bibliographystyle{plainnat}
+\bibliography{references.bib}{}
 
 \input{appendix}
 
