@@ -1,6 +1,6 @@
 \section{Discussion}
 \label{sec:discussion}
-\paragraph{Implications of anomalous Tor keys}
+\subsection{Implications of anomalous Tor keys}
 As touched on earlier in Section~\ref{sec:tor-network}, the main use of the
 identity key in Tor is to sign the relay's descriptor, which includes various
 information about the relay, \eg, its IP address, contact information, \etc
@@ -13,7 +13,7 @@ she could start signing descriptors in the relay's name and publishing them. The
 adversary could publish whatever information she wanted in the descriptor, \eg
 her own IP address, keys, \etc, in order to fool Tor clients.
 
-\paragraph{Preventing non-standard exponents}
+\subsection{Preventing non-standard exponents}
 Recall that the Tor reference implementation hard-codes its public RSA exponent
 to 65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
 exponents by having the directory authorities reject relays whose descriptors
@@ -24,7 +24,7 @@ expensive.  Given that we discovered only 122 unusual exponents in over ten
 years of data, we believe that rejecting non-standard exponents is a viable
 defense in depth.
 
-\paragraph{Analyzing onion service public keys}
+\subsection{Analyzing onion service public keys}
 Future work should shed light on the public keys of onion services.  Onion
 services have an incentive to modify their fingerprints to make them both
 recognizable and easier to remember.  Facebook, for example, was lucky to
@@ -36,7 +36,7 @@ understood~\cite{vanity-domains}.  Unlike the public keys of relays, onion
 service keys are not archived, so a study would have to begin with actively
 fetching onion service keys.
 
-\paragraph{\textit{In vivo} Tor research}
+\subsection{\textit{In vivo} Tor research}
 Caution must be taken when conducting research using the live Tor network.
 Section~\ref{sec:shared-primes} showed how a small mistake in key generation led
 to many vulnerable Tor relays.  To keep its users safe, The Tor Project has
