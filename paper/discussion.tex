@@ -19,10 +19,10 @@ to 65,537~\cite[\S~0.3]{torspec}.  The Tor Project could prevent non-standard
 exponents by having the directory authorities reject relays whose descriptors
 have an RSA exponent other than 65,537, thus slowing down the search for
 fingerprint prefixes.  Adversaries would then have to iterate over the primes
-$p$ or $q$ instead of the exponent, rendering the search more computationally
-expensive.  Given that we discovered only 122 unusual exponents in over ten
-years of data, we believe that rejecting non-standard exponents is a viable
-defense in depth.
+$p$ or $q$ instead of the exponent, rendering the search computationally
+more expensive because of the cost of primality tests.  Given that we discovered
+only 122 unusual exponents in over ten years of data, we believe that rejecting
+non-standard exponents is a viable defense in depth.
 
 \subsection{Analyzing onion service public keys}
 Future work should shed light on the public keys of onion services.  Onion
