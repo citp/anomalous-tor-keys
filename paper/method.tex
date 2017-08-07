@@ -16,6 +16,12 @@ library~\cite{stem}.  Table~\ref{tab:dataset} provides an overview of the
 resulting dataset---approximately 200 GB of unzipped data.  Our 3.7 million
 public keys span eleven years and were created on one million IP addresses.
 
+Our dataset also contains the keys of Tor's directory authorities.  The
+authorities' keys are particularly sensitive: If an attacker were to compromise
+more than half of these keys, she could create a malicious network
+consensus---which may consist of attacker-controlled relays only---that would
+then be used by Tor clients.  Therefore it is important to keep these keys safe.
+
 \begin{table}[t]
 	\centering
 	\begin{tabular}{l r}

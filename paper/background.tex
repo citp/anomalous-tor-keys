@@ -32,11 +32,17 @@ which can perform the computation at hand in just a few minutes.
 \subsection{The Tor network}
 \label{sec:tor-network}
 The Tor network is among the most popular tools for digital privacy and
-anonymity. As of March 2017, the Tor network consists of almost 7,000
-volunteer-run relays~\cite{tormetrics}.
+anonymity. As of August 2017, the Tor network consists of around 7,000
+volunteer-run relays~\cite{tormetrics}.  Each hour, information about all
+relays\footnote{For example their IP addresses, ports, version numbers, and
+cryptographic information, just to name a few.} is summarized in the
+\emph{network consensus}, which is used by clients to bootstrap a connection to
+the Tor network.  The network consensus is produced by eight geographically
+distributed \emph{directory authorities}, machines run by individuals trusted by
+The Tor Project.
 
-Each of these relays maintains RSA, Curve25519, and Ed25519 key pairs to
-authenticate and protect client traffic~\cite[\S~1.1]{torspec}. In this work, 
+Each of the $\sim$7,000 relays maintains RSA, Curve25519, and Ed25519 key pairs
+to authenticate and protect client traffic~\cite[\S~1.1]{torspec}. In this work,
 we analyze the RSA keys.  We leave the analysis of the other key types for
 future work.  Each Tor relay has the following three 1024-bit RSA keys:
 
