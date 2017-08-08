@@ -1,9 +1,10 @@
 \section{Discussion}
 \label{sec:discussion}
 \subsection{Implications of anomalous Tor keys}
+\paragraph{Implications for the network}
 As touched on earlier in Section~\ref{sec:tor-network}, the main use of the
 identity key in Tor is to sign the relay's descriptor, which includes various
-information about the relay, \eg, its IP address, contact information, \etc
+information about the relay, \eg, its IP address and contact information.
 Relays publish their public identity keys in their descriptor.  The network
 consensus acts as the public key infrastructure of Tor.  Signed by the directory
 authorities whose public keys are hard-coded in Tor's source code, the network
@@ -11,7 +12,37 @@ consensus points to the descriptors of each Tor relay that is currently online.
 If an attacker were to break the identity key of a relay (as we demonstrated),
 she could start signing descriptors in the relay's name and publishing them. The
 adversary could publish whatever information she wanted in the descriptor, \eg
-her own IP address, keys, \etc, in order to fool Tor clients.
+her own IP address, keys, \etc, in order to fool Tor clients.  In other words,
+weak keys allow adversaries to obtain the affected relay's reputation which
+matters because Tor clients make routing decisions based on this reputation.
+
+\paragraph{Implications for Tor users}
+To understand how Tor users are affected by weak keys we need to distinguish
+between \emph{targeting} and \emph{hoovering} adversaries.\footnote{We here use
+Jaggard and Syverson's nomenclature of an adversary that either targets
+specific Tor users (targeting) or hoovers up all available data to
+deanonymize as many users as possible (hoovering)~\cite{Jaggard2017a}.}
+
+The goal of targeting adversaries is to focus an attack on a small number of
+users among the large set of all Tor users.  Generally speaking, weak keys can
+be problematic in a targeted setting if they allow an attacker to gain access to
+a Tor relay she would otherwise be unable to control.  This can be the case if
+the attacker learned the targeted user's guard relay and can the guard happens
+to have weak keys.  However, judging by our experimental results, the
+probability of an attacker knowing a targeted user's guard relay \emph{and} this
+guard relay having vulnerable keys is very low.
+
+Hoovering adversaries are opportunistic by definition and seek to deanonymize as
+many Tor users as possible.  Recall that Tor clients use a long-lived guard
+relay as their first hop and two randomly chosen relays for the next two
+hops.\footnote{We refer to these relays as randomly chosen for simplicity but
+the path selection algorithm is more complicated.}  A single compromised relay
+is not necessarily harmful to users but weak keys can be a problem if a user
+happens to have a guard relay with weak keys \emph{and} selects an exit relay
+that also has weak keys, allowing the hoovering adversary to deanonymize the
+circuit.  Again, considering the low prevalence of weak keys and the ease with
+which The Tor Project could identify and block relays with weak keys, hoovering
+adversaries pose no significant threat.
 
 \subsection{Preventing non-standard exponents}
 Recall that the Tor reference implementation hard-codes its public RSA exponent
