@@ -194,19 +194,43 @@ ended up with a list of 17,198 onion services that were online at some point in
 time.  Next, we developed a tool that takes as input our list of onion services
 and the malicious HSDirs we discovered.\footnote{Both the tool and our list of
 onion services are available online at
-\url{https://nymity.ch/anomalous-tor-keys/}.} The tool then determines all
+\url{https://nymity.ch/anomalous-tor-keys/}.} The tool then calculates all
 descriptors these onion services ever generated and checks if any HSDir shared
 five or more hex digits in its fingerprint prefix with the onion service's
-descriptor.
+descriptor.  We chose the threshold of five manually because it is unlikely to
+happen by chance yet easy to create a five-digit collision.
 
-It is difficult to identify all targeted onion services with certainty.  First,
-our list of onion services does not tell us when a service was online.  Second,
-an HSDir could be responsible for an onion service simply by chance, rather than 
-on purpose, resulting in a false positive.  Third, our list of onion services is
-not exhaustive, so we are bound to miss some potential victims.  Our tool
-identified the following four onion services for which we have strong evidence
-that they were purposely targeted.  Because none of these four services seem to
-have been intended for private use, we are comfortable publishing them.
+It is difficult to identify all targeted onion services because \first our list
+of onion services does not tell us when a service was online, \second an HSDir
+could be responsible for an onion service simply by chance rather than on
+purpose, resulting in a false positive, and \third our list of onion services is
+not exhaustive, so we are bound to miss victims.  Nevertheless our tool
+identified four onion services (see Table~\ref{tab:targeted}) for which we have
+strong evidence that they were purposely targeted.  While HSDirs are frequently
+in the vicinity of an onion service's descriptor by accident, the probability of
+being in its vicinity for several days in a row or cover both replicas by chance
+is negligible.  Table~\ref{tab:collisions} shows all partial collisions in
+detail.  Because none of these four services seem to have been intended for
+private use, we are comfortable publishing them.
+
+\begin{table}[t]
+	\centering
+	\begin{tabular}{l r l}
+	\toprule
+	Onion service & Replicas & Attack duration \\
+	\midrule
+	\texttt{22u75kqyl666joi2} & 2 & Two consecutive days \\
+	\texttt{n3q7l52nfpm77vnf} & 2 & Six non-consecutive days \\
+	\texttt{silkroadvb5piz3r} & 1 & Nine mostly consecutive days \\
+	\texttt{thehub7gqe43miyc} & 2 & One day \\
+	\bottomrule
+	\end{tabular}
+
+	\caption{The four onion services that were most likely targeted at some
+	point.  The second column indicates if only one or both replicas were
+	attacked while the third column shows the duration of the attack.}
+	\label{tab:targeted}
+\end{table}
 
 \begin{description}
 	\item[\texttt{22u75kqyl666joi2.onion}] The service appears to be offline
