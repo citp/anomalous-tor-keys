@@ -5,12 +5,12 @@ implement onion routing, all the relays maintain several RSA key pairs,
 the most important of which are a medium-term key that rotates occasionally 
 and a long-term key that ideally never changes.  
 Most relays run The Tor Project's reference C
-implementation on Linux systems, but some run third-party implementations or 
-run on constrained systems such as Raspberry Pis which 
-raises the question of whether these machines are managing to generate 
-safe keys upon bootstrapping.  Past work has investigated the safety of
-keys in TLS and SSH servers~\cite{Heninger2012a} and  
-nation-wide databases~\cite{Bernstein2013a}, as well as POP3S, IMAPS, and SMTPS
+implementation on dedicated Linux systems, but some run third-party
+implementations or operate constrained systems such as Raspberry Pis which
+raises the question of whether these machines managed to generate safe keys
+upon bootstrapping.  Past work has investigated the safety of keys in TLS and
+SSH servers~\cite{Heninger2012a} and  nation-wide
+databases~\cite{Bernstein2013a}, as well as POP3S, IMAPS, and SMTPS
 servers~\cite{Hastings2016a}.  In this work, we study the Tor network.
 
 Relays with weak cryptographic keys can pose a significant threat to Tor users.
@@ -30,12 +30,12 @@ To our surprise, we found more than 3,000 keys with shared prime factors, most
 belonging to a 2013 research project~\cite{Biryukov2013a}.  Ten relays in
 our dataset shared a modulus, suggesting manual interference with the key
 generation process.  Finally, we discovered 122 relays whose RSA exponent
-differed from Tor's hard-coded exponent.  We believe that most of these relays
-were meant to manipulate Tor's distributed hash table (DHT), presumably in an
-attempt to attack onion services as we discuss in
-Section~\ref{sec:targeted-onion-services}.  To learn more, we implemented a
-tool that simulates how onion services are placed on the DHT, revealing four
-onion services that were likely targeted.  
+differed from Tor's hard-coded exponent.  Most of these relays were meant to
+manipulate Tor's distributed hash table (DHT), in an attempt to attack onion
+services as we discuss in Section~\ref{sec:targeted-onion-services}.  To learn
+more, we implemented a tool that simulates how onion services are placed on the
+DHT, revealing four onion services that were targeted by some of these malicious
+relays.
 
 The entities responsible for the incidents we uncovered are as diverse as the
 incidents themselves: researchers, developers, and actual adversaries were all
@@ -50,7 +50,7 @@ any of these keys are vulnerable or non-standard.\footnote{Our project page is
 available online at \url{https://nymity.ch/anomalous-tor-keys/}.}  Tor
 developers can then take early action and remove these relays from the network
 before adversaries get the chance to take advantage of them.  In summary, we
-make the following two main contributions:
+make the following three contributions:
 \begin{itemize}
 	\item We analyze a dataset consisting of 3.7 million RSA public keys for
 		weak and non-standard keys, revealing thousands of affected keys.
@@ -58,6 +58,10 @@ make the following two main contributions:
 	\item We characterize the relays we discovered, show that many were
 		likely operated by a single entity, and uncover four onion services that
 		were likely targeted
+
+	\item Given a set of malicious Tor relays that served as ``hidden service
+		directories,'' we develop a method that can reveal what onion services
+		these relays were targeting.
 \end{itemize}
 
 The rest of this paper details our project.  In Section~\ref{sec:background}, we
