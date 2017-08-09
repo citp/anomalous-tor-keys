@@ -16,13 +16,44 @@ her own IP address, keys, \etc, in order to fool Tor clients.  In other words,
 weak keys allow adversaries to obtain the affected relay's reputation which
 matters because Tor clients make routing decisions based on this reputation.
 
+The Tor protocol's use of forward secrecy mitigates the potential harm of weak
+keys.  Recall that a relay's long-lived identity keys are only used to sign
+data, so forward secrecy does not apply here.  Onion keys however are used for
+decryption and encryption, and are rotated by default each 28
+days~\cite[\S~3.4.1]{dir-spec}.  An attacker who managed to compromise a weak
+onion key is still faced with the underlying TLS layer, shown in
+Figure~\ref{fig:protostack}, that provides defense in depth.  The Tor
+specification requires the keys for the TLS layer to be rotated at least once a
+day~\cite[\S~1.1]{torspec}, making it difficult to get any use out of
+compromised onion keys.
+
+\begin{figure}
+\centering
+% Change arrow head globally.
+\tikzset{>=latex}
+\begin{tikzpicture}
+
+\node[circle,draw,minimum size=1cm] (R1) at (0, 0) {$R_n$};
+\node[circle,draw,minimum size=1cm] (R2) at (5, 0) {$R_{n+1}$};
+
+\draw[<->] (R1.east) -- node [midway, fill=white] (line) {\phantom{1--3 onion layers}} (R2.west);
+
+\node[align=center] at (line) {Application data\\1--3 onion layers\\TLS layer};
+
+\end{tikzpicture}
+\caption{The protocol stack between two Tor relays $R_n$ and $R_n+1$.  The
+lowest layer is a TLS connection that contains one (between the middle and exit
+relay) to three (between the client and guard relay) onion layers.  The onion
+layers protect the application data that the client is sending.}
+\label{fig:protostack}
+\end{figure}
+
 \paragraph{Implications for Tor users}
 To understand how Tor users are affected by weak keys we need to distinguish
 between \emph{targeting} and \emph{hoovering} adversaries.\footnote{We here use
 Jaggard and Syverson's nomenclature of an adversary that either targets
 specific Tor users (targeting) or hoovers up all available data to
 deanonymize as many users as possible (hoovering)~\cite{Jaggard2017a}.}
-
 The goal of targeting adversaries is to focus an attack on a small number of
 users among the large set of all Tor users.  Generally speaking, weak keys can
 be problematic in a targeted setting if they allow an attacker to gain access to
