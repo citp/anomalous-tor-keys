@@ -14,13 +14,12 @@ controlled by a single research group, and upon contacting the authors of the
 Security \& Privacy 2013 paper entitled ``Trawling for Tor hidden
 services''~\cite{Biryukov2013a}, we received confirmation that these relays
 indeed were run by their research group.  The authors informed us that the weak
-keys were caused by a shortcoming of their key generation utility. The issue
+keys were caused by a shortcoming of their key generation tool. The issue
 stemmed from the fact that their tool first generated thousands of prime numbers
 and then computed multiple moduli using combinations of those prime numbers in a
-greedy fashion without ensuring that the same primes were not reused.
-
-Because of the following shared properties, we are confident that all relays
-were operated by the same group:
+greedy fashion, without ensuring that the same primes were not reused.  Because
+of the following shared properties, we are confident that all relays were
+operated by the researchers:
 
 \begin{enumerate}
 	\item All relays were online either between November 11, 2012 and
@@ -49,6 +48,8 @@ origins we could not determine. Its router descriptor indicates that the relay
 has been hosted on a MIPS machine which might suggest an embedded device with a
 weak random number generator:
 
+% Prevent the verbatim environment from being split in half.
+\newpage
 \begin{verbatim}
 router DesasterBlaster 62.226.55.122 9001 0 0
 platform Tor 0.2.2.13-alpha on Linux mips
@@ -73,17 +74,17 @@ Table~\ref{tab:moduli} shows these ten relays with shared moduli, clustered into
 four groups. The table shows the relays' truncated, four-byte fingerprint, IP
 addresses, and RSA exponents.  Note that the Tor client hard-codes the RSA
 exponent to 65,537~\cite[\S~0.3]{torspec}, a recommended value that is resistant
-to attacks against low public exponents~\cite[\S~4]{Boneh1999a}.  Any other
-value indicates non-standard key generation.  All IP addresses were hosted by
-OVH, a popular French hosting provider, and some of the IP addresses hosted two
-relays, as our color coding indicates.  Finally, each group shared a four- or
-five-digit prefix in their fingerprints.  We believe that a single attacker
-controlled all these relays with the intention to manipulate the distributed
-hash table that powers onion services~\cite{Biryukov2013a}---the shared
-fingerprint prefix is an indication.  Because the modulus is identical, we suspect
-that the attackers iterated over the relays' RSA exponents to come up with the
-shared prefix.  The Tor Project informed us that it discovered and blocked these
-relays in August 2014 when they first came online.
+to attacks against low public exponents~\cite[\S~4]{Boneh1999a}.  Any value
+other than 65,537 indicates non-standard key generation.  All IP addresses were
+hosted by OVH, a popular French hosting provider, and some of the IP addresses
+hosted two relays, as our color coding indicates.  Finally, each group shared a
+four- or five-digit prefix in their fingerprints.  We believe that a single
+attacker controlled all these relays with the intention to manipulate the
+distributed hash table that powers onion services~\cite{Biryukov2013a}---the
+shared fingerprint prefix is an indication.  Because the modulus is identical,
+we suspect that the attackers iterated over the relays' RSA exponents to come up
+with the shared prefix.  The Tor Project informed us that it discovered and
+blocked these relays in August 2014 when they first came online.
 
 \begin{table}[t]
 	\centering
@@ -158,19 +159,17 @@ relays in August 2014 when they first came online.
 
 \subsection{Unusual exponents}
 \label{sec:unusual-exponents}
-The Tor source code hard-codes the public RSA exponent to 65,537, which is best
-practice~\cite[\S~4]{Boneh1999a}.  Interested in non-standard key generation, we
-checked if our dataset featured relays with different exponents.  Non-standard
-exponents may indicate that a relay was after a specific fingerprint in order to
-position itself in Tor's hash ring.\footnote{A different approach to detecting
-relays that position themselves in the hash ring is to determine how often they
-change their fingerprints.~\cite[\S~4.3.3]{Winter2016a}} To obtain a fingerprint
-with a given prefix, an adversary has to modify the underlying key material $p$,
-$q$, and $e$ until they result in the desired prefix.  Repeated modification of
-$e$ is significantly more efficient than modifying $p$ or $q$ because it is
-costly to verify if a large number is prime.  Leveraging this method, the tool
-Scallion~\cite{scallion} generates vanity onion service domains by iterating
-over the service's public exponent.
+Having accidentally found a number of relays with non-standard exponents in
+Section~\ref{sec:shared-moduli}, we checked if our dataset featured more relays
+with exponents other than 65,537.  Non-standard exponents may indicate that a
+relay was after a specific fingerprint in order to position itself in Tor's hash
+ring.  To obtain a fingerprint with a given prefix, an adversary repeatedly has
+to modify any of the underlying key material $p$, $q$, or $e$ until they result
+in the desired prefix.  Repeated modification of $e$ is significantly more
+efficient than modifying $p$ or $q$ because it is costly to verify if a large
+number is prime.  Leveraging this method, the tool Scallion~\cite{scallion}
+generates vanity onion service domains by iterating over the service's public
+exponent.
 
 Among all of our 3.7 million keys, 122 possessed an exponent other than
 65,537.\footnote{We list all relays in detail in
@@ -263,11 +262,12 @@ private use, we are comfortable publishing them.
 		from August 22, 2015.
 \end{description}
 
-It is not clear what the HSDirs did once they controlled the replicas
-of the onion services they targeted.  The HSDirs could have counted the number
-of client requests, refused to serve the onion service's descriptor to take it
-offline, or correlate client requests with guard relay traffic in order to 
-deanonymize onion service visitors~\cite{Dingledine2014a}.
+Our data cannot provide insight into what the HSDirs did once they controlled
+the replicas of the onion services they targeted.  The HSDirs could have counted
+the number of client requests, refused to serve the onion service's descriptor
+to take it offline, or correlate client requests with guard relay traffic in
+order to deanonymize onion service visitors as it was done by the CMU/SEI
+researchers in 2014~\cite{Dingledine2014a}.
 
 \begin{figure}[t]
 	\centering

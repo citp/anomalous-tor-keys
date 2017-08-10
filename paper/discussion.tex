@@ -1,5 +1,9 @@
 \section{Discussion}
 \label{sec:discussion}
+We now turn to the technical and ethical implications of our research, propose
+possible future work, and we explain how the next generation of onion
+services will thwart DHT manipulation attacks.
+
 \subsection{Implications of anomalous Tor keys}
 \paragraph{Implications for the network}
 As touched on earlier in Section~\ref{sec:tor-network}, the main use of the
@@ -91,8 +95,8 @@ research effort and shared preliminary results as we progressed.  Once we wrote
 up our findings in a technical report we brought it to the broader Tor
 community's attention by sending an email to the tor-dev mailing
 list~\cite{Roberts2017a}.  On top of that we adopted open science practices and
-wrote both our code and paper in the open, allowing interested parties to
-immediately learn about any progress.
+wrote both our code and paper in the open, allowing interested parties to follow
+our progress easily.
 
 \subsection{The effect of next-generation onion services}
 As of August 2017, The Tor Project is finalizing the design of next-generation
@@ -104,7 +108,8 @@ day~\cite{prop250}.  The random number is embedded in the consensus document and
 used by clients to fetch an onion service's descriptor.  Attackers will no
 longer be able to attack onion services by positioning HSDirs in the hash ring;
 while they have several hours to compute a key pair that positions their HSDirs
-next to the onion service's descriptor, it takes at least 96 hours to get the
-HSDir flag from the directory authorities~\cite[\S~3.4.2]{dir-spec}.  We expect
-this design change to disincentivize attackers from manipulating their keys to
-attack onion services.
+next to the onion service's descriptor (which is entirely feasible), it takes at
+least 96 hours to get the HSDir flag from the directory
+authorities~\cite[\S~3.4.2]{dir-spec}, so attackers cannot get the flag in time.
+We expect this design change to disincentivize attackers from manipulating their
+keys to attack onion services.

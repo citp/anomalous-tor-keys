@@ -10,7 +10,40 @@ public RSA exponent.  Many of these 122 relays exhibit partial fingerprint
 collisions (highlighted in gray), presumably to obtain a specific position in
 Tor's hash ring.
 
-\begin{table}
+\begin{table}[h]
+	\centering
+	\resizebox{\linewidth}{!}{%
+	\begin{tabular}{l l l r}
+	\toprule
+	Fingerprint & Nickname & IP address & Exponent \\
+	\midrule
+	\texttt{13225B74}  & venlafaxin       & 217.20.118.12   & 35 \\
+	\midrule
+	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 1,497,483 \\
+	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 418,223 \\
+	\midrule
+	\texttt{63A8D7D5}  & cheezeblaster    & 68.4.225.95     & 106,533 \\
+	\texttt{8808B01B}  & sginne           & 80.223.97.109   & 860,345,903 \\
+	\texttt{A574E18E}  & zeratulemperator & 178.32.58.139   & 345,084,801 \\
+	\texttt{D4073DE6}  & caker000         & 208.92.93.82    & 47,124,401 \\
+	\texttt{FC360E29}  & DaeshTorBlock    & 201.175.4.83    & 176,127 \\
+	\texttt{36043967}  & CAundisclosedio  & 159.203.25.149  & 15,514,301 \\
+	\midrule
+	\hlfpr{8FF3ED2}{E} & conoha1          & 133.130.126.71  & 1,173,127,861 \\
+	\hlfpr{8FF3ED2}{F} & conoha2          & 133.130.125.198 & 724,859,007 \\
+	\midrule
+	\texttt{CF45F18F}  & USundisclosedio  & 173.236.251.43  & 11,753,943 \\
+	\texttt{C722E7E9}  & Tokyo01          & 133.130.126.71  & 2,022,320,527 \\
+	\texttt{2D04AF7C}  & shallot          & 45.32.185.135   & 1,341,827 \\
+	\bottomrule
+	\end{tabular}}
+	\caption{Fourteen relays that do not seem to have been part of a cluster.
+	The relay groups ``snooker,'' and ``conoha1'' and ``conoha2'' do seem
+	related, though.}
+	\label{tab:group5}
+\end{table}
+
+\begin{table}[h]
 	\centering
 	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
@@ -89,7 +122,7 @@ Tor's hash ring.
 	\label{tab:group1}
 \end{table}
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
@@ -143,7 +176,7 @@ Tor's hash ring.
 	\label{tab:group2}
 \end{table}
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
@@ -173,7 +206,7 @@ Tor's hash ring.
 	\label{tab:group3}
 \end{table}
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
@@ -211,39 +244,6 @@ Tor's hash ring.
 	\caption{A cluster of 21 relays that a Tor developer used to run
 	experiments~\cite{OCearbhaill2013a}.}
 	\label{tab:group4}
-\end{table}
-
-\begin{table}
-	\centering
-	\resizebox{\linewidth}{!}{%
-	\begin{tabular}{l l l r}
-	\toprule
-	Fingerprint & Nickname & IP address & Exponent \\
-	\midrule
-	\texttt{13225B74}  & venlafaxin       & 217.20.118.12   & 35 \\
-	\midrule
-	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 1,497,483 \\
-	\hlfpr{739758B1}{} & snooker          & 66.57.36.178    & 418,223 \\
-	\midrule
-	\texttt{63A8D7D5}  & cheezeblaster    & 68.4.225.95     & 106,533 \\
-	\texttt{8808B01B}  & sginne           & 80.223.97.109   & 860,345,903 \\
-	\texttt{A574E18E}  & zeratulemperator & 178.32.58.139   & 345,084,801 \\
-	\texttt{D4073DE6}  & caker000         & 208.92.93.82    & 47,124,401 \\
-	\texttt{FC360E29}  & DaeshTorBlock    & 201.175.4.83    & 176,127 \\
-	\texttt{36043967}  & CAundisclosedio  & 159.203.25.149  & 15,514,301 \\
-	\midrule
-	\hlfpr{8FF3ED2}{E} & conoha1          & 133.130.126.71  & 1,173,127,861 \\
-	\hlfpr{8FF3ED2}{F} & conoha2          & 133.130.125.198 & 724,859,007 \\
-	\midrule
-	\texttt{CF45F18F}  & USundisclosedio  & 173.236.251.43  & 11,753,943 \\
-	\texttt{C722E7E9}  & Tokyo01          & 133.130.126.71  & 2,022,320,527 \\
-	\texttt{2D04AF7C}  & shallot          & 45.32.185.135   & 1,341,827 \\
-	\bottomrule
-	\end{tabular}}
-	\caption{Fourteen relays that do not seem to have been part of a cluster.
-	The relay groups ``snooker,'' and ``conoha1'' and ``conoha2'' do seem
-	related, though.}
-	\label{tab:group5}
 \end{table}
 
 \section{Potentially targeted onion services}
