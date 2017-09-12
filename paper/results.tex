@@ -48,12 +48,12 @@ origins we could not determine. Its router descriptor indicates that the relay
 has been hosted on a MIPS machine which might suggest an embedded device with a
 weak random number generator:
 
-% Prevent the verbatim environment from being split in half.
-\newpage
+{\footnotesize
 \begin{verbatim}
 router DesasterBlaster 62.226.55.122 9001 0 0
 platform Tor 0.2.2.13-alpha on Linux mips
 \end{verbatim}
+}
 
 To further investigate, we checked whether the relay ``Desaster\-Blaster'' shares
 prime factors with any other relays. It appears that the relay has rotated
@@ -172,8 +172,8 @@ generates vanity onion service domains by iterating over the service's public
 exponent.
 
 Among all of our 3.7 million keys, 122 possessed an exponent other than
-65,537.\footnote{We list all relays in detail in
-Appendix~\ref{sec:full-unusual-exponents}.} One relay had both non-standard
+65,537.\footnote{A list of all relays is available in our technical report but
+we redacted the URL for anonymization.} One relay had both non-standard
 identity \emph{and} onion key exponents while all remaining relays only had
 non-standard identity key exponents.  Ten of these relays further had a shared
 modulus, which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that
@@ -192,12 +192,12 @@ and by contacting researchers who have done similar work~\cite{Matic2015a}.  We
 ended up with a list of 17,198 onion services that were online at some point in
 time.  Next, we developed a tool that takes as input our list of onion services
 and the malicious HSDirs we discovered.\footnote{Both the tool and our list of
-onion services are available online at
-\url{https://nymity.ch/anomalous-tor-keys/}.} The tool then calculates all
-descriptors these onion services ever generated and checks if any HSDir shared
-five or more hex digits in its fingerprint prefix with the onion service's
-descriptor.  We chose the threshold of five manually because it is unlikely to
-happen by chance yet easy to create a five-digit collision.
+onion services are available online but we redacted the URL for anonymization.}
+The tool then calculates all descriptors these onion services ever generated and
+checks if any HSDir shared five or more hex digits in its fingerprint prefix
+with the onion service's descriptor.  We chose the threshold of five manually
+because it is unlikely to happen by chance yet easy to create a five-digit
+collision.
 
 It is difficult to identify all targeted onion services because \first our list
 of onion services does not tell us when a service was online, \second an HSDir
@@ -213,6 +213,10 @@ detail.  Because none of these four services seem to have been intended for
 private use, we are comfortable publishing them.
 
 \begin{table}[t]
+	\caption{The four onion services that were most likely targeted at some
+	point.  The second column indicates if only one or both replicas were
+	attacked while the third column shows the duration of the attack.}
+	\label{tab:targeted}
 	\centering
 	\begin{tabular}{l r l}
 	\toprule
@@ -224,11 +228,6 @@ private use, we are comfortable publishing them.
 	\texttt{thehub7gqe43miyc} & 2 & One day \\
 	\bottomrule
 	\end{tabular}
-
-	\caption{The four onion services that were most likely targeted at some
-	point.  The second column indicates if only one or both replicas were
-	attacked while the third column shows the duration of the attack.}
-	\label{tab:targeted}
 \end{table}
 
 \begin{description}
@@ -244,7 +243,6 @@ private use, we are comfortable publishing them.
 		still online, hosting the ``Marxists Internet Archive,'' an online
 		archive of literature.\footnote{The onion service seems to be identical
 		to the website \url{https://www.marxists.org} (visited on 2017-05-09).}
-		Figure~\ref{fig:archive} shows a screenshot of the service's index page.
 		A subset of relays from Table~\ref{tab:group1} targeted the onion
 		service from November 27 to December 4, 2016.  The malicious HSDirs
 		acted inconsistently, occasionally targeting only one replica.
@@ -268,11 +266,3 @@ the number of client requests, refused to serve the onion service's descriptor
 to take it offline, or correlate client requests with guard relay traffic in
 order to deanonymize onion service visitors as it was done by the CMU/SEI
 researchers in 2014~\cite{Dingledine2014a}.
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{figures/marxists-internet-archive.jpg}
-	\caption{A screenshot of the index page of the onion service
-		\texttt{n3q7l52nfpm77vnf.onion}, taken on February 13, 2017.}
-	\label{fig:archive}
-\end{figure}

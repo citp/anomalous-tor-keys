@@ -1,11 +1,15 @@
-\documentclass[sigconf]{acmart}
+\documentclass{llncs}
 
 \usepackage[utf8]{inputenc}
+\usepackage[scaled=0.8]{beramono}
+\usepackage[T1]{fontenc}
 \usepackage{booktabs} % For pretty tables.
 \usepackage{multirow} % Also for pretty tables.
 \usepackage{hyperref} % For clickable links.
-\usepackage{xcolor} % For colourful links.
-\usepackage{xspace} % For reasonable spacing in custom commands.
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{xcolor}   % For colourful links.
+\usepackage{xspace}   % For reasonable spacing in custom commands.
+\usepackage{wrapfig}  % For floating figures.
 \usepackage{amsmath}
 \usepackage{tikz}
 \urlstyle{tt}
@@ -41,53 +45,24 @@
 	\texttt{\setlength{\fboxsep}{0pt}%
 	\colorbox{highlight1}{\strut #1}#2}}
 
-% ACM-specific information.
-\setcopyright{rightsretained}
-\acmDOI{10.475/123_4}
-\acmISBN{123-4567-24-567/08/06}
-\acmConference[WPES'17]{Workshop on Privacy in the Electronic Society}{October 2017}{Dallas, Texas USA} 
-\acmYear{1997}
-\copyrightyear{2017}
-\acmPrice{15.00}
-
 \begin{document}
 
-\author{George Kadianakis}
-\authornote{All four authors contributed substantially and share first
-authorship. The names are ordered alphabetically.}
-\affiliation{%
-	\institution{The Tor Project}
-}
-\email{asn@torproject.org}
-
-\author{Claudia V. Roberts}
-\affiliation{%
-	\institution{Princeton University}
-}
-\email{claudiar@princeton.edu}
-
-\author{Laura M. Roberts}
-\affiliation{%
-	\institution{Princeton University}
-}
-\email{laurar@princeton.edu}
-
-\author{Philipp Winter}
-\affiliation{%
-	\institution{Princeton University}
-}
-\email{pwinter@princeton.edu}
-
 \title{``Major key alert!''\\Anomalous keys in Tor relays}
+\titlerunning{Anomalous keys in Tor relays}
+
+\author{
+	Anonymous
+}
+
+\institute{Anonymous}
+
+\maketitle
 
 \input{abstract}
 
-\keywords{Tor, RSA, onion service, cryptography, factorization}
-
-\maketitle
 \hypersetup{
 	pdftitle={Anomalous keys in Tor relays},
-	pdfauthor={George Kadianakis, Claudia V. Roberts, Laura M. Roberts, and Philipp Winter},
+	pdfauthor={Anonymous},
 	pdfkeywords={Tor, RSA, onion service, cryptography, factorization},
 	pdfsubject={An analysis of archived RSA public keys of Tor relays},
 }
@@ -106,9 +81,9 @@ authorship. The names are ordered alphabetically.}
 
 \input{conclusion}
 
-\input{acknowledgements}
+% \input{acknowledgements}
 
-\bibliographystyle{plainnat}
+\bibliographystyle{splncs03}
 \bibliography{references.bib}{}
 
 \input{appendix}

@@ -11,8 +11,11 @@ collisions (highlighted in gray), presumably to obtain a specific position in
 Tor's hash ring.
 
 \begin{table}[h]
+	\caption{Fourteen relays that do not seem to have been part of a cluster.
+	The relay groups ``snooker,'' and ``conoha1'' and ``conoha2'' do seem
+	related, though.}
+	\label{tab:group5}
 	\centering
-	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -36,16 +39,14 @@ Tor's hash ring.
 	\texttt{C722E7E9}  & Tokyo01          & 133.130.126.71  & 2,022,320,527 \\
 	\texttt{2D04AF7C}  & shallot          & 45.32.185.135   & 1,341,827 \\
 	\bottomrule
-	\end{tabular}}
-	\caption{Fourteen relays that do not seem to have been part of a cluster.
-	The relay groups ``snooker,'' and ``conoha1'' and ``conoha2'' do seem
-	related, though.}
-	\label{tab:group5}
+	\end{tabular}
 \end{table}
 
 \begin{table}[h]
+	\caption{A seemingly-related cluster of 46 relays that went online in
+	November 2016.}
+	\label{tab:group1}
 	\centering
-	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -115,16 +116,14 @@ Tor's hash ring.
 	\hlfpr{F5079E2}{D} & schedule   & 150.95.142.186  & 1,561,992,849 \\
 	\hlfpr{F5079E2}{E} & dengue     & 133.130.122.105 & 713,479,109 \\
 	\bottomrule
-	\end{tabular}}
-
-	\caption{A seemingly-related cluster of 46 relays that went online in
-	November 2016.}
-	\label{tab:group1}
+	\end{tabular}
 \end{table}
 
 \begin{table}[h]
+	\caption{A seemingly-related cluster of 29 relays that went online in
+	between August and October 2015.}
+	\label{tab:group2}
 	\centering
-	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -169,16 +168,15 @@ Tor's hash ring.
 	\hlfpr{FA25674}{1} & Hongkong0816   & 98.158.109.184 & 751,944,245 \\
 	\hlfpr{FA25674}{3} & NewYork0816    & 98.158.100.102 & 623,959,941 \\
 	\bottomrule
-	\end{tabular}}
-
-	\caption{A seemingly-related cluster of 29 relays that went online in
-	between August and October 2015.}
-	\label{tab:group2}
+	\end{tabular}
 \end{table}
 
 \begin{table}[h]
+	\caption{A seemingly-related cluster of twelve relays that went online in
+	August 2014.}
+	\label{tab:group3}
+
 	\centering
-	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -199,16 +197,16 @@ Tor's hash ring.
 	\hlfpr{E1EF}{9EB8} & Unnamed & 5.39.122.66     & 73,389 \\
 	\hlfpr{E1EF}{A388} & Unnamed & 188.165.3.63    & 18,177 \\
 	\bottomrule
-	\end{tabular}}
+	\end{tabular}
 
-	\caption{A seemingly-related cluster of twelve relays that went online in
-	August 2014.}
-	\label{tab:group3}
 \end{table}
 
 \begin{table}[h]
+	\caption{A cluster of 21 relays that a Tor developer used to run
+	experiments~\cite{OCearbhaill2013a}.}
+	\label{tab:group4}
+
 	\centering
-	\resizebox{\linewidth}{!}{%
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -239,24 +237,29 @@ Tor's hash ring.
 	\texttt{F52D83EF}  & totalimpact     & 94.23.163.185  & 49,938,863 \\
 	\texttt{FF0BF54F}  & totalimpact     & 176.31.119.209 & 45,295,357 \\
 	\bottomrule
-	\end{tabular}}
-
-	\caption{A cluster of 21 relays that a Tor developer used to run
-	experiments~\cite{OCearbhaill2013a}.}
-	\label{tab:group4}
+	\end{tabular}
 \end{table}
 
 \section{Potentially targeted onion services}
 
 \begin{table*}[t]
+
+	\caption{The details of the attacks on four onion services.  The second
+		column shows the fingerprints of the HSDirs that were participating in
+		the attack.  The third column shows the affected onion service
+		descriptors, followed by the date of the attack in the last column.  The
+		shaded part of the hex string indicate collisions between the
+	HSDir's fingerprint and the onion service's descriptor in the next column.}
+	\label{tab:collisions}
+
 	\centering
-	\resizebox{\linewidth}{!}{%
+	\scriptsize
 	\begin{tabular}{l l l l}
 	\toprule
 	Onion service & Fingerprint of HSDir & Onion service descriptor & Date \\
 	\midrule
-	\texttt{22u75kqyl666joi2.onion} & \hlfpr{325CAC0}{B7FA8CD77E39D8068207D0D6B10EA1317} & \hlfpr{325CAC0}{8B0A3180B590E765FA1F372A9428E7E0B} & 2015-08-14 \\
-	See Table~\ref{tab:group2} for more details.
+	\texttt{22u75kqyl666joi2} & \hlfpr{325CAC0}{B7FA8CD77E39D8068207D0D6B10EA1317} & \hlfpr{325CAC0}{8B0A3180B590E765FA1F372A9428E7E0B} & 2015-08-14 \\
+	See Table~\ref{tab:group2}.
 	                                & \hlfpr{325CAC0}{AB1AAD27493B9D06DC7F497D4F22A0AB4} & \hlfpr{325CAC0}{8B0A3180B590E765FA1F372A9428E7E0B} & 2015-08-14 \\
 	                                & \hlfpr{325CAC0}{A43B2121B81CD66E94A5027F1C8C97172} & \hlfpr{325CAC0}{8B0A3180B590E765FA1F372A9428E7E0B} & 2015-08-14 \\
 	                                & \hlfpr{FA25674}{1ED22FD96AF5A11924F7431EE9B2469B0} & \hlfpr{FA25674}{0740356704AB8630465B57F5367AFDB88} & 2015-08-14 \\
@@ -266,8 +269,8 @@ Tor's hash ring.
 	                                & \hlfpr{A5C59B3}{FCCD2FA8FAD42BF046E127AA239BD0852} & \hlfpr{A5C59B3}{CD34802FC4AC33C70AF856E6E3CE3473B} & 2015-08-15 \\
 	                                & \hlfpr{A5C59B3}{FD5625A0D85D10B4CF7FE801262EBEF11} & \hlfpr{A5C59B3}{CD34802FC4AC33C70AF856E6E3CE3473B} & 2015-08-15 \\
 	\midrule
-	\texttt{n3q7l52nfpm77vnf.onion} & \hlfpr{A0E83AA1}{91220B240EC042A4231FACE0C0BA5A6A} & \hlfpr{A0E83AA1}{15098CA7FE9B08CA5E107DC8532F30BD} & 2016-11-27 \\
-	See Table~\ref{tab:group1} for more details.
+	\texttt{n3q7l52nfpm77vnf} & \hlfpr{A0E83AA1}{91220B240EC042A4231FACE0C0BA5A6A} & \hlfpr{A0E83AA1}{15098CA7FE9B08CA5E107DC8532F30BD} & 2016-11-27 \\
+	See Table~\ref{tab:group1}.
 	                                & \hlfpr{A0E83AA}{28382135DC8397928194AC0459116E0AA} & \hlfpr{A0E83AA}{115098CA7FE9B08CA5E107DC8532F30BD} & 2016-11-27 \\
 	                                & \hlfpr{EBF154D}{A21B49101ED5B2146B8D28EADAC1E8DB9} & \hlfpr{EBF154D}{809425D3E923E1572AEBEFBD6B4C53AB3} & 2016-11-28 \\
 	                                & \hlfpr{EBF154D8}{BB6EECCC2921FC50050AE6ED9EF60CD2} & \hlfpr{EBF154D8}{09425D3E923E1572AEBEFBD6B4C53AB3} & 2016-11-28 \\
@@ -287,8 +290,8 @@ Tor's hash ring.
 	                                & \hlfpr{264EA12}{84855A596D5D642CEE878A211A221FF66} & \hlfpr{264EA12}{410F7D9CD6E547CD598D5E2EF2ED6F455} & 2016-12-05 \\
 	                                & \hlfpr{264EA12}{B4C46672E002C07290B43691DBA5FA9D6} & \hlfpr{264EA12}{410F7D9CD6E547CD598D5E2EF2ED6F455} & 2016-12-05 \\
 	\midrule
-	\texttt{silkroadvb5piz3r.onion} & \hlfpr{BC89A}{92F53581C4F616987F292CD336E7B42B81B} & \hlfpr{BC89A}{889D3DF7F0027A59683BF73B1CDC8C07BC5} & 2013-05-21 \\
-	See Table~\ref{tab:group4} for more details.
+	\texttt{silkroadvb5piz3r} & \hlfpr{BC89A}{92F53581C4F616987F292CD336E7B42B81B} & \hlfpr{BC89A}{889D3DF7F0027A59683BF73B1CDC8C07BC5} & 2013-05-21 \\
+	See Table~\ref{tab:group4}.
 	                                & \hlfpr{712CA}{45AF4055E7AC69A299B2F11C8E7112E8D0E} & \hlfpr{712CA}{3DEF4EB21C76A95BABDFBA2F0CD48D44803} & 2013-05-22 \\
 	                                & \hlfpr{DE1529}{9D7EE5882F0BEF5F5945ECF1A97C1B6D93} & \hlfpr{DE1529}{316F5172B35B8E27DC2AD67FA7010CFCEA} & 2013-05-23 \\
 	                                & \hlfpr{FF0BF}{54FBEEE7A003CE6F359D09689F725E2F3ED} & \hlfpr{FF0BF}{49076AA63C97FA2018058498422D5D698F3} & 2013-05-24 \\
@@ -298,19 +301,11 @@ Tor's hash ring.
 	                                & \hlfpr{BCB332}{864640653892D4CD4B7CE10072BBA1737D} & \hlfpr{BCB332}{36E0AD461DF58519D19519469C2B804FD7} & 2013-06-02 \\
 	                                & \hlfpr{51FC17}{8DFF3D0B869760F5740681A40D783CAD34} & \hlfpr{51FC17}{2F0062B623A39D88EE8209839374600CE3} & 2013-06-03 \\
 	\midrule
-	\texttt{thehub7gqe43miyc.onion} & \hlfpr{F6961286}{D361F825A9AD7ED4433B71F7897F232C} & \hlfpr{F6961286}{C2FEEA8DEDEB12CE4824649780CD889D} & 2015-08-22 \\
-	See Table~\ref{tab:group2} for more details.
+	\texttt{thehub7gqe43miyc} & \hlfpr{F6961286}{D361F825A9AD7ED4433B71F7897F232C} & \hlfpr{F6961286}{C2FEEA8DEDEB12CE4824649780CD889D} & 2015-08-22 \\
+	See Table~\ref{tab:group2}.
 	                                & \hlfpr{F6961286C}{453F6A6381DDC72F8DC33C6FCCB620C} & \hlfpr{F6961286C}{2FEEA8DEDEB12CE4824649780CD889D} & 2015-08-22 \\
 	                                & \hlfpr{F6961286}{D826D7D1C0F96F5FC085110268DD3BA8} & \hlfpr{F6961286}{C2FEEA8DEDEB12CE4824649780CD889D} & 2015-08-22 \\
 	                                & \hlfpr{816FEE1}{6200BE1719D00BCA35AA94329B668EF3A} & \hlfpr{816FEE1}{5D26F41A72039D7BEFB95C7166DD58FE1} & 2015-08-22 \\
 	\bottomrule
-	\end{tabular}}
-
-	\caption{The details of the attacks on four onion services.  The second
-		column shows the fingerprints of the HSDirs that were participating in
-		the attack.  The third column shows the affected onion service
-		descriptors, followed by the date of the attack in the last column.  The
-		shaded part of the hex string indicate collisions between the
-	HSDir's fingerprint and the onion service's descriptor in the next column.}
-	\label{tab:collisions}
+	\end{tabular}
 \end{table*}
