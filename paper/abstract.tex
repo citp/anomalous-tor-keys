@@ -5,16 +5,21 @@ amounting to millions of keys, all archived by The Tor Project.
 %
 In this paper, we analyze 3.7 million RSA public keys of Tor relays.  We \first
 check if any relays share prime factors or moduli, \second identify relays that
-use non-standard exponents, and \third characterize malicious relays that we
-discovered in the first two steps.
+use non-standard exponents, \third characterize malicious relays that we
+discovered in the first two steps, and \fourth develop a tool that can determine
+what onion services fell prey to said malicious relays.
 %
 Our experiments revealed that ten relays shared moduli, and 3,557
 relays---almost all part of a research project---shared prime factors, allowing
 adversaries to reconstruct private keys.  We further discovered 122 relays that
 used non-standard RSA exponents, presumably in an attempt to attack onion
 services.  By simulating how onion services are positioned in Tor's distributed
-hash table, we identified four onion services that were likely targeted by these
+hash table, we identified four onion services that were targeted by these
 malicious relays.
+%
+Our work provides both The Tor Project and onion service operators with tools to
+identify misconfigured and malicious Tor relays, to stop attacks before they
+pose a threat to Tor users.
 
-\keywords{Tor, RSA, onion service, cryptography, factorization}
+\keywords{Tor, RSA, cryptography, factorization, onion service}
 \end{abstract}
