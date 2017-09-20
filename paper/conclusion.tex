@@ -1,20 +1,27 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Previous research has studied the problem of weak RSA keys in different
-systems, and we wondered if there might be weak keys in the Tor
-network too that have the potential to compromise Tor users' safety.
-Thus, the goal of our work was to look for weak and anomalous keys in Tor
-and investigate their origins in order to address the problem.  We
-achieved our goal by gathering all the archived RSA keys used in Tor since
-2005 and examining them for common prime factors as previous work had done.
-Additionally, we looked for keys that shared the same moduli and
-for keys that had non-standard public exponents.
+Inspired by recent research that studied weak keys in deployed systems, we set
+out to investigate if the Tor network suffers from similar issues.  To that
+end, we drew on a public archive containing cryptographic keys of Tor relays
+dating back to 2005, which we subsequently analyzed for weak RSA keys.  We
+discovered that \first ten relays shared an RSA modulus, \second 3,557 relays
+shared prime factors, and \third 122 relays used non-standard RSA exponents.
 
-We found indications that entities had purposely created anomalous keys 
-in order to attack Tor's onion services.  We also found that researchers
-inadvertently created weak keys while conducting experiments on Tor.
-Our work demonstrates that the presence of weak and anomalous RSA keys in Tor is
-often a sign of malicious activity that should be paid attention to, and 
-indeed, our findings motivated The Tor Project to develop scripts to look for
-non-standard RSA exponents, which go against Tor's specification.
+Having uncovered these anomalies, we then proceeded to characterize the
+affected relays, tracing back the issues to mostly harmless experiments run by
+academic researchers and hobbyists, but also to attackers that targeted Tor's
+distributed hash table that powers onion services.  To learn more, we
+implemented a tool that can determine what onion services were attacked by a
+given set of malicious Tor relays, revealing four onion services that fell prey
+to these attacks.
+
+The practical value of our work is twofold.  First, our uncovering and
+characterizing of Tor relays with anomalous keys provides an anatomy of
+real-world attacks that The Tor Project can draw on to improve its monitoring
+infrastructure for malicious Tor relays.  Second, our work provides The Tor
+Project with tools to verify the RSA keys of freshly set up relays, making the
+network safer for its users.  In addition, onion service operators can use our
+code to monitor their services and get notified if Tor relays make an effort to
+deanonymize their onion service.  We believe that this is particularly useful
+for sensitive deployments such as SecureDrop instances.
