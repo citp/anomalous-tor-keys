@@ -34,13 +34,13 @@ which can perform the computation at hand in just a few minutes.
 The Tor network is among the most popular tools for digital privacy and
 anonymity. As of August 2017, the Tor network consists of around 7,000
 volunteer-run relays~\cite{tormetrics}.  Each hour, information about all
-relays\footnote{For example their IP addresses, ports, version numbers, and
+relays\footnote{This information includes IP addresses, ports, version numbers, and
 cryptographic information, just to name a few.} is summarized in the
 \emph{network consensus}, which is used by clients to bootstrap a connection to
 the Tor network.  The network consensus is produced by eight geographically
 distributed \emph{directory authorities}, machines run by individuals trusted by
-The Tor Project.  For each relay in the consensus there is a pointer to its
-\emph{descriptor} which contain additional relay-specific information such as
+The Tor Project.  For each relay in the consensus, there is a pointer to its
+\emph{descriptor}, which contains additional relay-specific information such as
 cryptographic keys.
 
 Each of the $\sim$7,000 relays maintains RSA, Curve25519, and Ed25519 key pairs
@@ -226,5 +226,5 @@ which determines the position in the DHT.  When arranging all HSDirs by their
 fingerprint in ascending order, the three immediate HSDir neighbors in the positive
 direction constitute the first replica while the second replica is at another,
 pseudorandom location, as shown in Figure~\ref{fig:hash-ring}.  The onion
-service's descriptor ID and hence its two replicas changes every day when
+service's descriptor ID and hence, its two replicas, changes every day when
 \textit{time-period} increments.
