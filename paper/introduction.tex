@@ -6,8 +6,8 @@ the most important of which are a medium-term key that rotates occasionally
 and a long-term key that ideally never changes.  
 Most relays run The Tor Project's reference C
 implementation on dedicated Linux systems, but some run third-party
-implementations or operate constrained systems such as Raspberry Pis which
-raises the question of whether these machines managed to generate safe keys
+implementations or operate on constrained systems such as Raspberry Pis which
+raises the question of whether these machines manage to generate safe keys
 upon bootstrapping.  Past work has investigated the safety of keys in TLS and
 SSH servers~\cite{Heninger2012a} and  nation-wide
 databases~\cite{Bernstein2013a}, as well as POP3S, IMAPS, and SMTPS
@@ -31,13 +31,13 @@ belonging to a 2013 research project~\cite{Biryukov2013a}.  Ten relays in
 our dataset shared a modulus, suggesting manual interference with the key
 generation process.  Finally, we discovered 122 relays whose RSA exponent
 differed from Tor's hard-coded exponent.  Most of these relays were meant to
-manipulate Tor's distributed hash table (DHT), in an attempt to attack onion
+manipulate Tor's distributed hash table (DHT) in an attempt to attack onion
 services as we discuss in Section~\ref{sec:targeted-onion-services}.  To learn
 more, we implemented a tool---itos\footnote{The name is an acronym for
 ``identifying targeted onion services.''}---that simulates how onion services
 are placed on the DHT, revealing four onion services that were targeted by some
 of these malicious relays.  Onion service operators can use our tool to monitor
-their services' security, \eg, a newspaper can make sure that its SecureDrop
+their services' security; \eg, a newspaper can make sure that its SecureDrop
 deployment---which uses onion services---is safe~\cite{securedrop}.
 
 The entities responsible for the incidents we uncovered are as diverse as the
