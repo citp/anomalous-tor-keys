@@ -1,7 +1,7 @@
 \section{Discussion}
 \label{sec:discussion}
 We now turn to the technical and ethical implications of our research, propose
-possible future work, and we explain how the next generation of onion
+possible future work, and explain how the next generation of onion
 services will thwart DHT manipulation attacks.
 
 \subsection{Implications of anomalous Tor keys}
@@ -22,11 +22,11 @@ matters because Tor clients make routing decisions based on this reputation.
 
 The Tor protocol's use of forward secrecy mitigates the potential harm of weak
 keys.  Recall that a relay's long-lived identity keys are only used to sign
-data, so forward secrecy does not apply here.  Onion keys however are used for
-decryption and encryption, and are rotated by default each 28
-days~\cite[\S~3.4.1]{dir-spec}.  An attacker who managed to compromise a weak
+data, so forward secrecy does not apply here.  Onion keys, however, are used for
+decryption and encryption and are rotated by default every 28
+days~\cite[\S~3.4.1]{dir-spec}.  An attacker who manages to compromise a weak
 onion key is still faced with the underlying TLS layer, shown in
-Figure~\ref{fig:protostack}, that provides defense in depth.  The Tor
+Figure~\ref{fig:protostack}, which provides defense in depth.  The Tor
 specification requires the keys for the TLS layer to be rotated at least once a
 day~\cite[\S~1.1]{torspec}, making it difficult to get any use out of
 compromised onion keys.
@@ -41,15 +41,15 @@ The goal of targeting adversaries is to focus an attack on a small number of
 users among the large set of all Tor users.  Generally speaking, weak keys can
 be problematic in a targeted setting if they allow an attacker to gain access to
 a Tor relay she would otherwise be unable to control.  This can be the case if
-the attacker learned the targeted user's guard relay and can the guard happens
+the attacker learned the targeted user's guard relay, and the guard happens
 to have weak keys.  However, judging by our experimental results, the
-probability of an attacker knowing a targeted user's guard relay \emph{and} this
-guard relay having vulnerable keys is very low.
+probability of an attacker's knowing a targeted user's guard relay \emph{and} 
+said guard relay's having vulnerable keys is very low.
 
 Hoovering adversaries are opportunistic by definition and seek to deanonymize as
 many Tor users as possible.  Recall that Tor clients use a long-lived guard
 relay as their first hop and two randomly chosen relays for the next two
-hops.\footnote{We refer to these relays as randomly chosen for simplicity but
+hops.\footnote{We refer to these relays as randomly chosen for simplicity, but
 the path selection algorithm is more complicated.}  A single compromised relay
 is not necessarily harmful to users but weak keys can be a problem if a user
 happens to have a guard relay with weak keys \emph{and} selects an exit relay
@@ -88,13 +88,13 @@ to many vulnerable Tor relays.  To keep its users safe, The Tor Project has
 recently launched a research safety board whose aim is to assist researchers in
 safely conducting Tor measurement studies~\cite{safety-board}.  This may entail
 running experiments in private Tor networks that are controlled by the
-researchers, or using network simulators such as Shadow~\cite{Jansen2012a}.
+researchers or using network simulators such as Shadow~\cite{Jansen2012a}.
 
 As for our own work, we were in close contact with Tor developers throughout our
 research effort and shared preliminary results as we progressed.  Once we wrote
-up our findings in a technical report we brought it to the broader Tor
+up our findings in a technical report, we brought it to the broader Tor
 community's attention by sending an email to the tor-dev mailing
-list.\footnote{We redacted the reference for anonymization.}  On top of that we
+list.\footnote{We redacted the reference for anonymization.}  On top of that, we
 adopted open science practices and wrote both our code and paper in the open,
 allowing interested parties to follow our progress easily.
 
