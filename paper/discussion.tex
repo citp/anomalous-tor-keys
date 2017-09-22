@@ -81,6 +81,32 @@ understood~\cite{vanity-domains}.  Unlike the public keys of relays, onion
 service keys are not archived, so a study would have to begin with actively
 fetching onion service keys.
 
+%\subsection{Investigating the vulnerability of Tor relays to discrete log attacks}
+%Tor also uses Diffie-Helman, which has been shown to be vulnerable to discrete 
+%log attacks [cite papers] (feasible for certain key sizes). 
+%The authors of~\cite{weakdh15} have suggested that 
+%``1024-bit discrete log may be within reach for state-level actors.''
+%The Tor specification document~/cite{torspec} states that Tor relays 
+%use the Second Oakley Group where the prime number is 1,024 bits long,
+%and this is a commonly used group.
+%To gather evidence of this usage, we performed a scan of approximately 
+%all 7,000 publicly-known relays' Tor ports?? using nmap's ``ssl-dh-params'' option 
+%that performs ``Weak ephemeral Diffie-Hellman parameter detection for SSL/TLS 
+%%services.'' The scan's results confirmed the Tor spec and suggested that Tor's 
+%Diffie-Hellman parameters might not be safe because of the research done 
+%by the authors of~\cite{weakdh15}. 
+%Both papers (Nadia's and weakdh15) suggest a move to elliptic curve cryptography 
+%and to using a 2,048-bit group. The authors of weakdh15 also recommend
+%that RSA keys should be 2,048 bits, as well, and currently Tor uses keys of length 1024 bits
+%Note that while the reference implementation uses the Second Oakley Group, 
+%we would want to investigate 
+%whether third-party implementations are using the same parameters as well. 
+%Additionally, whenever the reference implementation is ultimately updated,
+%we need to make sure that the third-party implementations are updated, too.
+%notes:
+%Recommenda that Diffie-Hellman groups should be at least 2,048 bits. 
+%Tor uses safe prime, but should probably transition to using  
+
 \subsection{\textit{In vivo} Tor research}
 Caution must be taken when conducting research using the live Tor network.
 Section~\ref{sec:shared-primes} showed how a small mistake in key generation led
