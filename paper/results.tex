@@ -3,7 +3,7 @@
 We present our results in four parts, starting with shared prime factors
 (Section~\ref{sec:shared-primes}), followed by shared moduli
 (Section~\ref{sec:shared-moduli}), unusual exponents 
-(Section~\ref{sec:unusual-exponents}), and finally targeted onion services
+(Section~\ref{sec:unusual-exponents}), and finally, targeted onion services
 (Section~\ref{sec:targeted-onion-services}).
 
 \subsection{Shared prime factors}
@@ -13,11 +13,11 @@ moduli share prime factors.  We believe that 3,555 of these keys were all
 controlled by a single research group, and upon contacting the authors of the
 Security \& Privacy 2013 paper entitled ``Trawling for Tor hidden
 services''~\cite{Biryukov2013a}, we received confirmation that these relays
-indeed were run by their research group.  The authors informed us that the weak
-keys were caused by a shortcoming of their key generation tool. The issue
+were indeed run by their research group.  The authors informed us that the weak
+keys were caused by a shortcoming in their key generation tool. The issue
 stemmed from the fact that their tool first generated thousands of prime numbers
 and then computed multiple moduli using combinations of those prime numbers in a
-greedy fashion, without ensuring that the same primes were not reused.  Because
+greedy fashion without ensuring that the same primes were not reused.  Because
 of the following shared properties, we are confident that all relays were
 operated by the researchers:
 
@@ -70,7 +70,7 @@ With $p$, $q$, and each other's $e$'s in hand, the two parties can compute
 each other's decryption exponent $d$, at which point both parties now know the
 private decryption keys.
 
-Table~\ref{tab:moduli} shows these ten relays with shared moduli, clustered into
+Table~\ref{tab:moduli} shows these ten relays with shared moduli clustered into
 four groups. The table shows the relays' truncated, four-byte fingerprint, IP
 addresses, and RSA exponents.  Note that the Tor client hard-codes the RSA
 exponent to 65,537~\cite[\S~0.3]{torspec}, a recommended value that is resistant
