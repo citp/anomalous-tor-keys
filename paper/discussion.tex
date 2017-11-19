@@ -82,18 +82,18 @@ service keys are not archived, so a study would have to begin with actively
 fetching onion service keys.
 
 \subsection{Investigating the vulnerability of Tor relays to attacks on Diffie-Hellman}
-Recent work (\cite{weakdh15},~\cite{Valenta2017a}, and~\cite{Dorey2017a}) 
-has demonstrated how Diffie-Hellman key exchange is vulnerable to attack.  
-Because Tor uses Diffie-Hellman, we decided to investigate how it might be 
-affected by those findings.  The Tor specification states that the implementation
-uses the Second Oakley Group for Diffie-Hellman, where the prime number is 1,024 
-bits long~\cite[\S~0.3]{torspec}. To gather evidence of this usage, we performed 
-an nmap scan on Tor relays using the ssl-dh-params script~\cite{nmapdhscript}, 
-which confirmed the Tor specification. The use of a 1,024-bit prime is 
-concerning because Adrian \ea~\cite{weakdh15} stated that 
-``1024-bit discrete log may be within reach for state-level actors,'' and 
-thus, they suggest a move to 2,048 bits. The authors also mention that 
-people should move away from using 1024-bit RSA, as well, which Tor uses.
+Recent work has demonstrated how Diffie-Hellman key exchange is vulnerable to
+attack~\cite{Adrian2015a,Valenta2017a,Dorey2017a}.  Because Tor uses
+Diffie-Hellman, we decided to investigate how it might be affected by those
+findings.  The Tor specification states that the implementation uses the Second
+Oakley Group for Diffie-Hellman, where the prime number is 1,024 bits
+long~\cite[\S~0.3]{torspec}. To gather evidence of this usage, we performed an
+nmap scan on Tor relays using the ssl-dh-params script~\cite{nmapdhscript},
+which confirmed the Tor specification. The use of a 1,024-bit prime is
+concerning because Adrian \ea~\cite{Adrian2015a} stated that ``1024-bit discrete
+log may be within reach for state-level actors,'' and thus, they suggest a move
+to 2,048 bits. The authors also mention that people should move away from using
+1024-bit RSA, as well, which Tor uses.
 
 %Tor also uses Diffie-Hellman, which has been shown to be vulnerable to discrete 
 %log attacks [cite papers] (feasible for certain key sizes). 
@@ -133,9 +133,9 @@ As for our own work, we were in close contact with Tor developers throughout our
 research effort and shared preliminary results as we progressed.  Once we wrote
 up our findings in a technical report, we brought it to the broader Tor
 community's attention by sending an email to the tor-dev mailing
-list.\footnote{We redacted the reference for anonymization.}  On top of that, we
-adopted open science practices and wrote both our code and paper in the open,
-allowing interested parties to follow our progress easily.
+list~\cite{Roberts2017a}.  On top of that, we adopted open science practices and
+wrote both our code and paper in the open, allowing interested parties to follow
+our progress easily.
 
 \subsection{The effect of next-generation onion services}
 As of August 2017, The Tor Project is finalizing the design of next-generation

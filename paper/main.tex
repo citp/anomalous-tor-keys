@@ -29,7 +29,7 @@
 	linkcolor=darkblue,
 	citecolor=darkblue,
 	pdftitle={Anomalous keys in Tor relays},
-	pdfauthor={Anonymous},
+	pdfauthor={George Kadianakis, Claudia V. Roberts, Laura M. Roberts, and Philipp Winter},
 	pdfkeywords={Tor, RSA, onion service, cryptography, factorization},
 	pdfsubject={An analysis of archived RSA public keys of Tor relays},
 }
@@ -57,10 +57,22 @@
 \titlerunning{Anomalous keys in Tor relays}
 
 \author{
-	Anonymous
+	George Kadianakis\inst{1}\thanks{All four authors contributed substantially
+	and share first authorship. The names are ordered alphabetically.} \and
+	Claudia V. Roberts\inst{2} \and
+	Laura M. Roberts\inst{2} \and \\
+	Philipp Winter\inst{2}
 }
 
-\institute{Anonymous}
+\institute{
+	The Tor Project
+	\and
+	Princeton University
+}
+
+\authorrunning{Kadianakis et al.} % abbreviated author list (for running head)
+
+\pagestyle{headings}  % switches on printing of running heads
 
 \maketitle
 
@@ -80,7 +92,7 @@
 
 \input{conclusion}
 
-% \input{acknowledgements}
+\input{acknowledgements}
 
 \bibliographystyle{splncs03}
 \bibliography{references.bib}{}

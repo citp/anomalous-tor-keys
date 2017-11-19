@@ -171,17 +171,16 @@ number is prime.  Leveraging this method, the tool Scallion~\cite{scallion}
 generates vanity onion service domains by iterating over the service's public
 exponent.
 
-Among all of our 3.7 million keys, 122 possessed an exponent other than
-65,537.\footnote{A list of all relays is available in our technical report but
-we redacted the URL for anonymization.} One relay had both non-standard
-identity \emph{and} onion key exponents while all remaining relays only had
-non-standard identity key exponents.  Ten of these relays further had a shared
-modulus, which we discuss in Section~\ref{sec:shared-moduli}.  Assuming that
-these relays positioned themselves in the hash ring to attack an onion service,
-we wanted to find out what onion services they targeted.  One can identify the
-victims by first compiling a comprehensive list of onion services and then
-determining each service's position in the hash ring at the time the malicious
-HSDirs were online.
+Among all of our 3.7 million keys, 122 possessed an exponent other than 65,537.
+One relay had both non-standard identity \emph{and} onion key exponents while
+all remaining relays only had non-standard identity key exponents.  Ten of these
+relays further had a shared modulus, which we discuss in
+Section~\ref{sec:shared-moduli}.  Assuming that these relays positioned
+themselves in the hash ring to attack an onion service, we wanted to find out
+what onion services they targeted.  One can identify the victims by first
+compiling a comprehensive list of onion services and then determining each
+service's position in the hash ring at the time the malicious HSDirs were
+online.
 
 \subsection{Identifying targeted onion services}
 \label{sec:targeted-onion-services}
@@ -192,12 +191,12 @@ and by contacting researchers who have done similar work~\cite{Matic2015a}.  We
 ended up with a list of 17,198 onion services that were online at some point in
 time.  Next, we developed a tool that takes as input our list of onion services
 and the malicious HSDirs we discovered.\footnote{Both the tool and our list of
-onion services are available online but we redacted the URL for anonymization.}
-The tool then calculates all descriptors these onion services ever generated and
-checks if any HSDir shared five or more hex digits in its fingerprint prefix
-with the onion service's descriptor.  We chose the threshold of five manually
-because it is unlikely to happen by chance yet easy to create a five-digit
-collision.
+onion services are available online at
+\url{https://nymity.ch/anomalous-tor-keys/}.} The tool then calculates all
+descriptors these onion services ever generated and checks if any HSDir shared
+five or more hex digits in its fingerprint prefix with the onion service's
+descriptor.  We chose the threshold of five manually because it is unlikely to
+happen by chance yet easy to create a five-digit collision.
 
 It is difficult to identify all targeted onion services because \first our list
 of onion services does not tell us when a service was online, \second an HSDir
@@ -222,10 +221,10 @@ private use, we are comfortable publishing them.
 	\toprule
 	Onion service & Replicas & Attack duration \\
 	\midrule
-	\texttt{22u75kqyl666joi2} & 2 & Two consecutive days \\
-	\texttt{n3q7l52nfpm77vnf} & 2 & Six non-consecutive days \\
-	\texttt{silkroadvb5piz3r} & 1 & Nine mostly consecutive days \\
-	\texttt{thehub7gqe43miyc} & 2 & One day \\
+	\texttt{22u75kqyl666joi2.onion} & 2 & Two consecutive days \\
+	\texttt{n3q7l52nfpm77vnf.onion} & 2 & Six non-consecutive days \\
+	\texttt{silkroadvb5piz3r.onion} & 1 & Nine mostly consecutive days \\
+	\texttt{thehub7gqe43miyc.onion} & 2 & One day \\
 	\bottomrule
 	\end{tabular}
 \end{table}
