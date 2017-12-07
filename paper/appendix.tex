@@ -10,7 +10,7 @@ public RSA exponent.  Many of these 122 relays exhibit partial fingerprint
 collisions (highlighted in gray), presumably to obtain a specific position in
 Tor's hash ring.
 
-\begin{table}[ht]
+\begin{table}
 	\caption{Fourteen relays that do not seem to have been part of a cluster.
 	The relay groups ``snooker'' and ``conoha1'' and ``conoha2'' do seem
 	related, though.}
@@ -42,11 +42,12 @@ Tor's hash ring.
 	\end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}
 	\caption{A seemingly-related cluster of 46 relays that went online in
 	November 2016.}
 	\label{tab:group1}
 	\centering
+	\scriptsize
 	\begin{tabular}{l l l r}
 	\toprule
 	Fingerprint & Nickname & IP address & Exponent \\
@@ -119,7 +120,7 @@ Tor's hash ring.
 	\end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}
 	\caption{A seemingly-related cluster of 29 relays that went online 
 	between August and October 2015.}
 	\label{tab:group2}
@@ -171,7 +172,7 @@ Tor's hash ring.
 	\end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}
 	\caption{A seemingly-related cluster of twelve relays that went online in
 	August 2014.}
 	\label{tab:group3}
@@ -201,7 +202,7 @@ Tor's hash ring.
 
 \end{table}
 
-\begin{table}[ht]
+\begin{table}
 	\caption{A cluster of 21 relays that a Tor developer used to run
 	experiments~\cite{OCearbhaill2013a}.}
 	\label{tab:group4}
@@ -242,14 +243,12 @@ Tor's hash ring.
 
 \section{Potentially targeted onion services}
 
-\begin{table*}[t]
+\begin{table*}
 
 	\caption{The details of the attacks on four onion services.  The second
 		column shows the fingerprints of the HSDirs that were participating in
 		the attack.  The third column shows the affected onion service
-		descriptors, followed by the date of the attack in the last column.  The
-		shaded part of the hex string indicate collisions between the
-	HSDir's fingerprint and the onion service's descriptor in the next column.}
+		descriptors, followed by the date of the attack in the last column.}
 	\label{tab:collisions}
 
 	\centering
