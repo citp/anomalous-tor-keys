@@ -5,7 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{booktabs} % For pretty tables.
 \usepackage{multirow} % Also for pretty tables.
-\usepackage{hyperref} % For clickable links.
+\usepackage[pagebackref=true]{hyperref} % For clickable links.
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{xcolor}   % For colourful links.
 \usepackage{xspace}   % For reasonable spacing in custom commands.
@@ -13,6 +13,15 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \urlstyle{tt}
+
+% Better back references in the references.
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{({%
+    \ifcase #1 Not cited.%
+          \or Cited on p.~#2.%
+          \else Cited on pp.~#2.%
+    \fi%
+    })}
 
 \definecolor{highlight1}{rgb}{0.863,0.863,0.863}
 \definecolor{highlight2}{rgb}{0.734,1.000,0.898}
