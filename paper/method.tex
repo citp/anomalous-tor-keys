@@ -47,7 +47,7 @@ of the Tor network.
 \subsection{Finding vulnerable keys}
 \label{sec:vulnerable-keys}
 To detect weak, potentially factorable keys in the Tor network, we used Heninger
-and Halderman's tool, fastgcd~\cite{fastgcd}, which takes as input a set
+and Halderman's fastgcd~\cite{fastgcd} tool which takes as input a set
 of moduli from public keys and then computes the pair-wise greatest common
 divisor of these moduli.  Fastgcd's C implementation is based on a
 quasilinear-time algorithm for factoring a set of integers into their co-primes.
@@ -62,5 +62,5 @@ because it allows the algorithm to draw on a larger factor base to use on each
 key~\cite{Heninger2012a}.  To that end, we reached out to Heninger's group at
 the University of Pennsylvania, and they graciously augmented their 129 million
 key dataset with our 3.6 million keys and subsequently searched for shared
-factors.  The number of Tor weak keys did not go up, but this experiment gave us
+factors.  The number of weak keys did not go up, but this experiment gave us
 more confidence that we had not missed weak keys.

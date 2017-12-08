@@ -113,17 +113,17 @@ wrote both our code and paper in the open, allowing interested parties to follow
 our progress easily.
 
 \subsection{The effect of next-generation onion services}
-As of August 2017, The Tor Project is finalizing the design of next-generation
-onion services~\cite{prop224}.  In addition to stronger cryptographic
-primitives, the design fixes the issue of predicting an onion service's location
-in the hash ring by incorporating a random element.  This element is produced by
-having the directory authorities agree on a random number once a
-day~\cite{prop250}.  The random number is embedded in the consensus document and
-used by clients to fetch an onion service's descriptor.  Attackers will no
-longer be able to attack onion services by positioning HSDirs in the hash ring;
-while they have several hours to compute a key pair that positions their HSDirs
-next to the onion service's descriptor (which is entirely feasible), it takes at
-least 96 hours to get the HSDir flag from the directory
+As of December 2017, The Tor Project is testing the implementation of
+next-generation onion services~\cite{prop224}.  In addition to stronger
+cryptographic primitives, the design fixes the issue of predicting an onion
+service's location in the hash ring by incorporating a random element.  This
+element is produced by having the directory authorities agree on a random number
+once a day~\cite{prop250}.  The random number is embedded in the consensus
+document and used by clients to fetch an onion service's descriptor.  Attackers
+will no longer be able to attack onion services by positioning HSDirs in the
+hash ring; while they have several hours to compute a key pair that positions
+their HSDirs next to the onion service's descriptor (which is entirely
+feasible), it takes at least 96 hours to get the HSDir flag from the directory
 authorities~\cite[\S~3.4.2]{dir-spec}, so attackers cannot get the flag in time.
 We expect this design change to disincentivize attackers from manipulating their
 keys to attack onion services.

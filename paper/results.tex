@@ -66,7 +66,7 @@ why we could not get in touch with its operator.
 \label{sec:shared-moduli}
 In addition to finding shared prime factors, we discovered relays that share a
 \emph{modulus}, giving them the ability to calculate each other's private keys.
-With $p$, $q$, and each other's $e$'s in hand, the two parties can compute
+With $p$, $q$, and each other's $e$s in hand, the two parties can compute
 each other's decryption exponent $d$, at which point both parties now know the
 private decryption keys.
 
@@ -261,4 +261,6 @@ the replicas of the onion services they targeted.  The HSDirs could have counted
 the number of client requests, refused to serve the onion service's descriptor
 to take it offline, or correlate client requests with guard relay traffic in
 order to deanonymize onion service visitors as it was done by the CMU/SEI
-researchers in 2014~\cite{Dingledine2014a}.
+researchers in 2014~\cite{Dingledine2014a}.  Since these attacks were
+short-lived we find it unlikely that they were meant to take offline the
+respective onion services.

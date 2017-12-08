@@ -1,35 +1,33 @@
 \section{Introduction}
 Having seen hundreds of thousands of relays come and go over the last decade,
-the Tor network is one of the largest volunteer-run anonymity networks.  To
-implement onion routing, all the relays maintain several RSA key pairs, 
-the most important of which are a medium-term key that rotates occasionally 
-and a long-term key that ideally never changes.  
-Most relays run The Tor Project's reference C
+the Tor network is the largest volunteer-run anonymity network.  To implement
+onion routing, all the relays maintain several RSA key pairs, the most important
+of which are a medium-term key that rotates occasionally and a long-term key
+that ideally never changes.  Most relays run The Tor Project's reference C
 implementation on dedicated Linux systems, but some run third-party
 implementations or operate on constrained systems such as Raspberry Pis which
-raises the question of whether these machines manage to generate safe keys
-upon bootstrapping.  Past work has investigated the safety of keys in TLS and
-SSH servers~\cite{Heninger2012a} and  nation-wide
-databases~\cite{Bernstein2013a}, as well as POP3S, IMAPS, and SMTPS
-servers~\cite{Hastings2016a}.  In this work, we study the Tor network and pay
-particular attention to Tor-specific aspects such as onion services.
+raises the question of whether these machines managed to generate safe keys upon
+bootstrapping.  Past work has investigated the safety of keys in TLS and SSH
+servers~\cite{Heninger2012a}, in nation-wide databases~\cite{Bernstein2013a}, as
+well as in POP3S, IMAPS, and SMTPS servers~\cite{Hastings2016a}.  In this work,
+we study the Tor network and pay particular attention to Tor-specific aspects
+such as onion services.
 
 Relays with weak cryptographic keys can pose a significant threat to Tor users.
 The exact impact depends on the type of key that is vulnerable.  In the best
 case, an attacker only manages to compromise the TLS layer that protects Tor
 cells, which are also encrypted.  In the worst case, an attacker compromises a
-relay's long-term ``identity key,'' allowing her to impersonate the relay.
-To protect Tor users, we need methods to find relays with vulnerable keys and
+relay's long-term ``identity key,'' allowing her to impersonate the relay.  To
+protect Tor users, we need methods to find relays with vulnerable keys and
 remove them from the network before adversaries can exploit them.
 
 Drawing on a publicly-archived dataset of 3.7 million RSA public
 keys~\cite{collector}, we set out to analyze these keys for weaknesses and
-anomalies: we looked for shared prime factors, shared moduli, 
-and non-standard RSA exponents.
-To our surprise, we found more than 3,000 keys with shared prime factors, most
-belonging to a 2013 research project~\cite{Biryukov2013a}.  Ten relays in
-our dataset shared a modulus, suggesting manual interference with the key
-generation process.  Finally, we discovered 122 relays whose RSA exponent
+anomalies: we looked for shared prime factors, shared moduli, and non-standard
+RSA exponents.  To our surprise, we found more than 3,000 keys with shared prime
+factors, most belonging to a 2013 research project~\cite{Biryukov2013a}.  Ten
+relays in our dataset shared a modulus, suggesting manual interference with the
+key generation process.  Finally, we discovered 122 relays whose RSA exponent
 differed from Tor's hard-coded exponent.  Most of these relays were meant to
 manipulate Tor's distributed hash table (DHT) in an attempt to attack onion
 services as we discuss in Section~\ref{sec:targeted-onion-services}.  To learn
