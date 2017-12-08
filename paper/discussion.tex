@@ -86,13 +86,13 @@ Recent work has demonstrated how Diffie-Hellman key exchange is vulnerable to
 attack~\cite{Adrian2015a,Valenta2017a,Dorey2017a}.  Because Tor uses
 Diffie-Hellman, we decided to investigate how it might be affected by those
 findings.  The Tor specification states that the implementation uses the Second
-Oakley Group for Diffie-Hellman, where the prime number is 1,024 bits
+Oakley Group for Diffie-Hellman, where the prime number is 1024 bits
 long~\cite[\S~0.3]{torspec}. To gather evidence of this usage, we performed an
 nmap scan on Tor relays using the ssl-dh-params script~\cite{nmapdhscript},
-which confirmed the Tor specification. The use of a 1,024-bit prime is
+which confirmed the Tor specification. The use of a 1024-bit prime is
 concerning because Adrian \ea~\cite{Adrian2015a} stated that ``1024-bit discrete
 log may be within reach for state-level actors,'' and thus, they suggest a move
-to 2,048 bits. The authors also mention that people should move away from using
+to 2048 bits. The authors also mention that people should move away from using
 1024-bit RSA, as well, which Tor uses.
 
 \subsection{\textit{In vivo} Tor research}
